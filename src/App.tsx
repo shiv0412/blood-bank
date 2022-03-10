@@ -3,13 +3,14 @@ import './App.css';
 import Curosal from './Components/Curosal';
 import Footer from './Components/Footer';
 import Menu from './Components/Menu';
+import Services from './Components/Services';
 
 function App() {
   return (
    <div>
     <Menu></Menu>
     <Curosal></Curosal>
-    <p style={{margin:"100px 0px"}}>More content goes here</p>
+    <Services></Services>
     <Footer></Footer>
    </div>
   );

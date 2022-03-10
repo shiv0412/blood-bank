@@ -40,15 +40,15 @@ let Curosal = () => {
               className="d-block w-100"
               alt="..."
               height="450"
-              style={{ opacity: "0.7" }}
+              style={{ opacity: "0.9" }}
             />
             <button className="find_donar_curosal_button">
               Find Donar Now
             </button>
-            <p className="p_curosal">
-              Your Donar Is Just One Click Away From You. <br />
+           {/* <p className="p_curosal">
+              Your Donar Is Just One Click Away From You.
               We are Here To Help You
-            </p>
+  </p>*/}
           </div>
           <div className="carousel-item">
             <img
@@ -58,7 +58,7 @@ let Curosal = () => {
               height="450"
             />
             <p className="p_two_curosal">
-              Your Donar Is Just One Click Away From You. <br />
+              Your Donar Is Just One Click Away From You.<br/>
               We are Here To Help You
             </p>
           </div>
