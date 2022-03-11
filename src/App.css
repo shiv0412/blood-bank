@@ -62,7 +62,7 @@
     text-align: center;
     padding-top:50px;
     font-family:fantasy;
-    color:#566573 ;
+    color:red ;
     text-shadow: 2px 2px 4px #ABB2B9;
 }
 
@@ -221,6 +221,32 @@
 }
 
 /* ---------------Footer CSS End Here ----------------*/
+
+/* --------------Information page css-----------------*/
+.manage_info_container{
+    padding: 50px 0px;
+}
+.img_info{
+    width:100%;
+    height:100%;
+}
+.table_info{
+    width:100%;
+}
+.table_info tr td {
+border:1px solid #ABB2B9 ;
+padding:5px 5px;
+}
+.table_info th{
+    border:1px solid #ABB2B9 ;
+    padding:5px 5px;
+}
+/*---------------Information page Css End--------------*/
+
+/*---------------Form Registration-------------*/
+
+
+/*---------------Form Registration End----------*/
   
 @media (min-width:786px) {
     .manage_logo_img{
@@ -264,4 +290,7 @@
        color:red;
        font-size: 2.6vh;
    }
+.manage_info_container{
+    margin-bottom: 50px;
+}
 }
