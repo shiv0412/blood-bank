@@ -3,9 +3,9 @@ import { Formik, Form, Field } from "formik";
 
 let DonarRegister = () => {
   return (
-    <div>
+    <div style={{marginTop:"20px"}}>
       <div>
-        <h2 style={{ textAlign: "center", padding: "20px 0px", color: "red" }}>
+        <h2 style={{ textAlign: "center", padding: "20px 0px", color: "red" ,textShadow:"2px 2px 6px #566573"}}>
           Donar Registration
         </h2>
       </div>
@@ -155,8 +155,9 @@ let DonarRegister = () => {
             </div>
 
             <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
-              <div className="col-md-12">
-                <button type="submit">Submit</button>
+              <div className="col-md-12" style={{textAlign:"center"}}>
+                <button type="submit" className="donar_form_submit_button">Submit</button>
+                <button type="reset" className="donar_form_reset_button">Reset</button>
               </div>
             </div>
           </div>

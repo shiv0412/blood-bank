@@ -1,23 +1,23 @@
-import React from 'react';
-import './App.css';
-import Curosal from './Components/Curosal';
-import DonarRegister from './Components/DonarRegister';
-import Footer from './Components/Footer';
-import Information from './Components/Information';
-import Menu from './Components/Menu';
-import Services from './Components/Services';
+import React from "react";
+import "./App.css";
+import DonarRegister from "./Components/DonarRegister";
+import DonarSearch from "./Components/DonarSearch";
+import Footer from "./Components/Footer";
+import Menu from "./Components/Menu";
+import { Route, Switch } from "react-router-dom";
+import LandingPage from "./Components/LandingPage";
 
 function App() {
   return (
-   <div>
-   {/*<Menu></Menu>
-    <Curosal></Curosal>
-    <Services></Services>
-    <Information></Information>
-  <Footer></Footer>*/}
-    <DonarRegister></DonarRegister>
-
-   </div>
+    <div>
+      <Menu></Menu>
+      <Switch>
+        <Route exact path="/" component={()=><LandingPage></LandingPage>}></Route>
+        <Route path="/donarregister" component={()=><DonarRegister></DonarRegister>}></Route>
+        <Route path="/donarsearch" component={()=><DonarSearch></DonarSearch>}></Route>
+      </Switch>
+      <Footer></Footer>
+    </div>
   );
 }
 

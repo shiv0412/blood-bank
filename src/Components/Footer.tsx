@@ -4,7 +4,7 @@ import React from "react";
 
 let Footer = () => {
   return (
-    <div>
+    <div style={{marginTop:"100px"}}>
       <div className="container-fluid" >
         <div className="row">
           <div className="col-md-12" style={{padding:"0",margin:"0"}}>
