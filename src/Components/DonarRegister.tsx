@@ -14,7 +14,9 @@ const validationSchema = yup.object({
   Pincode:yup.number().min(100000,"pincode must be of six digit").max(999999,"pincode must be of six digit").required(),
   RegDate: yup.date().required(),
   Address: yup.string().required(),
-  dateOfBirth: yup.date().required(),
+  DateOfBirth: yup.date()
+  .max(new Date(Date.now() - 567648000000), "You must be at least 18 years")
+  .required("Required"),
 });
 
 let DonarRegister = (props: any) => {
@@ -101,6 +103,7 @@ let DonarRegister = (props: any) => {
                   type="date"
                   style={{ width: "100%", padding: "3px 10px" }}
                 ></Field>
+                <CustomErrorMessage name="DateOfBirth"></CustomErrorMessage>
               </div>
             </div>
 
