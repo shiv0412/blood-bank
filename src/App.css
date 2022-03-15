@@ -276,13 +276,37 @@ padding:5px 5px;
 
 /*---------------Donar Search-------------------*/
 .donar_search_button{
-    padding:5px 10px;
+    padding:5px 25px;
     font-weight: bold;
     border-radius: 5px;
     background-color: red;
     color:white;
     border:none;
 }
+.donar_search_button:hover{
+    background-color: white;
+    color:red;
+    border:2px solid red;
+}
+.donar_search_table{
+    width:100%;
+    text-align: center;
+    margin-top:5%;
+    box-shadow: 2px 2px 8px #2C3E50;
+}
+.donar_search_table tr td{
+    border:1px solid black;
+    padding:5px 0px;
+}
+.donar_search_table th{
+    border:1px solid black;
+    padding:10px 0px;
+    background-color: red;
+    font-weight: bold;
+}
+.donar_search_table tr:nth-child(odd){
+    background-color: #FADBD8;
+} 
 /*---------------Donar Search End---------------*/
   
 @media (min-width:786px) {
