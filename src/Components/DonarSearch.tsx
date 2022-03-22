@@ -1,8 +1,10 @@
 import react, { useState } from "react";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, isEmptyArray} from "formik";
 
 let DonarSearch = (props: any) => {
   const[filter,setFilter] = useState([]);
+  const[showComp,setShowcomp] = useState(false);
+  const[showComptwo,setShowcomptwo] = useState(false);
   return (
     <div style={{ marginTop: "20px" }}>
       <div>
@@ -23,10 +25,21 @@ let DonarSearch = (props: any) => {
           bloodgroup: "",
         }}
         onSubmit={(values) => {
-           let newdata= props.data.filter((cvalue: any) => {
+           var newdata= props.data.filter((cvalue: any) => {
             return cvalue.City == values.city && cvalue.Bloodgroup==values.bloodgroup;
           });
+          if(newdata.length>0){
+           //console.log("if function works");
+           //console.log(newdata);
+           setShowcomp(true);
+           setShowcomptwo(true);
            setFilter(newdata);
+          }
+          else{
+            //console.log("else function works");
+            setShowcomp(false);
+            setShowcomptwo(true);
+          }
         }}
       >
         <Form>
@@ -66,6 +79,7 @@ let DonarSearch = (props: any) => {
           </div>
         </Form>
       </Formik>
+      {showComp ? 
       <div className="container table-responsive">
         <table className="donar_search_table">
           <tr>
@@ -93,7 +107,7 @@ let DonarSearch = (props: any) => {
             );
           })}
         </table>
-      </div>
+      </div> : showComptwo ? <div style={{textAlign:"center",padding:"10% 0%",fontSize:"2vw",color:"#808B96"}}>Sorry...No Donar Found</div> : <div></div>}
     </div>
   );
 };
