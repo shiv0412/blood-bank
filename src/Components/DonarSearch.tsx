@@ -1,7 +1,10 @@
 import react, { useState } from "react";
 import { Formik, Field, Form, isEmptyArray} from "formik";
+import {useSelector} from "react-redux";
+import {connect} from "react-redux";
 
-let DonarSearch = (props: any) => {
+let DonarSearch = (props:any) => {
+  //const myState = useSelector((state:any) => state.dataReducer);
   const[filter,setFilter] = useState([]);
   const[showComp,setShowcomp] = useState(false);
   const[showComptwo,setShowcomptwo] = useState(false);
@@ -25,7 +28,7 @@ let DonarSearch = (props: any) => {
           bloodgroup: "",
         }}
         onSubmit={(values) => {
-           var newdata= props.data.filter((cvalue: any) => {
+           var newdata= props.values.filter((cvalue: any) => {
             return cvalue.City == values.city && cvalue.Bloodgroup==values.bloodgroup;
           });
           if(newdata.length>0){
@@ -111,4 +114,11 @@ let DonarSearch = (props: any) => {
     </div>
   );
 };
-export default DonarSearch;
+
+function mapStateToProps(state:any){
+  return{
+    values:state.dataReducer
+  };
+}
+
+export default connect(mapStateToProps)(DonarSearch);

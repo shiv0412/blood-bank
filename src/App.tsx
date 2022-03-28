@@ -8,9 +8,9 @@ import { Route, Switch } from "react-router-dom";
 import LandingPage from "./Components/LandingPage";
 import { ToastContainer } from "react-toastify";
 import About from "./Components/About";
+import AdminPannel from "./Components/AdminPannel";
 
 function App() {
-  const [userData, setUserData] = useState([]);
   return (
     <div>
       <ToastContainer />
@@ -23,20 +23,16 @@ function App() {
         ></Route>
         <Route
           path="/donarregister"
-          component={() => (
-            <DonarRegister
-              setData={setUserData}
-              user={userData}
-            ></DonarRegister>
-          )}
+          component={() => <DonarRegister></DonarRegister>}
         ></Route>
         <Route
           path="/donarsearch"
-          component={() => <DonarSearch data={userData}></DonarSearch>}
+          component={() => <DonarSearch></DonarSearch>}
         ></Route>
-       <Route
-          path="/aboutus"
-          component={() => <About></About>}
+        <Route path="/aboutus" component={() => <About></About>}></Route>
+        <Route
+          path="/admin"
+          component={() => <AdminPannel></AdminPannel>}
         ></Route>
       </Switch>
       <Footer></Footer>

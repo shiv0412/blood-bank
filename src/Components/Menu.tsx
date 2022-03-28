@@ -44,7 +44,7 @@ let Menu = () => {
                 </a>
               </li>
               </Link>
-              <Link to='/donarregister' style={{textDecoration:"none"}}>
+              <Link to='/admin' style={{textDecoration:"none"}}>
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   Admin

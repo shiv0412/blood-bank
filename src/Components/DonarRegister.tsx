@@ -1,8 +1,10 @@
 import React from "react";
-import { Formik, Form, Field ,ErrorMessage} from "formik";
+import { Formik, Form, Field ,ErrorMessage, validateYupSchema} from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import CustomErrorMessage from "./CustomErrorMessage";
+import {connect} from "react-redux";
+import {dataAction} from "../Redux/actions/actionData";
 
 const validationSchema = yup.object({
   name:yup.string().matches(/^[a-zA-Z]*$/,"name must be in alphabets").required(),
@@ -14,13 +16,13 @@ const validationSchema = yup.object({
   Pincode:yup.number().min(100000,"pincode must be of six digit").max(999999,"pincode must be of six digit").required(),
   RegDate: yup.date().required(),
   Address: yup.string().required(),
+  Bloodbank:yup.string().required("Blood Bank must be required"),
   DateOfBirth: yup.date()
   .max(new Date(Date.now() - 567648000000), "You must be at least 18 years")
   .required("Required"),
 });
 
-let DonarRegister = (props: any) => {
-
+let DonarRegister = (props:any) => {
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
@@ -49,6 +51,7 @@ let DonarRegister = (props: any) => {
       <Formik
       validationSchema={validationSchema}
         initialValues={{
+          id:"",
           name: "",
           phone: "",
           DateOfBirth: "",
@@ -59,10 +62,11 @@ let DonarRegister = (props: any) => {
           Pincode: "",
           RegDate: "",
           Address: "",
+          Bloodbank:""
         }}
         onSubmit={(values) => {
           notify();
-          props.setData([...props.user, values]);
+          props.dispatch(dataAction(values));
         }}
       >
         <Form
@@ -135,6 +139,7 @@ let DonarRegister = (props: any) => {
                   as="select"
                   style={{ width: "100%", padding: "3px 10px" }}
                 >
+                  <option>Select Blood Group</option>
                   <option value="A+">A+</option>
                   <option value="B+">B+</option>
                   <option value="O+">O+</option>
@@ -157,6 +162,30 @@ let DonarRegister = (props: any) => {
                 <CustomErrorMessage name="RegDate"></CustomErrorMessage>
               </div>
             </div>
+
+            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+              <div className="col-md-12">
+                <label>Blood Bank*</label>
+                <br />
+                <Field
+                  name="Bloodbank"
+                  as="select"
+                  style={{ width: "100%", padding: "5px 10px" }}
+                >
+                  <option>Select Blood Bank</option>
+                   <option value="Kanaklata Civil Hospital,Tezpur">Kanaklata Civil Hospital,Tezpur</option>
+                  <option value="Blood Bank, Kushal Konwar Hospital">Blood Bank, Kushal Konwar Hospital</option>
+                  <option value="Rotary Blood Bank and Resource Centre">Rotary Blood Bank and Resource Centre</option>
+                  <option value="Indian Red Cross Society">Indian Red Cross Society</option>
+                  <option value="Sheth L.G. General Hospital (MUN)">Sheth L.G. General Hospital (MUN)</option>
+                  <option value="Bhavnagar Blood Bank">Bhavnagar Blood Bank</option>
+                  <option value="Blood Bank,P.S. Medical College">Blood Bank,P.S. Medical College</option>
+                  <option value="Jamshedpur Blood Bank">Jamshedpur Blood Bank</option>
+                </Field>
+                <CustomErrorMessage name="Bloodbank"></CustomErrorMessage>
+              </div>
+            </div>
+
             <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
               <div className="col-md-12">
                 <label>Address*</label>
@@ -217,4 +246,9 @@ let DonarRegister = (props: any) => {
   );
 };
 
-export default DonarRegister;
+function mapStateToProps(state:any){
+  return{
+    values:state.dataReducer
+  };
+}
+export default connect(mapStateToProps) (DonarRegister);
