@@ -308,6 +308,17 @@ padding:5px 5px;
     background-color: #FADBD8;
 } 
 /*---------------Donar Search End---------------*/
+
+/*--------------Admin Pannel CSS---------------*/
+
+.set_UpdateField{
+    width:80%;
+    margin:auto;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px 5px;
+}
+/*--------------Admin Pannel CSS END-----------*/
   
 @media (min-width:786px) {
     .manage_logo_img{

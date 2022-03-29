@@ -13,11 +13,11 @@ export const deleteDonar = (id:any) => {
     }
 }
 
-export const updateDonar = (id:any) => {
+export const updateDonar = (values:any) => {
     console.log("update function clicked");
     return{
         type:"UPDATE_DONAR",
-        id
+        values
     }
 }
 
