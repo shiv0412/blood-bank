@@ -170,7 +170,7 @@ const AdminPannel = (props: any) => {
                 <Td>{cvalue.Bloodgroup}</Td>
                 <Td>{cvalue.Bloodbank}</Td>
                 <Td>
-                  <Popup trigger={<Actions title="Edit">&#9998; </Actions>} modal>
+                  <Popup trigger={<Actions title="Edit">&#9998;&nbsp; </Actions>} modal>
                     {(
                       close:
                         | React.MouseEventHandler<HTMLButtonElement>
