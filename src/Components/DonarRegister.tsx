@@ -1,28 +1,46 @@
 import React from "react";
-import { Formik, Form, Field ,ErrorMessage, validateYupSchema} from "formik";
+import { Formik, Form, Field} from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import CustomErrorMessage from "./CustomErrorMessage";
-import {connect} from "react-redux";
-import {dataAction} from "../Redux/actions/actionData";
+import { connect } from "react-redux";
+import { dataAction } from "../Redux/actions/actionData";
 
 const validationSchema = yup.object({
-  name:yup.string().matches(/^[a-zA-Z]*$/,"name must be in alphabets").required(),
-  phone:yup.number().min(1000000000,"not a valid phone number").max(999999999999,"not a valid phone number").required("phone number must be required"),
-  Gender:yup.string().required("gender is required field"),
-  Bloodgroup:yup.string().required("blood group must required"),
-  City:yup.string().matches(/^[a-zA-Z]*$/,"city name must be in alphabets").required(),
-  State:yup.string().matches(/^[a-zA-Z]*$/,"state name must be in alphabets").required(),
-  Pincode:yup.number().min(100000,"pincode must be of six digit").max(999999,"pincode must be of six digit").required(),
+  name: yup
+    .string()
+    .matches(/^[a-zA-Z]*$/, "name must be in alphabets")
+    .required(),
+  phone: yup
+    .number()
+    .min(1000000000, "not a valid phone number")
+    .max(999999999999, "not a valid phone number")
+    .required("phone number must be required"),
+  Gender: yup.string().required("gender is required field"),
+  Bloodgroup: yup.string().required("blood group must required"),
+  City: yup
+    .string()
+    .matches(/^[a-zA-Z]*$/, "city name must be in alphabets")
+    .required(),
+  State: yup
+    .string()
+    .matches(/^[a-zA-Z]*$/, "state name must be in alphabets")
+    .required(),
+  Pincode: yup
+    .number()
+    .min(100000, "pincode must be of six digit")
+    .max(999999, "pincode must be of six digit")
+    .required(),
   RegDate: yup.date().required(),
   Address: yup.string().required(),
-  Bloodbank:yup.string().required("Blood Bank must be required"),
-  DateOfBirth: yup.date()
-  .max(new Date(Date.now() - 567648000000), "You must be at least 18 years")
-  .required("Required"),
+  Bloodbank: yup.string().required("Blood Bank must be required"),
+  DateOfBirth: yup
+    .date()
+    .max(new Date(Date.now() - 567648000000), "You must be at least 18 years")
+    .required("Required"),
 });
 
-let DonarRegister = (props:any) => {
+let DonarRegister = (props: any) => {
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
@@ -35,23 +53,14 @@ let DonarRegister = (props:any) => {
     });
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div className="main_container_donarergister">
       <div>
-        <h2
-          style={{
-            textAlign: "center",
-            padding: "20px 0px",
-            color: "red",
-            textShadow: "2px 2px 6px #566573",
-          }}
-        >
-          Donar Registration
-        </h2>
+        <h2 className="header_donarregister_form">Donar Registration</h2>
       </div>
       <Formik
-      validationSchema={validationSchema}
+        validationSchema={validationSchema}
         initialValues={{
-          id:"",
+          id: "",
           name: "",
           phone: "",
           DateOfBirth: "",
@@ -62,56 +71,48 @@ let DonarRegister = (props:any) => {
           Pincode: "",
           RegDate: "",
           Address: "",
-          Bloodbank:""
+          Bloodbank: "",
         }}
         onSubmit={(values) => {
           notify();
           props.dispatch(dataAction(values));
         }}
       >
-        <Form
-          style={{
-            border: "2px solid red",
-            width: "80%",
-            margin: "auto",
-            boxShadow: "2px 2px 10px black",
-          }}
-        >
+        <Form className="donarregister_form_comp">
           <div className="container">
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+            <div className="row" id="form_data_row">
               <div className="col-md-4">
-                <label>Name*</label>
-                <br />
+                <label className="label_donarregister">Name*</label>
                 <Field
                   name="name"
                   type="text"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="name"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>Phone*</label>
-                <br />
+                <label className="label_donarregister">Phone*</label>
+
                 <Field
                   name="phone"
                   type="number"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
-                 <CustomErrorMessage name="phone"></CustomErrorMessage>
+                <CustomErrorMessage name="phone"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>DateOfBirth*</label>
-                <br />
+                <label className="label_donarregister">DateOfBirth*</label>
+
                 <Field
                   name="DateOfBirth"
                   type="date"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="DateOfBirth"></CustomErrorMessage>
               </div>
             </div>
 
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+            <div className="row" id="form_data_row">
               <div className="col-md-4">
                 <label>Gender*</label>
                 <br />
@@ -120,24 +121,24 @@ let DonarRegister = (props:any) => {
                   name="Gender"
                   value="Male"
                   type="radio"
-                  style={{ margin: "15px 15px" }}
+                  className="radio_button_donarregister"
                 ></Field>
                 <label>Female</label>
                 <Field
                   name="Gender"
                   value="Female"
                   type="radio"
-                  style={{ margin: "15px 15px" }}
-                ></Field><br/>
+                  className="radio_button_donarregister"
+                ></Field>
+                <br />
                 <CustomErrorMessage name="Gender"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>Blood Group*</label>
-                <br />
+                <label className="label_donarregister">Blood Group*</label>
                 <Field
                   name="Bloodgroup"
                   as="select"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 >
                   <option>Select Blood Group</option>
                   <option value="A+">A+</option>
@@ -152,88 +153,105 @@ let DonarRegister = (props:any) => {
                 <CustomErrorMessage name="Bloodgroup"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>Registration Date*</label>
-                <br />
+                <label className="label_donarregister">
+                  Registration Date*
+                </label>
                 <Field
                   name="RegDate"
                   type="date"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="RegDate"></CustomErrorMessage>
               </div>
             </div>
 
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+            <div className="row" id="form_data_row">
               <div className="col-md-12">
-                <label>Blood Bank*</label>
-                <br />
+                <label className="label_donarregister">Blood Bank*</label>
+
                 <Field
                   name="Bloodbank"
                   as="select"
-                  style={{ width: "100%", padding: "5px 10px" }}
+                  className="donarregister_fields"
                 >
                   <option>Select Blood Bank</option>
-                   <option value="Kanaklata Civil Hospital,Tezpur">Kanaklata Civil Hospital,Tezpur</option>
-                  <option value="Blood Bank, Kushal Konwar Hospital">Blood Bank, Kushal Konwar Hospital</option>
-                  <option value="Rotary Blood Bank and Resource Centre">Rotary Blood Bank and Resource Centre</option>
-                  <option value="Indian Red Cross Society">Indian Red Cross Society</option>
-                  <option value="Sheth L.G. General Hospital (MUN)">Sheth L.G. General Hospital (MUN)</option>
-                  <option value="Bhavnagar Blood Bank">Bhavnagar Blood Bank</option>
-                  <option value="Blood Bank,P.S. Medical College">Blood Bank,P.S. Medical College</option>
-                  <option value="Jamshedpur Blood Bank">Jamshedpur Blood Bank</option>
+                  <option value="Kanaklata Civil Hospital,Tezpur">
+                    Kanaklata Civil Hospital,Tezpur
+                  </option>
+                  <option value="Blood Bank, Kushal Konwar Hospital">
+                    Blood Bank, Kushal Konwar Hospital
+                  </option>
+                  <option value="Rotary Blood Bank and Resource Centre">
+                    Rotary Blood Bank and Resource Centre
+                  </option>
+                  <option value="Indian Red Cross Society">
+                    Indian Red Cross Society
+                  </option>
+                  <option value="Sheth L.G. General Hospital (MUN)">
+                    Sheth L.G. General Hospital (MUN)
+                  </option>
+                  <option value="Bhavnagar Blood Bank">
+                    Bhavnagar Blood Bank
+                  </option>
+                  <option value="Blood Bank,P.S. Medical College">
+                    Blood Bank,P.S. Medical College
+                  </option>
+                  <option value="Jamshedpur Blood Bank">
+                    Jamshedpur Blood Bank
+                  </option>
                 </Field>
                 <CustomErrorMessage name="Bloodbank"></CustomErrorMessage>
               </div>
             </div>
 
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+            <div className="row" id="form_data_row">
               <div className="col-md-12">
-                <label>Address*</label>
-                <br />
+                <label className="label_donarregister">Address*</label>
+
                 <Field
                   name="Address"
                   type="textarea"
-                  style={{ width: "100%", padding: "15px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="Address"></CustomErrorMessage>
               </div>
             </div>
 
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
+            <div className="row" id="form_data_row">
               <div className="col-md-4">
-                <label>District/City*</label>
-                <br />
+                <label className="label_donarregister">District/City*</label>
+
                 <Field
                   name="City"
                   type="text"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="City"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>State*</label>
-                <br />
+                <label className="label_donarregister">State*</label>
+
                 <Field
                   name="State"
                   type="text"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="State"></CustomErrorMessage>
               </div>
               <div className="col-md-4">
-                <label>Pincode*</label>
-                <br />
+                <label className="label_donarregister">Pincode*</label>
+
                 <Field
                   name="Pincode"
                   type="number"
-                  style={{ width: "100%", padding: "3px 10px" }}
+                  className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="Pincode"></CustomErrorMessage>
               </div>
             </div>
 
-            <div className="row" style={{ margin: "15px 0px", padding: 0 }}>
-              <div className="col-md-12" style={{ textAlign: "center" }}>
+            <div className="row" id="form_data_row">
+              <div className="col-md-12 button_container_donarregister">
                 <button type="submit" className="donar_form_submit_button">
                   Submit
                 </button>
@@ -246,9 +264,9 @@ let DonarRegister = (props:any) => {
   );
 };
 
-function mapStateToProps(state:any){
-  return{
-    values:state.dataReducer
+function mapStateToProps(state: any) {
+  return {
+    values: state.dataReducer,
   };
 }
-export default connect(mapStateToProps) (DonarRegister);
+export default connect(mapStateToProps)(DonarRegister);

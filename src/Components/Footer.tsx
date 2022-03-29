@@ -1,13 +1,11 @@
 import React from "react";
-//import styles from "../Css Module/Footer.module.css";
-
 
 let Footer = () => {
   return (
-    <div style={{marginTop:"100px"}}>
+    <div className="main_footer_container">
       <div className="container-fluid" >
         <div className="row">
-          <div className="col-md-12" style={{padding:"0",margin:"0"}}>
+          <div className="col-md-12" id="footer_container_two">
             <footer className="footer">
               <div className="container-fluid">
                 <div className="row">

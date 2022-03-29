@@ -42,7 +42,6 @@ const Container = styled.section`
   margin: auto;
 `;
 
-
 //Extending styles from a styled element
 
 const Containerinner = styled(Container)`
@@ -77,27 +76,27 @@ const Parasec = styled.p`
 //using props based styled element
 
 interface spantagprops {
-    size:string;
-    margin:string;
-    padding:string;
-    width:string;
+  size: string;
+  margin: string;
+  padding: string;
+  width: string;
 }
 
 const Spantag = styled.span<spantagprops>`
-background-color:${(props) => props.color ? props.color : "white"};
-font-size:${(props) => props.size || "1rm"};
-margin:${(props) => props.margin};
-padding:${(props) => props.padding};
-width:${(props) => props.width};
-border-radius:10px;
-font-weight:bold;
-text-shadow:2px 2px white;
+  background-color: ${(props) => (props.color ? props.color : "white")};
+  font-size: ${(props) => props.size || "1rm"};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  width: ${(props) => props.width};
+  border-radius: 10px;
+  font-weight: bold;
+  text-shadow: 2px 2px white;
 `;
 
 const Title = styled.h4`
-color:red;
-padding:0% 0% 5% 5%;
-text-decoration:underline;
+  color: red;
+  padding: 0% 0% 5% 5%;
+  text-decoration: underline;
 `;
 
 const List = styled.ul`
@@ -145,61 +144,73 @@ const About = () => {
         </Containerinner>
       </Container>
       <Container>
-          <Spantag style={{textAlign:"center",display:"block"}} color="#D5D8DC" size="2.1vw" margin="10% 0%" padding="30px 10px" width="100%">E-blood Bank Is A Centralized Blood Manaagement System</Spantag>
+        <Spantag
+          color="#D5D8DC"
+          size="2.1vw"
+          margin="10% 0%"
+          padding="30px 10px"
+          width="100%"
+          className="spantag_about_page"
+        >
+          E-blood Bank Is A Centralized Blood Manaagement System
+        </Spantag>
       </Container>
       <Container>
-          <div className="row">
-              <div className="col-md-4">
-                  <Title>Objectives</Title>
-                  <List>
-                      <li>Safe and Adequate Blood Supplies</li>
-                      <li>Networking of Blood Banks</li>
-                      <li>Donation Camps Organization</li>
-                      <li>Fullfill blood Requirements</li>
-                  </List>
-              </div>
-              <div className="col-md-4">
-              <Title>Features</Title>
-                  <List>
-                      <li>Web Based Application</li>
-                      <li>Easy Access and Ussage</li>
-                      <li>Donar Contacts Repository</li>
-                      <li>location Based Searching</li>
-                  </List>
-              </div>
-              <div className="col-md-4">
-              <img src={abimg} height="150px" width="200px"></img>
-              </div>
+        <div className="row">
+          <div className="col-md-4">
+            <Title>Objectives</Title>
+            <List>
+              <li>Safe and Adequate Blood Supplies</li>
+              <li>Networking of Blood Banks</li>
+              <li>Donation Camps Organization</li>
+              <li>Fullfill blood Requirements</li>
+            </List>
           </div>
+          <div className="col-md-4">
+            <Title>Features</Title>
+            <List>
+              <li>Web Based Application</li>
+              <li>Easy Access and Ussage</li>
+              <li>Donar Contacts Repository</li>
+              <li>location Based Searching</li>
+            </List>
+          </div>
+          <div className="col-md-4">
+            <img src={abimg} height="150px" width="200px"></img>
+          </div>
+        </div>
       </Container>
       <Container>
-          <div style={{boxShadow:"2px 2px 10px black",marginTop:"10%"}}>
+        <div className="services_container_aboutpage">
           <div>
-              <h3 style={{padding:"20px 0px",textAlign:"center", fontFamily:"Times New Roman"}}>Our Services</h3>
+            <h3 className="servive_header_aboutpage">Our Services</h3>
           </div>
           <div className="row">
-              <div className="col-md-3">
-              <ServiceCard image = {finddonar} val="Find Donar"></ServiceCard>
-              </div>
-              <div className="col-md-3">
-              <ServiceCard image = {img1} val="Donate"></ServiceCard>
-              </div>
-              <div className="col-md-3">
-              <ServiceCard image = {bloodbank} val="Blood Banks"></ServiceCard>
-              </div>
-              <div className="col-md-3">
-              <ServiceCard image = {admin} val="Volunteer"></ServiceCard>
-              </div>
+            <div className="col-md-3">
+              <ServiceCard image={finddonar} val="Find Donar"></ServiceCard>
+            </div>
+            <div className="col-md-3">
+              <ServiceCard image={img1} val="Donate"></ServiceCard>
+            </div>
+            <div className="col-md-3">
+              <ServiceCard image={bloodbank} val="Blood Banks"></ServiceCard>
+            </div>
+            <div className="col-md-3">
+              <ServiceCard image={admin} val="Volunteer"></ServiceCard>
+            </div>
           </div>
           <div className="row">
-              <div className="col-md-3">
-              <ServiceCard image = {admindash} val="Admin Dashboard"></ServiceCard>
-              </div>
-              <div className="col-md-3">
-              <ServiceCard image = {doncamp} val="Camps"></ServiceCard>
-              </div>
+            <div className="col-md-3">
+              <ServiceCard
+                image={admindash}
+                val="Admin Dashboard"
+              ></ServiceCard>
+            </div>
+            <div className="col-md-3">
+              <ServiceCard image={doncamp} val="Camps"></ServiceCard>
+            </div>
           </div>
-          </div>
+        </div>
       </Container>
     </>
   );

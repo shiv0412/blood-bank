@@ -23,28 +23,28 @@ let Menu = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav menu_ul_manage">
-            <Link to='/donarsearch' style={{textDecoration:"none"}}>
+            <Link to='/donarsearch' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   Find Donar
                 </a>
               </li>
               </Link>
-              <Link to='/aboutus' style={{textDecoration:"none"}}>
+              <Link to='/aboutus' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   About Us
                 </a>
               </li>
               </Link>
-              <Link to='/' style={{textDecoration:"none"}}>
+              <Link to='/' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   Contact Us
                 </a>
               </li>
               </Link>
-              <Link to='/admin' style={{textDecoration:"none"}}>
+              <Link to='/admin' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   Admin

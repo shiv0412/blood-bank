@@ -9,7 +9,16 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Form, Field, Formik } from "formik";
 import { toast } from "react-toastify";
-import { useEffect,useCallback,useState } from "react";
+import * as yup from "yup";
+import CustomErrorMessage from "./CustomErrorMessage";
+
+const validationSchema = yup.object({
+  name: yup.string().matches(/^[a-zA-Z]*$/, "name must be in alphabets"),
+  phone: yup
+    .number()
+    .min(1000000000, "not a valid phone number")
+    .max(999999999999, "not a valid phone number"),
+});
 
 const Wrapper = styled.div`
   background-color: #566573;
@@ -41,8 +50,9 @@ const Button = styled.button`
 
 const Iconstyle = {
   fontSize: "20px",
-  paddingBottom: "2px",
-};
+  paddingBottom: "2px"
+}
+
 
 const ButtonContainer = styled.div`
   text-align: right;
@@ -108,22 +118,23 @@ const Closebutton = styled.button`
 `;
 
 const SubmitWrapper = styled.div`
-width:100%;
-text-align:center;
-padding:15px 0px;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0px;
 `;
 
 const AdminPannel = (props: any) => {
+
   const notify = () =>
-  toast.success("Donar Data Updated", {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+    toast.success("Donar Data Updated", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   return (
     <>
       <Wrapper className="container">
@@ -134,7 +145,7 @@ const AdminPannel = (props: any) => {
           <ButtonContainer className="col-md-6">
             <Link to="/donarregister">
               <Button>
-                <AiOutlinePlusCircle style={Iconstyle} />
+                <AiOutlinePlusCircle style={Iconstyle}/>
                 &nbsp;Add New Donar
               </Button>
             </Link>
@@ -171,6 +182,7 @@ const AdminPannel = (props: any) => {
                         </LabelWrapper>
                         <hr />
                         <Formik
+                          validationSchema={validationSchema}
                           initialValues={{
                             name: cvalue.name,
                             phone: cvalue.phone,
@@ -194,6 +206,9 @@ const AdminPannel = (props: any) => {
                                     type="text"
                                     className="set_UpdateField"
                                   ></Field>
+                                  <LabelWrapper>
+                                  <CustomErrorMessage name="name"></CustomErrorMessage>
+                                  </LabelWrapper>
                                 </div>
                                 <div className="md-12">
                                   <LabelWrapper>
@@ -204,6 +219,9 @@ const AdminPannel = (props: any) => {
                                     type="number"
                                     className="set_UpdateField"
                                   ></Field>
+                                  <LabelWrapper>
+                                  <CustomErrorMessage name="phone"></CustomErrorMessage>
+                                  </LabelWrapper>
                                 </div>
 
                                 <div className="md-12">
@@ -262,12 +280,12 @@ const AdminPannel = (props: any) => {
                                   </Field>
                                 </div>
                                 <SubmitWrapper>
-                                <button
-                                  type="submit"
-                                  className="donar_form_submit_button"
-                                >
-                                  Update
-                                </button>
+                                  <button
+                                    type="submit"
+                                    className="donar_form_submit_button"
+                                  >
+                                    Update
+                                  </button>
                                 </SubmitWrapper>
                               </div>
                             </div>

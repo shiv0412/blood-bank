@@ -1,368 +1,475 @@
-*{
-    padding: 0;
-    margin:0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.nav_mar_more{
-    margin:10px;
+.nav_mar_more {
+  margin: 10px;
 }
-.find_donar_curosal_button{
-    padding:1% 3%;
-    border-radius: 10px;
-    background-color: red;
-    color: white;
-    border:none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 1.5vw;
-    text-align: left;
-    box-shadow: 2px 2px 10px black;
-    position: absolute;
-    top:40%;
-    left:15%;
+.find_donar_curosal_button {
+  padding: 1% 3%;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.5vw;
+  text-align: left;
+  box-shadow: 2px 2px 10px black;
+  position: absolute;
+  top: 40%;
+  left: 15%;
 }
-.find_donar_curosal_button:hover{
-    background-color: white;
-    border:2px solid red;
-    color:red;
-    box-shadow: 2px 2px 10px black;
+.find_donar_curosal_button:hover {
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+  box-shadow: 2px 2px 10px black;
 }
-.p_curosal{
-    position: absolute;
-    top:50%;
-    left:5%;
-    font-size: 2vw;
-    font-weight: bold;
-    color:red;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    text-shadow: 2px 2px 5px #808B96 ;
+.p_curosal {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  font-size: 2vw;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 2px 2px 5px #808b96;
 }
-.p_two_curosal{
-    position: absolute;
-    top:40%;
-    left:15%;
-    font-size: 2vw;
-    font-weight: bold;
-    color:#273746;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    text-shadow: 2px 2px 4px #808B96 ;
+.p_two_curosal {
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #273746;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 2px 2px 4px #808b96;
 }
-.fontIcon{
-    height: 50px;
-    width: 50px;
-    background-color:#808B96;
-    border-radius: 15px;
+.fontIcon {
+  height: 50px;
+  width: 50px;
+  background-color: #808b96;
+  border-radius: 15px;
 }
 
 /*----------------Services CSS-------------------*/
-.services_heading{
-    text-align: center;
-    padding-top:50px;
-    font-family:fantasy;
-    color:red ;
-    text-shadow: 2px 2px 4px #ABB2B9;
+.services_heading {
+  text-align: center;
+  padding-top: 20px;
+  font-family: fantasy;
+  color: red;
+  text-shadow: 2px 2px 4px #abb2b9;
 }
 
 .cardnen {
-    width: 150px;
-    height: 150px;
-    background-color: #fff;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
-    position: relative;
-    cursor: pointer !important;
-    z-index: 1;
-    border-radius: 10px;
-    transition: all ease 0.2s;
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer !important;
+  z-index: 1;
+  border-radius: 10px;
+  transition: all ease 0.2s;
 }
 .badgenen {
-    cursor: pointer !important;
-    background-color: #E96666;
-    color: #fff;
-    font-size: 0.8rem;
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-    border-radius: 35% 50%;
-    position: absolute;
-    font-family: iranyekan;
-    top: -5px;
-    right: -10px;
+  cursor: pointer !important;
+  background-color: #e96666;
+  color: #fff;
+  font-size: 0.8rem;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 35% 50%;
+  position: absolute;
+  font-family: iranyekan;
+  top: -5px;
+  right: -10px;
 
-    box-shadow: 0 2px 3px #1E1E1E;
+  box-shadow: 0 2px 3px #1e1e1e;
 }
-.cardnen:hover .badgenen{
-    visibility: hidden;
+.cardnen:hover .badgenen {
+  visibility: hidden;
 }
 .cardnen:hover {
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(-0.5rem);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.5rem);
 }
 .img-ccard {
-    text-align: center;
-    position: absolute;
-    z-index: -1;
-    border-radius: 10px;
-    width:100%;
-    height:100%;
+  text-align: center;
+  position: absolute;
+  z-index: -1;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
 }
 
 .btn {
-    color: #000;
-    position: absolute;
-    background-color: #fff;
-    text-align: center;
-    top: 110px;
-    line-height: 25px;
-    left: 30px;
-    padding: 3px;
-    border-radius: 5px;
-    text-decoration: none;
-    visibility: hidden;
-    font-size: 13px;
+  color: #000;
+  position: absolute;
+  background-color: #fff;
+  text-align: center;
+  top: 110px;
+  line-height: 25px;
+  left: 30px;
+  padding: 3px;
+  border-radius: 5px;
+  text-decoration: none;
+  visibility: hidden;
+  font-size: 13px;
 }
 
 .cardnen:hover {
-    transition: all ease 0.3s;
+  transition: all ease 0.3s;
 }
 .mtnpaiin {
-    position: absolute;
-    color: #fff;
-    background: rgba(86, 101, 115,0.7);
-    width:100%;
-    text-align: center;
-    justify-content: center;
-    bottom: 0;
-    left: 0px;
-    border-radius: 5px;
-    padding:5px 0px;
-    font-weight:bold;
+  position: absolute;
+  color: #fff;
+  background: rgba(86, 101, 115, 0.7);
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0px;
+  border-radius: 5px;
+  padding: 5px 0px;
+  font-weight: bold;
 }
 .cardnen:hover .mtnpaiin {
-    visibility:visible;
+  visibility: visible;
 }
 
 /*----------------Services CSS End Here-------------------*/
 
 /* ---------------Footer CSS ----------------*/
 
-.footer{
-	padding: 60px 0;
-    width: 100%;
-    background: #2C3E50;
-    color: #fff;
-   
+.footer {
+  padding: 60px 0;
+  width: 100%;
+  background: #2c3e50;
+  color: #fff;
 }
-.footer-title{
-	position: relative;
-    color: #fff;
-	font-size: 24px;
-    font-weight: 600;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #4e4e4e;
+.footer-title {
+  position: relative;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #4e4e4e;
 }
-.footer-title:after{
-	position: absolute;
-	content: '';
-	left: 0;
-	bottom: 0;
-	width: 30px;
-	height: 4px;
-	background: #ff304d;
+.footer-title:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 4px;
+  background: #ff304d;
 }
-.footer-links a{
-	padding: 10px 0;
-	border-bottom: 1px solid #404040;
-	color: #fff;
-	display: block;
-	transition: color 0.5s ease-in-out;
-   text-decoration:none;
+.footer-links a {
+  padding: 10px 0;
+  border-bottom: 1px solid #404040;
+  color: #fff;
+  display: block;
+  transition: color 0.5s ease-in-out;
+  text-decoration: none;
 }
-.footer-links a:hover{
-	color: #ff304d;
+.footer-links a:hover {
+  color: #ff304d;
 }
-.footer-social-links li{
-	display: inline-block;
+.footer-social-links li {
+  display: inline-block;
 }
-.footer-social-links a{
-	width: 40px;
-	height: 40px;
-	font-size: 16px;
-	float: left;
-	margin-right: 10px;
-	padding: 10px;
-	border: 1px solid #404040;
-	border-radius: 50px;
-	text-align: center;
-	color: #fff;
-	line-height: 1;
-	-webkit-transition: background 0.3s ease-in-out;
-	-moz-transition: background 0.3s ease-in-out;
-	transition: background 0.3s ease-in-out;
-  background:#3B008D;
+.footer-social-links a {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  float: left;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #404040;
+  border-radius: 50px;
+  text-align: center;
+  color: #fff;
+  line-height: 1;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+  background: #3b008d;
 }
-.footer-social-links a:hover{
-	background: #ff304d;
+.footer-social-links a:hover {
+  background: #ff304d;
 }
 /* g. Footer bottom section */
-.footer-bottom{
-	width: 100%;
-	padding: 25px 0;
-	text-align: center;
-	color: #fff;
-	background: #212F3D;
+.footer-bottom {
+  width: 100%;
+  padding: 25px 0;
+  text-align: center;
+  color: #fff;
+  background: #212f3d;
 }
 
 /* ---------------Footer CSS End Here ----------------*/
 
 /* --------------Information page css-----------------*/
-.manage_info_container{
-    padding: 50px 0px;
+.manage_info_container {
+  padding: 50px 0px;
 }
-.img_info{
-    width:100%;
-    height:100%;
+.img_info {
+  width: 100%;
+  height: 100%;
 }
-.table_info{
-    width:100%;
+.table_info {
+  width: 100%;
 }
 .table_info tr td {
-border:1px solid #ABB2B9 ;
-padding:5px 5px;
+  border: 1px solid #abb2b9;
+  padding: 5px 5px;
 }
-.table_info th{
-    border:1px solid #ABB2B9 ;
-    padding:5px 5px;
+.table_info th {
+  border: 1px solid #abb2b9;
+  padding: 5px 5px;
 }
 /*---------------Information page Css End--------------*/
 
 /*---------------Form Registration-------------*/
-.donar_form_submit_button{
-    padding:5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    margin:10px 0px;
-    background-color: red;
-    color:white;
-    border:none;
+.donar_form_submit_button {
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px 0px;
+  background-color: red;
+  color: white;
+  border: none;
 }
-.donar_form_submit_button:hover{
-    background-color: white;
-    color:red;
-    border:2px solid red;
+.donar_form_submit_button:hover {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
 }
-.donar_form_reset_button{
-    padding:5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    margin:10px 10px;
-    background-color: green;
-    color:white;
-    border:none;
+.donar_form_reset_button {
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px 10px;
+  background-color: green;
+  color: white;
+  border: none;
 }
-.donar_form_reset_button:hover{
-    background-color: white;
-    color:green;
-    border:2px solid green;
+.donar_form_reset_button:hover {
+  background-color: white;
+  color: green;
+  border: 2px solid green;
 }
 /*---------------Form Registration End----------*/
 
 /*---------------Donar Search-------------------*/
-.donar_search_button{
-    padding:5px 25px;
-    font-weight: bold;
-    border-radius: 5px;
-    background-color: red;
-    color:white;
-    border:none;
+.donar_search_button {
+  padding: 5px 25px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  border: none;
 }
-.donar_search_button:hover{
-    background-color: white;
-    color:red;
-    border:2px solid red;
+.donar_search_button:hover {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
 }
-.donar_search_table{
-    width:100%;
-    text-align: center;
-    margin-top:5%;
-    box-shadow: 2px 2px 8px #2C3E50;
+.donar_search_table {
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+  box-shadow: 2px 2px 8px #2c3e50;
 }
-.donar_search_table tr td{
-    border:1px solid black;
-    padding:5px 0px;
+.donar_search_table tr td {
+  border: 1px solid black;
+  padding: 5px 0px;
 }
-.donar_search_table th{
-    border:1px solid black;
-    padding:10px 0px;
-    background-color: red;
-    font-weight: bold;
+.donar_search_table th {
+  border: 1px solid black;
+  padding: 10px 0px;
+  background-color: red;
+  font-weight: bold;
 }
-.donar_search_table tr:nth-child(odd){
-    background-color: #FADBD8;
-} 
+.donar_search_table tr:nth-child(odd) {
+  background-color: #fadbd8;
+}
 /*---------------Donar Search End---------------*/
 
+.custom_error {
+  color: red;
+}
+
+.services_container_aboutpage {
+  box-shadow: 2px 2px 10px black;
+  margin-top: 10%;
+}
+
+.spantag_about_page {
+  text-align: center;
+  display: block;
+}
+
+.servive_header_aboutpage {
+  padding: 20px 0px;
+  text-align: center;
+  font-family: "Times New Roman";
+}
+.curosal_img_styling {
+  opacity: 0.9;
+}
+.main_container_donarergister {
+  margin-top: 20px;
+}
+.header_donarregister_form {
+  text-align: center;
+  padding: 20px 0px;
+  color: red;
+  text-shadow: 2px 2px 6px #566573;
+}
+.donarregister_form_comp {
+  border: 2px solid red;
+  width: 80%;
+  margin: auto;
+  box-shadow: 2px 2px 10px black;
+}
+#form_data_row {
+  margin: 15px 0px;
+  padding: 0;
+}
+.donarregister_fields {
+  width: 100%;
+  padding: 3px 10px;
+}
+.radio_button_donarregister {
+  margin: 15px 15px;
+}
+.button_container_donarregister {
+  text-align: center;
+}
+.label_donarregister {
+  padding: 10px 0px;
+}
+.main_container_search {
+  margin-top: 20px;
+}
+.showcomp_search {
+  text-align: center;
+  padding: 10% 0%;
+  font-size: 2vw;
+  color: #808b96;
+}
+.main_footer_container {
+  margin-top: 100px;
+}
+#footer_container_two {
+  margin: 0;
+  padding: 0;
+}
+.information_page_container {
+  text-align: center;
+}
+#information_page_hr {
+  width: 10%;
+  display: inline-block;
+  height: 2.5px;
+  color: red;
+}
+
+#info_page_row{
+    margin:0;
+    padding:0
+}
+.infopage_table_header{
+    color: white;
+     background-color: red; 
+}
+.menu_links{
+    text-decoration: none;
+}
+.servicepage_header_container{
+    text-align: center;
+}
+#servicespage_heading{
+    padding-top:50px;
+}
+#servicepage_hr{
+    width:10%;
+    display:inline-block;
+    height:2.5px;
+    color:red;
+}
+#servivepage_cards_row{
+    padding:20px 0px;
+    margin:0 0 50px 0;
+    background-color:black
+}
 /*--------------Admin Pannel CSS---------------*/
 
-.set_UpdateField{
-    width:80%;
-    margin:auto;
-    display: block;
-    font-family: 'Times New Roman', Times, serif;
-    padding: 5px 5px;
+.set_UpdateField {
+  width: 80%;
+  margin: auto;
+  display: block;
+  font-family: "Times New Roman", Times, serif;
+  padding: 5px 5px;
 }
 /*--------------Admin Pannel CSS END-----------*/
-  
-@media (min-width:786px) {
-    .manage_logo_img{
-        margin:0px 30px 10px 10px;
-    }
-    .menu_ul_manage{
-        font-size:1.5vw;
-        font-weight: bold;
-    }
-    .link_menu_item{
-        padding:7px;
-        margin:0px 5px 0px 5px;
-    }
-    .anchor_link_menu_manage{
-        text-decoration: none;
-        color:#566573;
-    }
-   .anchor_link_menu_manage:hover{
-       color:red;
-       font-size:1.6vw;
-   }
+
+@media (min-width: 786px) {
+  .manage_logo_img {
+    margin: 0px 30px 10px 10px;
+  }
+  .menu_ul_manage {
+    font-size: 1.5vw;
+    font-weight: bold;
+  }
+  .link_menu_item {
+    padding: 7px;
+    margin: 0px 5px 0px 5px;
+  }
+  .anchor_link_menu_manage {
+    text-decoration: none;
+    color: #566573;
+  }
+  .anchor_link_menu_manage:hover {
+    color: red;
+    font-size: 1.6vw;
+  }
 }
 
-@media (max-width:786px) {
-    .manage_logo_img{
-        margin:0px 30px 0px 10px;
-    }
-    .menu_ul_manage{
-        font-size:2.5vh;
-        font-weight: bold;
-    }
-    .link_menu_item{
-        padding:7px;
-        margin:0px 5px 0px 5px;
-    }
-    .anchor_link_menu_manage{
-        text-decoration: none;
-        color:#566573;
-    }
-   .anchor_link_menu_manage:hover{
-       color:red;
-       font-size: 2.6vh;
-   }
-.manage_info_container{
+@media (max-width: 786px) {
+  .manage_logo_img {
+    margin: 0px 30px 0px 10px;
+  }
+  .menu_ul_manage {
+    font-size: 2.5vh;
+    font-weight: bold;
+  }
+  .link_menu_item {
+    padding: 7px;
+    margin: 0px 5px 0px 5px;
+  }
+  .anchor_link_menu_manage {
+    text-decoration: none;
+    color: #566573;
+  }
+  .anchor_link_menu_manage:hover {
+    color: red;
+    font-size: 2.6vh;
+  }
+  .manage_info_container {
     margin-bottom: 50px;
-}
+  }
 }

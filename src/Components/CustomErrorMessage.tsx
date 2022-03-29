@@ -3,7 +3,7 @@ import {ErrorMessage} from "formik";
 
 const CustomErrorMessage =({name}:{name:any}) =>{
     return( 
-   <span style={{color:"red"}}>
+   <span className="custom_error">
     <ErrorMessage name={name}/>
   </span>
     );

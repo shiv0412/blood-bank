@@ -38,20 +38,15 @@ let Curosal = () => {
           <div className="carousel-item active">
             <img
               src={banner2}
-              className="d-block w-100"
+              className="d-block w-100 curosal_img_styling"
               alt="..."
               height="450"
-              style={{ opacity: "0.9" }}
             />
             <Link to='/donarsearch'>
             <button className="find_donar_curosal_button">
               Find Donar Now
             </button>
             </Link>
-           {/* <p className="p_curosal">
-              Your Donar Is Just One Click Away From You.
-              We are Here To Help You
-  </p>*/}
           </div>
           <div className="carousel-item">
             <img
