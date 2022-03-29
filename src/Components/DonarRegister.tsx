@@ -1,15 +1,16 @@
 import React from "react";
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import CustomErrorMessage from "./CustomErrorMessage";
 import { connect } from "react-redux";
 import { dataAction } from "../Redux/actions/actionData";
+import { useHistory } from "react-router-dom";
 
 const validationSchema = yup.object({
   name: yup
     .string()
-    .matches(/^[a-zA-Z]*$/, "name must be in alphabets")
+    .matches(/^[a-zA-Z_ ]*$/, "name must be in alphabets")
     .required(),
   phone: yup
     .number()
@@ -24,7 +25,7 @@ const validationSchema = yup.object({
     .required(),
   State: yup
     .string()
-    .matches(/^[a-zA-Z]*$/, "state name must be in alphabets")
+    .matches(/^[a-zA-Z_ ]*$/, "state name must be in alphabets")
     .required(),
   Pincode: yup
     .number()
@@ -41,6 +42,7 @@ const validationSchema = yup.object({
 });
 
 let DonarRegister = (props: any) => {
+  const history = useHistory();
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
@@ -73,9 +75,26 @@ let DonarRegister = (props: any) => {
           Address: "",
           Bloodbank: "",
         }}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           notify();
           props.dispatch(dataAction(values));
+          history.push('/admin');
+          resetForm({
+            values: {
+              id: "",
+              name: "",
+              phone: "",
+              DateOfBirth: "",
+              Bloodgroup: "",
+              Gender: "",
+              City: "",
+              State: "",
+              Pincode: "",
+              RegDate: "",
+              Address: "",
+              Bloodbank: "",
+            },
+          });
         }}
       >
         <Form className="donarregister_form_comp">

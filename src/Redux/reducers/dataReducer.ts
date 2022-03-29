@@ -17,12 +17,13 @@ const dataReducer = (state=[],action:any) => {
         case "UPDATE_DONAR":
             console.log("going to reducer",action.values);
             state.map((cvalue:any)=>{
+                if(cvalue.id==action.values.id){
                 return (
                     cvalue.name=action.values.name,
                     cvalue.phone=action.values.phone,
                     cvalue.Bloodgroup=action.values.Bloodgroup,
                     cvalue.Bloodbank=action.values.Bloodbank   
-                )
+                )}
             })
             return state;
 

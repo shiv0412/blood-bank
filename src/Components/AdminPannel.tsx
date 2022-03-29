@@ -11,9 +11,10 @@ import { Form, Field, Formik } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import CustomErrorMessage from "./CustomErrorMessage";
+import { useHistory } from "react-router-dom";
 
 const validationSchema = yup.object({
-  name: yup.string().matches(/^[a-zA-Z]*$/, "name must be in alphabets"),
+  name: yup.string().matches(/^[a-z_A-Z_ ]*$/, "name must be in alphabets"),
   phone: yup
     .number()
     .min(1000000000, "not a valid phone number")
@@ -50,9 +51,8 @@ const Button = styled.button`
 
 const Iconstyle = {
   fontSize: "20px",
-  paddingBottom: "2px"
-}
-
+  paddingBottom: "2px",
+};
 
 const ButtonContainer = styled.div`
   text-align: right;
@@ -124,6 +124,7 @@ const SubmitWrapper = styled.div`
 `;
 
 const AdminPannel = (props: any) => {
+  const history = useHistory();
 
   const notify = () =>
     toast.success("Donar Data Updated", {
@@ -145,7 +146,7 @@ const AdminPannel = (props: any) => {
           <ButtonContainer className="col-md-6">
             <Link to="/donarregister">
               <Button>
-                <AiOutlinePlusCircle style={Iconstyle}/>
+                <AiOutlinePlusCircle style={Iconstyle} />
                 &nbsp;Add New Donar
               </Button>
             </Link>
@@ -169,7 +170,7 @@ const AdminPannel = (props: any) => {
                 <Td>{cvalue.Bloodgroup}</Td>
                 <Td>{cvalue.Bloodbank}</Td>
                 <Td>
-                  <Popup trigger={<Actions>&#9998; </Actions>} modal>
+                  <Popup trigger={<Actions title="Edit">&#9998; </Actions>} modal>
                     {(
                       close:
                         | React.MouseEventHandler<HTMLButtonElement>
@@ -184,6 +185,7 @@ const AdminPannel = (props: any) => {
                         <Formik
                           validationSchema={validationSchema}
                           initialValues={{
+                            id:cvalue.id,
                             name: cvalue.name,
                             phone: cvalue.phone,
                             Bloodgroup: cvalue.Bloodgroup,
@@ -192,6 +194,8 @@ const AdminPannel = (props: any) => {
                           onSubmit={(values) => {
                             notify();
                             props.dispatch(updateDonar(values));
+                            history.push('/');
+                            history.push('/admin');
                           }}
                         >
                           <Form>
@@ -207,7 +211,7 @@ const AdminPannel = (props: any) => {
                                     className="set_UpdateField"
                                   ></Field>
                                   <LabelWrapper>
-                                  <CustomErrorMessage name="name"></CustomErrorMessage>
+                                    <CustomErrorMessage name="name"></CustomErrorMessage>
                                   </LabelWrapper>
                                 </div>
                                 <div className="md-12">
@@ -220,7 +224,7 @@ const AdminPannel = (props: any) => {
                                     className="set_UpdateField"
                                   ></Field>
                                   <LabelWrapper>
-                                  <CustomErrorMessage name="phone"></CustomErrorMessage>
+                                    <CustomErrorMessage name="phone"></CustomErrorMessage>
                                   </LabelWrapper>
                                 </div>
 

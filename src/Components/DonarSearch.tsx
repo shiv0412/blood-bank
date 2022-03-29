@@ -78,7 +78,7 @@ let DonarSearch = (props: any) => {
               <th>Phone</th>
               <th>Blood Group</th>
               <th>Gender</th>
-              <th>Address</th>
+              <th>Bloodbank</th>
               <th>City</th>
               <th>State</th>
               <th>Pincode</th>
@@ -90,7 +90,7 @@ let DonarSearch = (props: any) => {
                   <td>{cvalue.phone}</td>
                   <td>{cvalue.Bloodgroup}</td>
                   <td>{cvalue.Gender}</td>
-                  <td>{cvalue.Address}</td>
+                  <td>{cvalue.Bloodbank}</td>
                   <td>{cvalue.City}</td>
                   <td>{cvalue.State}</td>
                   <td>{cvalue.Pincode}</td>
