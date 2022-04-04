@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { DropdownField } from "./CustomDropdown";
-//import DropdownField from "./CustomDropdown";
 
 const validationSchema = yup.object({
   name: yup
@@ -103,6 +102,7 @@ let DonarRegister = (props: any) => {
       draggable: true,
       progress: undefined,
     });
+    
   return (
     <div className="main_container_donarergister">
       <div>
@@ -230,46 +230,46 @@ let DonarRegister = (props: any) => {
                   component={DropdownField}
                   options={[
                     {
-                      key: 'Kanaklata Civil Hospital,Tezpur',
-                      text: 'Kanaklata Civil Hospital,Tezpur',
-                      value: 'Kanaklata Civil Hospital,Tezpur',
+                      key: "Kanaklata Civil Hospital,Tezpur",
+                      text: "Kanaklata Civil Hospital,Tezpur",
+                      value: "Kanaklata Civil Hospital,Tezpur",
                     },
                     {
-                      key: 'Blood Bank, Kushal Konwar Hospital',
-                      text: 'Blood Bank, Kushal Konwar Hospital',
-                      value: 'Blood Bank, Kushal Konwar Hospital',
+                      key: "Blood Bank, Kushal Konwar Hospital",
+                      text: "Blood Bank, Kushal Konwar Hospital",
+                      value: "Blood Bank, Kushal Konwar Hospital",
                     },
                     {
-                      key: 'Rotary Blood Bank and Resource Centre',
-                      text: 'Rotary Blood Bank and Resource Centre',
-                      value: 'Rotary Blood Bank and Resource Centre',
+                      key: "Rotary Blood Bank and Resource Centre",
+                      text: "Rotary Blood Bank and Resource Centre",
+                      value: "Rotary Blood Bank and Resource Centre",
                     },
                     {
-                      key: 'Indian Red Cross Society',
-                      text: 'Indian Red Cross Society',
-                      value: 'Indian Red Cross Society',
+                      key: "Indian Red Cross Society",
+                      text: "Indian Red Cross Society",
+                      value: "Indian Red Cross Society",
                     },
                     {
-                      key: 'Sheth L.G. General Hospital (MUN)',
-                      text: 'Sheth L.G. General Hospital (MUN)',
-                      value: 'Sheth L.G. General Hospital (MUN)',
+                      key: "Sheth L.G. General Hospital (MUN)",
+                      text: "Sheth L.G. General Hospital (MUN)",
+                      value: "Sheth L.G. General Hospital (MUN)",
                     },
                     {
-                      key: 'Bhavnagar Blood Bank',
-                      text: 'Bhavnagar Blood Bank',
-                      value: 'Bhavnagar Blood Bank',
+                      key: "Bhavnagar Blood Bank",
+                      text: "Bhavnagar Blood Bank",
+                      value: "Bhavnagar Blood Bank",
                     },
-                    
+
                     {
-                      key: 'Blood Bank,P.S. Medical College',
-                      text: 'Blood Bank,P.S. Medical College',
-                      value: 'Blood Bank,P.S. Medical College',
+                      key: "Blood Bank,P.S. Medical College",
+                      text: "Blood Bank,P.S. Medical College",
+                      value: "Blood Bank,P.S. Medical College",
                     },
-                    
+
                     {
-                      key: 'Jamshedpur Blood Bank',
-                      text: 'Jamshedpur Blood Bank',
-                      value: 'Jamshedpur Blood Bank',
+                      key: "Jamshedpur Blood Bank",
+                      text: "Jamshedpur Blood Bank",
+                      value: "Jamshedpur Blood Bank",
                     },
                   ]}
                 />
