@@ -352,6 +352,7 @@
 .donarregister_fields {
   width: 100%;
   padding: 3px 10px;
+
 }
 .radio_button_donarregister {
   margin: 15px 15px;
@@ -415,6 +416,25 @@
     padding:20px 0px;
     margin:0 0 50px 0;
     background-color:black
+}
+.donar_form_cancel_button{
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px 10px;
+  background-color: green;
+  color: white;
+  border: none;
+
+}
+.donar_form_cancel_button:hover{
+  background-color: white;
+  color: green;
+  border: 2px solid green;
+}
+.donarregister_fields_textarea{
+  padding:10px 5px;
+  width: 100%;
 }
 /*--------------Admin Pannel CSS---------------*/
 

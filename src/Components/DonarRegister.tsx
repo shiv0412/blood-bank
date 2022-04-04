@@ -4,8 +4,9 @@ import { toast } from "react-toastify";
 import * as yup from "yup";
 import CustomErrorMessage from "./CustomErrorMessage";
 import { connect } from "react-redux";
-import { dataAction } from "../Redux/actions/actionData";
-import { useHistory } from "react-router-dom";
+import { dataAction, updateDonar } from "../Redux/actions/actionData";
+import { useLocation, useHistory, Link } from "react-router-dom";
+import DropdownField from "./CustomDropdown";
 
 const validationSchema = yup.object({
   name: yup
@@ -32,7 +33,7 @@ const validationSchema = yup.object({
     .min(100000, "pincode must be of six digit")
     .max(999999, "pincode must be of six digit")
     .required(),
-  RegDate: yup.date().required(),
+  RegDate: yup.string().required(),
   Address: yup.string().required(),
   Bloodbank: yup.string().required("Blood Bank must be required"),
   DateOfBirth: yup
@@ -41,10 +42,37 @@ const validationSchema = yup.object({
     .required("Required"),
 });
 
-let DonarRegister = (props: any) => {
+interface Registerprops {
+  id: string;
+  name: string;
+  phone: Number;
+  DateOfBirth: Date;
+  Bloodgroup: string;
+  Gender: string;
+  City: string;
+  State: string;
+  Pincode: Number;
+  RegDate: string;
+  Address: string;
+  Bloodbank: string;
+  medical: string;
+}
+
+let DonarRegister = (props:any) => {
   const history = useHistory();
+  const location: any = useLocation();
   const notify = () =>
     toast.success("Donar Registered Successfully", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const notify_Validation = () =>
+    toast.info("Please cheack the validation appears on fields", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -53,7 +81,17 @@ let DonarRegister = (props: any) => {
       draggable: true,
       progress: undefined,
     });
-
+  const notify_update = () =>
+    toast.success("Details Successfully Updated", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const id = location.state.id;
   return (
     <div className="main_container_donarergister">
       <div>
@@ -62,39 +100,30 @@ let DonarRegister = (props: any) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          id: "",
-          name: "",
-          phone: "",
-          DateOfBirth: "",
-          Bloodgroup: "",
-          Gender: "",
-          City: "",
-          State: "",
-          Pincode: "",
-          RegDate: "",
-          Address: "",
-          Bloodbank: "",
+          id: location.state.id || "",
+          name: location.state.data[0].name,
+          phone: location.state.data[0].phone,
+          DateOfBirth: location.state.data[0].DateOfBirth,
+          Bloodgroup: location.state.data[0].Bloodgroup,
+          Gender: location.state.data[0].Gender,
+          City: location.state.data[0].City,
+          State: location.state.data[0].State,
+          Pincode: location.state.data[0].Pincode,
+          RegDate: location.state.data[0].RegDate,
+          Address: location.state.data[0].Address,
+          Bloodbank: location.state.data[0].Bloodbank,
+          medical: location.state.data[0].medical,
         }}
-        onSubmit={(values, { resetForm }) => {
-          notify();
-          props.dispatch(dataAction(values));
-          history.push('/admin');
-          resetForm({
-            values: {
-              id: "",
-              name: "",
-              phone: "",
-              DateOfBirth: "",
-              Bloodgroup: "",
-              Gender: "",
-              City: "",
-              State: "",
-              Pincode: "",
-              RegDate: "",
-              Address: "",
-              Bloodbank: "",
-            },
-          });
+        onSubmit={(values) => {
+          if (values.id == "") {
+            notify();
+            props.dispatch(dataAction(values));
+            history.push("/admin");
+          } else {
+            notify_update();
+            props.dispatch(updateDonar(values));
+            history.push("/admin");
+          }
         }}
       >
         <Form className="donarregister_form_comp">
@@ -111,7 +140,6 @@ let DonarRegister = (props: any) => {
               </div>
               <div className="col-md-4">
                 <label className="label_donarregister">Phone*</label>
-
                 <Field
                   name="phone"
                   type="number"
@@ -121,7 +149,6 @@ let DonarRegister = (props: any) => {
               </div>
               <div className="col-md-4">
                 <label className="label_donarregister">DateOfBirth*</label>
-
                 <Field
                   name="DateOfBirth"
                   type="date"
@@ -130,7 +157,6 @@ let DonarRegister = (props: any) => {
                 <CustomErrorMessage name="DateOfBirth"></CustomErrorMessage>
               </div>
             </div>
-
             <div className="row" id="form_data_row">
               <div className="col-md-4">
                 <label>Gender*</label>
@@ -177,7 +203,7 @@ let DonarRegister = (props: any) => {
                 </label>
                 <Field
                   name="RegDate"
-                  type="date"
+                  type="text"
                   className="donarregister_fields"
                 ></Field>
                 <CustomErrorMessage name="RegDate"></CustomErrorMessage>
@@ -187,7 +213,11 @@ let DonarRegister = (props: any) => {
             <div className="row" id="form_data_row">
               <div className="col-md-12">
                 <label className="label_donarregister">Blood Bank*</label>
-
+                {/* <Field
+                  placeholder="Select Blood Bank"
+                  name="Bloodgroup"
+                  component={DropdownField}
+                /> */}
                 <Field
                   name="Bloodbank"
                   as="select"
@@ -270,10 +300,27 @@ let DonarRegister = (props: any) => {
             </div>
 
             <div className="row" id="form_data_row">
+              <div className="col-md-12">
+                <label className="label_donarregister">
+                  Medical Description
+                </label>
+                <Field
+                  name="medical"
+                  type="textara"
+                  className="donarregister_fields_textarea"
+                ></Field>
+                <CustomErrorMessage name="medical"></CustomErrorMessage>
+              </div>
+            </div>
+
+            <div className="row" id="form_data_row">
               <div className="col-md-12 button_container_donarregister">
                 <button type="submit" className="donar_form_submit_button">
                   Submit
                 </button>
+                <Link to="/admin">
+                  <button className="donar_form_cancel_button">Cancel</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -283,7 +330,7 @@ let DonarRegister = (props: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state:any) {
   return {
     values: state.dataReducer,
   };

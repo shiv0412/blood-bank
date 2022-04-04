@@ -10,7 +10,9 @@ import { ToastContainer } from "react-toastify";
 import About from "./Components/About";
 import AdminPannel from "./Components/AdminPannel";
 
+
 function App() {
+  
   return (
     <div>
       <ToastContainer />
@@ -25,6 +27,7 @@ function App() {
           path="/donarregister"
           component={() => <DonarRegister></DonarRegister>}
         ></Route>
+        {/* <Route exact path="/products/:id" element={<DonarRegister />} /> */}
         <Route
           path="/donarsearch"
           component={() => <DonarSearch></DonarSearch>}
