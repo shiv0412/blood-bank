@@ -6,7 +6,7 @@ import CustomErrorMessage from "./CustomErrorMessage";
 import { connect } from "react-redux";
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
-import DropdownField from "./CustomDropdown";
+//import DropdownField from "./CustomDropdown";
 
 const validationSchema = yup.object({
   name: yup
@@ -42,39 +42,48 @@ const validationSchema = yup.object({
     .required("Required"),
 });
 
-interface Registerprops {
-  id: string;
-  name: string;
-  phone: Number;
-  DateOfBirth: Date;
-  Bloodgroup: string;
-  Gender: string;
-  City: string;
-  State: string;
-  Pincode: Number;
-  RegDate: string;
-  Address: string;
-  Bloodbank: string;
-  medical: string;
+interface Data_Value{
+  id:string,
+  name:string,
+  phone:Number,
+  DateOfBirth:Date,
+  Bloodgroup:string,
+  Gender:string,
+  City:string,
+  State:string,
+  Pincode: Number,
+  RegDate: string,
+  Address: string,
+  Bloodbank: string,
+  medical:string
+}
+
+interface Data {
+  id:string,
+  data:[{
+    name:string,
+    phone:Number,
+    DateOfBirth:Date,
+    Bloodgroup:string,
+    Gender:string,
+    City:string,
+    State:string,
+    Pincode: Number,
+    RegDate: string,
+    Address: string,
+    Bloodbank: string,
+    medical:string
+  }]
 }
 
 let DonarRegister = (props:any) => {
   const history = useHistory();
-  const location: any = useLocation();
+  const location= useLocation();
+  const state = location.state as Data;
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
       autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  const notify_Validation = () =>
-    toast.info("Please cheack the validation appears on fields", {
-      position: "top-center",
-      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -91,7 +100,6 @@ let DonarRegister = (props:any) => {
       draggable: true,
       progress: undefined,
     });
-  const id = location.state.id;
   return (
     <div className="main_container_donarergister">
       <div>
@@ -100,22 +108,22 @@ let DonarRegister = (props:any) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          id: location.state.id || "",
-          name: location.state.data[0].name,
-          phone: location.state.data[0].phone,
-          DateOfBirth: location.state.data[0].DateOfBirth,
-          Bloodgroup: location.state.data[0].Bloodgroup,
-          Gender: location.state.data[0].Gender,
-          City: location.state.data[0].City,
-          State: location.state.data[0].State,
-          Pincode: location.state.data[0].Pincode,
-          RegDate: location.state.data[0].RegDate,
-          Address: location.state.data[0].Address,
-          Bloodbank: location.state.data[0].Bloodbank,
-          medical: location.state.data[0].medical,
+          id: state.id || "",
+          name: state.data[0].name,
+          phone: state.data[0].phone,
+          DateOfBirth:state.data[0].DateOfBirth,
+          Bloodgroup:state.data[0].Bloodgroup,
+          Gender:state.data[0].Gender,
+          City:state.data[0].City,
+          State:state.data[0].State,
+          Pincode:state.data[0].Pincode,
+          RegDate:state.data[0].RegDate,
+          Address:state.data[0].Address,
+          Bloodbank:state.data[0].Bloodbank,
+          medical:state.data[0].medical,
         }}
-        onSubmit={(values) => {
-          if (values.id == "") {
+        onSubmit={(values:Data_Value) => {
+          if (values.id === "") {
             notify();
             props.dispatch(dataAction(values));
             history.push("/admin");
@@ -330,7 +338,7 @@ let DonarRegister = (props:any) => {
   );
 };
 
-function mapStateToProps(state:any) {
+function mapStateToProps(state: { dataReducer: Data_Value; }) {
   return {
     values: state.dataReducer,
   };

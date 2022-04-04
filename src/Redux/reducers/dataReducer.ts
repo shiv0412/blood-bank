@@ -1,16 +1,34 @@
-const dataReducer = (state = [], action: any) => {
+interface Action_Data{
+type:string;
+values: {
+  id:string,
+  name:string,
+  phone:Number,
+  DateOfBirth:Date,
+  Bloodgroup:string,
+  Gender:string,
+  City:string,
+  State:string,
+  Pincode: Number,
+  RegDate: string,
+  Address: string,
+  Bloodbank: string,
+  medical:string
+}; 
+id: string;
+}
+
+const dataReducer = (state = [], action:Action_Data) => {
   switch (action.type) {
     case "SAVEDATA":
       return [...state, { ...action.values, id: Date.now() }];
-      break;
 
     case "REMOVE_DONAR":
-      return state.filter((values: any) => values.id !== action.id);
-      break;
+      return state.filter((values:Action_Data["values"]) => values.id !== action.id);
 
     case "UPDATE_DONAR":
-      state.map((cvalue: any) => {
-        if (cvalue.id == action.values.id) {
+      state.map((cvalue:Action_Data["values"]) => {
+        if (cvalue.id === action.values.id) {
           return (
             (cvalue.name = action.values.name),
             (cvalue.phone = action.values.phone),
@@ -19,10 +37,10 @@ const dataReducer = (state = [], action: any) => {
             (cvalue.DateOfBirth=action.values.DateOfBirth),
             (cvalue.Gender= action.values.Gender),
             (cvalue.City= action.values.City),
-            (cvalue.State= action.value.State),
-            (cvalue.Pincode=action.value.Pincode),
-            (cvalue.RegDate= action.value.RegDate),
-            (cvalue.Address= action.value.Address)
+            (cvalue.State= action.values.State),
+            (cvalue.Pincode=action.values.Pincode),
+            (cvalue.RegDate= action.values.RegDate),
+            (cvalue.Address= action.values.Address)
           );
         }
       });

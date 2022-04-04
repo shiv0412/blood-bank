@@ -2,10 +2,28 @@ import react, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { connect } from "react-redux";
 
+interface Data_Value{
+  id:string,
+  name:string,
+  phone:Number,
+  DateOfBirth:Date,
+  Bloodgroup:string,
+  Gender:string,
+  City:string,
+  State:string,
+  Pincode: Number,
+  RegDate: string,
+  Address: string,
+  Bloodbank: string,
+  medical:string
+}
+
 let DonarSearch = (props: any) => {
+
   const [filter, setFilter] = useState([]);
   const [showComp, setShowcomp] = useState(false);
   const [showComptwo, setShowcomptwo] = useState(false);
+  
   return (
     <div className="main_container_search">
       <div>
@@ -17,10 +35,10 @@ let DonarSearch = (props: any) => {
           bloodgroup: "",
         }}
         onSubmit={(values) => {
-          var newdata = props.values.filter((cvalue: any) => {
+          var newdata = props.values.filter((cvalue: Data_Value) => {
             return (
-              cvalue.City == values.city &&
-              cvalue.Bloodgroup == values.bloodgroup
+              cvalue.City === values.city &&
+              cvalue.Bloodgroup === values.bloodgroup
             );
           });
           if (newdata.length > 0) {
@@ -83,7 +101,7 @@ let DonarSearch = (props: any) => {
               <th>State</th>
               <th>Pincode</th>
             </tr>
-            {filter.map((cvalue: any) => {
+            {filter.map((cvalue:Data_Value) => {
               return (
                 <tr>
                   <td>{cvalue.name}</td>
@@ -112,7 +130,7 @@ let DonarSearch = (props: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: { dataReducer: Data_Value; }) {
   return {
     values: state.dataReducer,
   };

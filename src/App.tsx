@@ -27,7 +27,6 @@ function App() {
           path="/donarregister"
           component={() => <DonarRegister></DonarRegister>}
         ></Route>
-        {/* <Route exact path="/products/:id" element={<DonarRegister />} /> */}
         <Route
           path="/donarsearch"
           component={() => <DonarSearch></DonarSearch>}

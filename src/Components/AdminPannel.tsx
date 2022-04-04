@@ -1,10 +1,10 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { AiOutlineDelete, AiOutlinePlusCircle } from "react-icons/ai";
+import styled from "styled-components";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { deleteDonar, updateDonar } from "../Redux/actions/actionData";
+import { deleteDonar} from "../Redux/actions/actionData";
 import { toast } from "react-toastify";
 
 const Wrapper = styled.div`
@@ -78,25 +78,30 @@ const ActionDel = styled(Actions)`
   font-size: 18px;
 `;
 
+interface Data_Value{
+  id:string,
+  name:string,
+  phone:Number,
+  DateOfBirth:Date,
+  Bloodgroup:string,
+  Gender:string,
+  City:string,
+  State:string,
+  Pincode: Number,
+  RegDate: string,
+  Address: string,
+  Bloodbank: string,
+  medical:string
+}
+
 const AdminPannel = (props: any) => {
+  
   const history = useHistory();
 
-    const onDelete = (name:string) =>
-    toast.info(name+" Data is Deleted", {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  const onEdit = (value: any) => {
+  const onEdit = (value:Data_Value) => {
     history.push({
       pathname: "/donarregister",
       state: {
-        // location state
         id: value.id,
         data: [
           {
@@ -137,7 +142,6 @@ const AdminPannel = (props: any) => {
     history.push({
       pathname: "/donarregister",
       state: {
-        // location state
         id: "",
         data: [
           {
@@ -158,6 +162,18 @@ const AdminPannel = (props: any) => {
       },
     });
   };
+
+  const onDelete = (name:string) =>
+  toast.info(name+" Data is Deleted", {
+    position: "top-center",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
   return (
     <>
       <Wrapper className="container">
@@ -182,7 +198,7 @@ const AdminPannel = (props: any) => {
             <Th>BloodBank</Th>
             <Th>Action</Th>
           </Tr>
-          {props.values.map((cvalue: any) => {
+          {props.values.map((cvalue:Data_Value) => {
             return (
               <Tr key={cvalue.id}>
                 <Td>{cvalue.name}</Td>
@@ -209,7 +225,7 @@ const AdminPannel = (props: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: { dataReducer:Data_Value; }) {
   return {
     values: state.dataReducer,
   };
