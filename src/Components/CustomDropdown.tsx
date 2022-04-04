@@ -1,7 +1,4 @@
-import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
-
-const friendOptions = [
+/* const friendOptions = [
   {
     key: 'Kanaklata Civil Hospital,Tezpur',
     text: 'Kanaklata Civil Hospital,Tezpur',
@@ -44,28 +41,28 @@ const friendOptions = [
     text: 'Jamshedpur Blood Bank',
     value: 'Jamshedpur Blood Bank',
   },
-]
+] */
 
-const DropdownField = ({
-    field: { name, value },
-    form: { touched, errors, setFieldValue },
-    options,
-    children: _,
-    ...props
-  }: any) => {
-    const errorText = touched[name] && errors[name];
-    return (
-      <Dropdown
-        selection
-        fluid
-        options={options}
-        value={value}
-        onChange={(_, { value }) => setFieldValue(name, value)}
-        error={errorText}
-        {...props}
-      />
-    );
-  };
-  
+import * as React from "react";
+import { Dropdown } from "semantic-ui-react";
 
-export default DropdownField;
+export const DropdownField = ({
+  field: { name, value },
+  form: { touched, errors, setFieldValue },
+  options,
+  children: _,
+  ...props
+}: any) => {
+  const errorText = touched[name] && errors[name];
+  return (
+    <Dropdown
+      selection
+      fluid
+      options={options}
+      value={value}
+      onChange={(_, { value }) => setFieldValue(name, value)}
+      error={errorText}
+      {...props}
+    />
+  );
+};

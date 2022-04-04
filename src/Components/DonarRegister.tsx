@@ -6,6 +6,7 @@ import CustomErrorMessage from "./CustomErrorMessage";
 import { connect } from "react-redux";
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
+import { DropdownField } from "./CustomDropdown";
 //import DropdownField from "./CustomDropdown";
 
 const validationSchema = yup.object({
@@ -42,43 +43,45 @@ const validationSchema = yup.object({
     .required("Required"),
 });
 
-interface Data_Value{
-  id:string,
-  name:string,
-  phone:Number,
-  DateOfBirth:Date,
-  Bloodgroup:string,
-  Gender:string,
-  City:string,
-  State:string,
-  Pincode: Number,
-  RegDate: string,
-  Address: string,
-  Bloodbank: string,
-  medical:string
+interface Data_Value {
+  id: string;
+  name: string;
+  phone: Number;
+  DateOfBirth: Date;
+  Bloodgroup: string;
+  Gender: string;
+  City: string;
+  State: string;
+  Pincode: Number;
+  RegDate: string;
+  Address: string;
+  Bloodbank: string;
+  medical: string;
 }
 
 interface Data {
-  id:string,
-  data:[{
-    name:string,
-    phone:Number,
-    DateOfBirth:Date,
-    Bloodgroup:string,
-    Gender:string,
-    City:string,
-    State:string,
-    Pincode: Number,
-    RegDate: string,
-    Address: string,
-    Bloodbank: string,
-    medical:string
-  }]
+  id: string;
+  data: [
+    {
+      name: string;
+      phone: Number;
+      DateOfBirth: Date;
+      Bloodgroup: string;
+      Gender: string;
+      City: string;
+      State: string;
+      Pincode: Number;
+      RegDate: string;
+      Address: string;
+      Bloodbank: string;
+      medical: string;
+    }
+  ];
 }
 
-let DonarRegister = (props:any) => {
+let DonarRegister = (props: any) => {
   const history = useHistory();
-  const location= useLocation();
+  const location = useLocation();
   const state = location.state as Data;
   const notify = () =>
     toast.success("Donar Registered Successfully", {
@@ -111,18 +114,18 @@ let DonarRegister = (props:any) => {
           id: state.id || "",
           name: state.data[0].name,
           phone: state.data[0].phone,
-          DateOfBirth:state.data[0].DateOfBirth,
-          Bloodgroup:state.data[0].Bloodgroup,
-          Gender:state.data[0].Gender,
-          City:state.data[0].City,
-          State:state.data[0].State,
-          Pincode:state.data[0].Pincode,
-          RegDate:state.data[0].RegDate,
-          Address:state.data[0].Address,
-          Bloodbank:state.data[0].Bloodbank,
-          medical:state.data[0].medical,
+          DateOfBirth: state.data[0].DateOfBirth,
+          Bloodgroup: state.data[0].Bloodgroup,
+          Gender: state.data[0].Gender,
+          City: state.data[0].City,
+          State: state.data[0].State,
+          Pincode: state.data[0].Pincode,
+          RegDate: state.data[0].RegDate,
+          Address: state.data[0].Address,
+          Bloodbank: state.data[0].Bloodbank,
+          medical: state.data[0].medical,
         }}
-        onSubmit={(values:Data_Value) => {
+        onSubmit={(values: Data_Value) => {
           if (values.id === "") {
             notify();
             props.dispatch(dataAction(values));
@@ -221,42 +224,55 @@ let DonarRegister = (props:any) => {
             <div className="row" id="form_data_row">
               <div className="col-md-12">
                 <label className="label_donarregister">Blood Bank*</label>
-                {/* <Field
-                  placeholder="Select Blood Bank"
-                  name="Bloodgroup"
-                  component={DropdownField}
-                /> */}
                 <Field
+                  placeholder="Select Blood Bank"
                   name="Bloodbank"
-                  as="select"
-                  className="donarregister_fields"
-                >
-                  <option>Select Blood Bank</option>
-                  <option value="Kanaklata Civil Hospital,Tezpur">
-                    Kanaklata Civil Hospital,Tezpur
-                  </option>
-                  <option value="Blood Bank, Kushal Konwar Hospital">
-                    Blood Bank, Kushal Konwar Hospital
-                  </option>
-                  <option value="Rotary Blood Bank and Resource Centre">
-                    Rotary Blood Bank and Resource Centre
-                  </option>
-                  <option value="Indian Red Cross Society">
-                    Indian Red Cross Society
-                  </option>
-                  <option value="Sheth L.G. General Hospital (MUN)">
-                    Sheth L.G. General Hospital (MUN)
-                  </option>
-                  <option value="Bhavnagar Blood Bank">
-                    Bhavnagar Blood Bank
-                  </option>
-                  <option value="Blood Bank,P.S. Medical College">
-                    Blood Bank,P.S. Medical College
-                  </option>
-                  <option value="Jamshedpur Blood Bank">
-                    Jamshedpur Blood Bank
-                  </option>
-                </Field>
+                  component={DropdownField}
+                  options={[
+                    {
+                      key: 'Kanaklata Civil Hospital,Tezpur',
+                      text: 'Kanaklata Civil Hospital,Tezpur',
+                      value: 'Kanaklata Civil Hospital,Tezpur',
+                    },
+                    {
+                      key: 'Blood Bank, Kushal Konwar Hospital',
+                      text: 'Blood Bank, Kushal Konwar Hospital',
+                      value: 'Blood Bank, Kushal Konwar Hospital',
+                    },
+                    {
+                      key: 'Rotary Blood Bank and Resource Centre',
+                      text: 'Rotary Blood Bank and Resource Centre',
+                      value: 'Rotary Blood Bank and Resource Centre',
+                    },
+                    {
+                      key: 'Indian Red Cross Society',
+                      text: 'Indian Red Cross Society',
+                      value: 'Indian Red Cross Society',
+                    },
+                    {
+                      key: 'Sheth L.G. General Hospital (MUN)',
+                      text: 'Sheth L.G. General Hospital (MUN)',
+                      value: 'Sheth L.G. General Hospital (MUN)',
+                    },
+                    {
+                      key: 'Bhavnagar Blood Bank',
+                      text: 'Bhavnagar Blood Bank',
+                      value: 'Bhavnagar Blood Bank',
+                    },
+                    
+                    {
+                      key: 'Blood Bank,P.S. Medical College',
+                      text: 'Blood Bank,P.S. Medical College',
+                      value: 'Blood Bank,P.S. Medical College',
+                    },
+                    
+                    {
+                      key: 'Jamshedpur Blood Bank',
+                      text: 'Jamshedpur Blood Bank',
+                      value: 'Jamshedpur Blood Bank',
+                    },
+                  ]}
+                />
                 <CustomErrorMessage name="Bloodbank"></CustomErrorMessage>
               </div>
             </div>
@@ -338,7 +354,7 @@ let DonarRegister = (props:any) => {
   );
 };
 
-function mapStateToProps(state: { dataReducer: Data_Value; }) {
+function mapStateToProps(state: { dataReducer: Data_Value }) {
   return {
     values: state.dataReducer,
   };
