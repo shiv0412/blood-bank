@@ -98,4 +98,4 @@ let Curosal = () => {
   );
 };
 
-export default Curosal;
+export default Curosal; 

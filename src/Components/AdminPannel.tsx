@@ -15,7 +15,8 @@ const Wrapper = styled.div`
 const Title = styled.p`
   font-size: 2vw;
   font-weight: bold;
-  margin: 2% 2%;
+  margin:2% 2%;
+  padding-top:2%;
   color: white;
   font-family: "Times New Roman";
   @media (max-width: 768px) {
@@ -81,13 +82,13 @@ const ActionDel = styled(Actions)`
 interface Data_Value{
   id:string,
   name:string,
-  phone:Number,
+  phone:number,
   DateOfBirth:Date,
   Bloodgroup:string,
   Gender:string,
   City:string,
   State:string,
-  Pincode: Number,
+  Pincode: number,
   RegDate: string,
   Address: string,
   Bloodbank: string,
@@ -98,68 +99,17 @@ const AdminPannel = (props: any) => {
   
   const history = useHistory();
 
-  const onEdit = (value:Data_Value) => {
+  const onEdit = (id:string) => {
     history.push({
       pathname: "/donarregister",
-      state: {
-        id: value.id,
-        data: [
-          {
-            name: value.name,
-            phone: value.phone,
-            DateOfBirth: value.DateOfBirth,
-            Bloodgroup: value.Bloodgroup,
-            Gender: value.Gender,
-            City: value.City,
-            State: value.State,
-            Pincode: value.Pincode,
-            RegDate: value.RegDate,
-            Address: value.Address,
-            Bloodbank: value.Bloodbank,
-            medical:value.medical
-          },
-        ],
-      },
+      state: {id:id,},
     });
   };
-  var today = new Date();
-  var day;
-  var month;
-  if (today.getDate() < 10) {
-    day = 0 + "" + today.getDate();
-  } else {
-    day = today.getDate();
-  }
-
-  if (today.getMonth() + 1 < 10) {
-    month = 0 + "" + (today.getMonth() + 1);
-  } else {
-    month = today.getMonth() + 1;
-  }
-  var date = today.getFullYear() + "-" + month + "-" + day;
 
   const onRegister = () => {
     history.push({
       pathname: "/donarregister",
-      state: {
-        id: "",
-        data: [
-          {
-            name: "",
-            phone: "",
-            DateOfBirth: "",
-            Bloodgroup: "",
-            Gender: "",
-            City: "",
-            State: "",
-            Pincode: "",
-            RegDate: date,
-            Address: "",
-            Bloodbank: "",
-            medical:""
-          },
-        ],
-      },
+      state: {id: ""},
     });
   };
 
@@ -206,7 +156,7 @@ const AdminPannel = (props: any) => {
                 <Td>{cvalue.Bloodgroup}</Td>
                 <Td>{cvalue.Bloodbank}</Td>
                 <Td>
-                  <Actions title="Edit" onClick={() => onEdit(cvalue)}>
+                  <Actions title="Edit" onClick={() => onEdit(cvalue.id)}>
                     &#9998;&nbsp;
                   </Actions>
                   <ActionDel

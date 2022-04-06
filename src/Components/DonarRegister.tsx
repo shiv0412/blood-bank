@@ -8,6 +8,7 @@ import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { DropdownField } from "./CustomDropdown";
 
+
 const validationSchema = yup.object({
   name: yup
     .string()
@@ -60,28 +61,13 @@ interface Data_Value {
 
 interface Data {
   id: string;
-  data: [
-    {
-      name: string;
-      phone: Number;
-      DateOfBirth: Date;
-      Bloodgroup: string;
-      Gender: string;
-      City: string;
-      State: string;
-      Pincode: Number;
-      RegDate: string;
-      Address: string;
-      Bloodbank: string;
-      medical: string;
-    }
-  ];
 }
 
 let DonarRegister = (props: any) => {
   const history = useHistory();
   const location = useLocation();
   const state = location.state as Data;
+  const id = state.id;
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
@@ -102,7 +88,49 @@ let DonarRegister = (props: any) => {
       draggable: true,
       progress: undefined,
     });
-    
+
+    var today = new Date();
+    var day;
+    var month;
+    if (today.getDate() < 10) {
+      day = 0 + "" + today.getDate();
+    } else {
+      day = today.getDate();
+    }
+  
+    if (today.getMonth() + 1 < 10) {
+      month = 0 + "" + (today.getMonth() + 1);
+    } else {
+      month = today.getMonth() + 1;
+    }
+    var date = today.getFullYear() + "-" + month + "-" + day;
+
+    var data;
+    if(id!==""){
+       data = props.values.filter((cvalue:any)=>{
+        return cvalue.id === id;
+      })
+    }
+    else {
+      data= [
+      {
+        name: "",
+        phone: "",
+        DateOfBirth: "",
+        Bloodgroup: "",
+        Gender: "",
+        City: "",
+        State: "",
+        Pincode: "",
+        RegDate: date,
+        Address: "",
+        Bloodbank: "",
+        medical:""
+      },
+    ]
+  }
+
+
   return (
     <div className="main_container_donarergister">
       <div>
@@ -111,19 +139,19 @@ let DonarRegister = (props: any) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          id: state.id || "",
-          name: state.data[0].name,
-          phone: state.data[0].phone,
-          DateOfBirth: state.data[0].DateOfBirth,
-          Bloodgroup: state.data[0].Bloodgroup,
-          Gender: state.data[0].Gender,
-          City: state.data[0].City,
-          State: state.data[0].State,
-          Pincode: state.data[0].Pincode,
-          RegDate: state.data[0].RegDate,
-          Address: state.data[0].Address,
-          Bloodbank: state.data[0].Bloodbank,
-          medical: state.data[0].medical,
+          id: id||"",
+          name: data[0].name,
+          phone: data[0].phone,
+          DateOfBirth: data[0].DateOfBirth,
+          Bloodgroup: data[0].Bloodgroup,
+          Gender: data[0].Gender,
+          City: data[0].City,
+          State: data[0].State,
+          Pincode: data[0].Pincode,
+          RegDate: data[0].RegDate,
+          Address: data[0].Address,
+          Bloodbank: data[0].Bloodbank,
+          medical: data[0].medical,
         }}
         onSubmit={(values: Data_Value) => {
           if (values.id === "") {
@@ -212,11 +240,7 @@ let DonarRegister = (props: any) => {
                 <label className="label_donarregister">
                   Registration Date*
                 </label>
-                <Field
-                  name="RegDate"
-                  type="text"
-                  className="donarregister_fields"
-                ></Field>
+                <p className="donarregister_fields">{data[0].RegDate}</p>
                 <CustomErrorMessage name="RegDate"></CustomErrorMessage>
               </div>
             </div>

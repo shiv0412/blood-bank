@@ -1,3 +1,5 @@
+import { initialstate } from "./initialState";
+
 interface Action_Data{
 type:string;
 values: {
@@ -18,7 +20,7 @@ values: {
 id: string;
 }
 
-const dataReducer = (state = [], action:Action_Data) => {
+const dataReducer = (state = initialstate, action:Action_Data) => {
   switch (action.type) {
     case "SAVEDATA":
       return [...state, { ...action.values, id: Date.now() }];
