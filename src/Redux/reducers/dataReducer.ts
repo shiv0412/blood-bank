@@ -29,24 +29,9 @@ const dataReducer = (state = initialstate, action:Action_Data) => {
       return state.filter((values:Action_Data["values"]) => values.id !== action.id);
 
     case "UPDATE_DONAR":
-      state.map((cvalue:Action_Data["values"]) => {
-        if (cvalue.id === action.values.id) {
-          return (
-            (cvalue.name = action.values.name),
-            (cvalue.phone = action.values.phone),
-            (cvalue.Bloodgroup = action.values.Bloodgroup),
-            (cvalue.Bloodbank = action.values.Bloodbank),
-            (cvalue.DateOfBirth=action.values.DateOfBirth),
-            (cvalue.Gender= action.values.Gender),
-            (cvalue.City= action.values.City),
-            (cvalue.State= action.values.State),
-            (cvalue.Pincode=action.values.Pincode),
-            (cvalue.RegDate= action.values.RegDate),
-            (cvalue.Address= action.values.Address)
-          );
-        }
-      });
-      return state;
+      var data = state;
+      state = data.filter((values:Action_Data["values"]) => values.id !== action.values.id);
+      return [...state, { ...action.values}];
 
     default:
       return state;
