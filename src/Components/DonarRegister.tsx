@@ -107,7 +107,7 @@ let DonarRegister = (props: any) => {
 
     let data;
     if(id!==""){
-       data = props.values.filter((cvalue:any)=>{
+       data = props.values.filter((cvalue:Data_Value)=>{
         return cvalue.id === id;
       })
     }
