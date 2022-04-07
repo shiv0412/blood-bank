@@ -89,9 +89,9 @@ let DonarRegister = (props: any) => {
       progress: undefined,
     });
 
-    var today = new Date();
-    var day;
-    var month;
+    let today = new Date();
+    let day;
+    let month;
     if (today.getDate() < 10) {
       day = 0 + "" + today.getDate();
     } else {
@@ -103,9 +103,9 @@ let DonarRegister = (props: any) => {
     } else {
       month = today.getMonth() + 1;
     }
-    var date = today.getFullYear() + "-" + month + "-" + day;
+    let date = today.getFullYear() + "-" + month + "-" + day;
 
-    var data;
+    let data;
     if(id!==""){
        data = props.values.filter((cvalue:any)=>{
         return cvalue.id === id;
@@ -201,7 +201,7 @@ let DonarRegister = (props: any) => {
                 <label>Gender*</label>
                 <br />
                 <label>Male</label>
-                <Field
+                <Field  
                   name="Gender"
                   value="Male"
                   type="radio"
