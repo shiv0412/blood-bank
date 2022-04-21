@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { DropdownField } from "./CustomDropdown";
+import { autoClose } from "../ConstData";
 
 
 const validationSchema = yup.object({
@@ -71,7 +72,7 @@ let DonarRegister = (props: any) => {
   const notify = () =>
     toast.success("Donar Registered Successfully", {
       position: "top-center",
-      autoClose: 1500,
+      autoClose: autoClose,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -81,7 +82,7 @@ let DonarRegister = (props: any) => {
   const notify_update = () =>
     toast.success("Details Successfully Updated", {
       position: "top-center",
-      autoClose: 1500,
+      autoClose: autoClose,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

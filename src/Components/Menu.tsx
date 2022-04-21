@@ -23,6 +23,13 @@ let Menu = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav menu_ul_manage">
+            <Link to='/' className="menu_links">
+              <li className="nav-item link_menu_item">
+                <a className="anchor_link_menu_manage" aria-current="page" href="#">
+                  Home
+                </a>
+              </li>
+              </Link>
             <Link to='/donarsearch' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
@@ -30,24 +37,24 @@ let Menu = () => {
                 </a>
               </li>
               </Link>
-              <Link to='/aboutus' className="menu_links">
+              <Link to='/admin' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
-                  About Us
+                  Admin
                 </a>
               </li>
               </Link>
-              <Link to='/' className="menu_links">
+              <Link to='/contactus' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
                   Contact Us
                 </a>
               </li>
               </Link>
-              <Link to='/admin' className="menu_links">
+              <Link to='/aboutus' className="menu_links">
               <li className="nav-item link_menu_item">
                 <a className="anchor_link_menu_manage" aria-current="page" href="#">
-                  Admin
+                  About Us
                 </a>
               </li>
               </Link>

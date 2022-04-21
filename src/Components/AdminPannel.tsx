@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteDonar} from "../Redux/actions/actionData";
 import { toast } from "react-toastify";
+import { autoClose } from "../ConstData";
 
 const Wrapper = styled.div`
   background-color: #566573;
@@ -116,7 +117,7 @@ const AdminPannel = (props: any) => {
   const onDelete = (name:string) =>
   toast.info(name+" Data is Deleted", {
     position: "top-center",
-    autoClose: 1500,
+    autoClose: autoClose,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

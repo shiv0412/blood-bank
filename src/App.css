@@ -447,6 +447,19 @@
 }
 /*--------------Admin Pannel CSS END-----------*/
 
+/*--------------Contact Page Css---------------*/
+
+.Contact_Field{
+  padding:3px;
+  width:100%;
+}
+.Contact_Message_Field{
+  padding:20px;
+  width:100%;
+}
+
+/*--------------Contact Page Css End-----------*/
+
 @media (min-width: 786px) {
   .manage_logo_img {
     margin: 0px 30px 10px 10px;
