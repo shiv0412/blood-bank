@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import {NavLink,Switch,Route} from "react-router-dom";
 import {BiCategoryAlt,BiListUl,BiLineChart,BiRun,BiBody,BiMessageDots} from "react-icons/bi";
-import AdminPannel from "./AdminPannel";
+import AdminPannel from "./admin-pannel";
 import Dashboard from "./Dashboard";
-import DonarRegister from "./DonarRegister";
+import DonarRegister from "./donar-register";
 
 const AdminHome = () => {
 

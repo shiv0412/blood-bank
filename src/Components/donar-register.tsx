@@ -2,11 +2,11 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import CustomErrorMessage from "./CustomErrorMessage";
+import CustomErrorMessage from "./custom-error-message";
 import { connect } from "react-redux";
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
-import { DropdownField } from "./CustomDropdown";
+import { DropdownField } from "./custom-dropdown";
 import { autoClose } from "../ConstData";
 
 

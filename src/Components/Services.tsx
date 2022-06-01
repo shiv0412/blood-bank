@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "./service-card";
 import img1 from "../Images/donarcard.jpg";
 import admin from "../Images/admincard.png";
 import bloodbank from "../Images/bloodbandcard.jpg";

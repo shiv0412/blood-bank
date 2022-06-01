@@ -3,7 +3,7 @@ import styled from "styled-components";
 import banner from "../Images/aboutbanner.jpg";
 import aimg from "../Images/bloodbandcard.jpg";
 import abimg from "../Images/aboutimg.jpg";
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "./service-card";
 import img1 from "../Images/donarcard.jpg";
 import admin from "../Images/admincard.png";
 import bloodbank from "../Images/bloodbandcard.jpg";
@@ -101,13 +101,14 @@ const Title = styled.h4`
 
 const List = styled.ul`
 list-style-type:none;
-List li::before 
+List li::before {
     content: "\2022";
     color: red;
     font-weight: bold;
     display: inline-block; 
     width: 1em;
     margin-left: -1em;
+}
   `;
 
 const About = () => {
