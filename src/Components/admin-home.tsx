@@ -5,6 +5,7 @@ import {BiCategoryAlt,BiListUl,BiLineChart,BiRun,BiBody,BiMessageDots} from "rea
 import AdminPannel from "./admin-pannel";
 import Dashboard from "./Dashboard";
 import DonarRegister from "./donar-register";
+import Stock from "./stocks";
 
 const AdminHome = () => {
 
@@ -64,7 +65,7 @@ flex-wrap:wrap;
       <style>{`.is-active { color: white;background-color:orangered }`}</style>
           <Item><StyledLink activeClassName="is-active" to="admin"><BiCategoryAlt/>&nbsp; &nbsp; Dashboard</StyledLink></Item>
           <Item><StyledLink activeClassName="is-active" to="adminpannel"><BiListUl/>&nbsp; &nbsp; Donation</StyledLink></Item>
-          <Item><StyledLink to=""><BiLineChart/>&nbsp; &nbsp; Stocks</StyledLink></Item>
+          <Item><StyledLink activeClassName="is-active" to="/stocks"><BiLineChart/>&nbsp; &nbsp; Stocks</StyledLink></Item>
           <Item><StyledLink to=""><BiRun/>&nbsp; &nbsp; Requests</StyledLink></Item>
           <Item><StyledLink to=""><BiBody/>&nbsp; &nbsp; Blood Issued</StyledLink></Item>
           <Item><StyledLink to=""><BiMessageDots/>&nbsp; &nbsp; Queries</StyledLink></Item>
@@ -75,6 +76,7 @@ flex-wrap:wrap;
       <Route path="/admin" component={()=> <Dashboard></Dashboard>}></Route>
       <Route path="/adminpannel" component={()=> <AdminPannel></AdminPannel>}></Route>
       <Route path="/donarregister" component={()=><DonarRegister></DonarRegister>}></Route>
+      <Route path="/stocks" component={()=><Stock></Stock>}></Route>
       </Switch>
   </RightBar>
   </Container>

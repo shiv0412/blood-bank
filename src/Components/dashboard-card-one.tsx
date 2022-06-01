@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
 const Bloodgroup = styled.div`
   width: 25%;
-  background-color: red;
+  background-color: orangered;
   color:#fff;
   padding:16px 0px 0px 10px;
 `;

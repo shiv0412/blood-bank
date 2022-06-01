@@ -513,3 +513,21 @@
     margin-bottom: 50px;
   }
 }
+
+.input_box::-webkit-outer-spin-button,
+.input_box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input_box{
+  padding:0 10px;
+  border-radius: 5px;
+  outline:none;
+  border:none;
+  font-weight:bold;
+}
+.input_box:focus{
+  outline: none;
+  border:1.5px solid lightblue;
+  border-radius: 5px;
+}

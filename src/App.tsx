@@ -43,6 +43,10 @@ function App() {
           path="/donarregister"
           component={() => <AdminHome></AdminHome>}
         ></Route>
+         <Route
+          path="/stocks"
+          component={() => <AdminHome></AdminHome>}
+        ></Route>
       </Switch>
       <Footer></Footer>
     </>
