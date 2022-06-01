@@ -23,7 +23,7 @@ let Services = () => {
             </Link>
           </div>
           <div className=" col-6 col-sm-6 col-md-3 col-lg-3">
-            <Link to="/donarregister">
+            <Link to="/admin">
               <ServiceCard image={admin} val="Admin Pannel"></ServiceCard>
             </Link>
           </div>

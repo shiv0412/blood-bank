@@ -158,11 +158,11 @@ let DonarRegister = (props: any) => {
           if (values.id === "") {
             notify();
             props.dispatch(dataAction(values));
-            history.push("/admin");
+            history.push("/adminpannel");
           } else {
             notify_update();
             props.dispatch(updateDonar(values));
-            history.push("/admin");
+            history.push("/adminpannel");
           }
         }}
       >
@@ -367,7 +367,7 @@ let DonarRegister = (props: any) => {
                 <button type="submit" className="donar_form_submit_button">
                   Submit
                 </button>
-                <Link to="/admin">
+                <Link to="/adminpannel">
                   <button className="donar_form_cancel_button">Cancel</button>
                 </Link>
               </div>

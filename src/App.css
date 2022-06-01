@@ -22,6 +22,9 @@
   top: 40%;
   left: 15%;
 }
+.search_donar_data{
+  margin-top: 2%;
+}
 .find_donar_curosal_button:hover {
   background-color: white;
   border: 2px solid red;
@@ -331,18 +334,22 @@
   opacity: 0.9;
 }
 .main_container_donarergister {
-  margin-top: 20px;
+  margin-top: 1%;
 }
 .header_donarregister_form {
   text-align: center;
-  padding: 20px 0px;
-  color: red;
+  padding: 10px 0px 10px 0px;
+  color: white;
+  font-size: 2vw;
+  font-weight: bold;
+  font-family: "Times New Roman";
   text-shadow: 2px 2px 6px #566573;
+  background:#566573;
 }
 .donarregister_form_comp {
   border: 2px solid red;
   width: 80%;
-  margin: auto;
+  margin: 15px auto 0px auto;
   box-shadow: 2px 2px 10px black;
 }
 #form_data_row {
@@ -364,7 +371,7 @@
   padding: 10px 0px;
 }
 .main_container_search {
-  margin-top: 20px;
+  margin-top: 1%;
 }
 .showcomp_search {
   text-align: center;

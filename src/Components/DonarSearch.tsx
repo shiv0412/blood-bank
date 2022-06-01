@@ -51,13 +51,13 @@ let DonarSearch = (props: any) => {
           }
         }}
       >
-        <Form>
+        <Form className="search_donar_data">
           <div className="container">
             <div className="row">
               <div className="col">
                 <Field
                   type="text"
-                  placeholder="Enter the City"
+                  placeholder="Enter Your City"
                   name="city"
                   className="donarregister_fields"
                 ></Field>

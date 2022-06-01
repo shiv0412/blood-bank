@@ -10,7 +10,7 @@ import { autoClose } from "../ConstData";
 
 const Wrapper = styled.div`
   background-color: #566573;
-  margin-top: 5%;
+  margin-top: 1%;
 `;
 
 const Title = styled.p`
