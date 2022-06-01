@@ -1,6 +1,6 @@
 import React from "react";
 import banner1 from "../Images/bnew3.jpg";
-import banner2 from "../Images/banner2.png";
+import banner2 from "../Images/mainfive.jpg";
 import banner3 from "../Images/bnew.jpg";
 import {Link} from "react-router-dom";
 
