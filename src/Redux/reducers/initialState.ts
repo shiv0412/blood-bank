@@ -1,1 +1,4 @@
-export const initialstate=[];                                                     
+export const initialstate={
+    registereddonars:[],
+    adminaccount:[]
+};                                                     

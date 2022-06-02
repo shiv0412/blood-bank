@@ -35,3 +35,17 @@ export const updateDonar = (values:Form_Data) => {
     }
 }
 
+export const adminLogin = (values:any)=>{
+    return{
+        type:"Login",
+        values
+    }
+}
+export const adminLogout = (key:any)=>{
+    return{
+        type:"Logout",
+        key
+    }
+}
+
+

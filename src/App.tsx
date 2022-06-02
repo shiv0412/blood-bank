@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import ContactUs from "./Components/contact-us";
 import AdminHome from "./Components/admin-home";
 import About from "./Components/About";
+import AdminLogin from "./Components/admin-login";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
          <Route
           path="/stocks"
           component={() => <AdminHome></AdminHome>}
+        ></Route>
+          <Route
+          path="/adminlogin"
+          component={() => <AdminLogin></AdminLogin>}
         ></Route>
       </Switch>
       <Footer></Footer>

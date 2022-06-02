@@ -20,7 +20,7 @@ interface Action_Data {
   id: string;
 }
 
-const dataReducer = (state = initialstate, action: Action_Data) => {
+const dataReducer = (state = initialstate.registereddonars, action: Action_Data) => {
   switch (action.type) {
     case "SAVEDATA":
       return [...state, { ...action.values, id: Date.now() }];
