@@ -1,33 +1,30 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useState } from "react";
 import logo from "../Images/logomain.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import UID from "uniquebrowserid";
+import styled from "styled-components";
 import { adminLogout } from "../Redux/actions/actionData";
 
-let Menu = (props: any) => {
+const Span = styled.span`
+  font-weight: bold;
+  color: #566573;
+  font-family: Arial, Helvetica, sans-serif;
+  &:hover {
+    color: orangered;
+  }
+`;
 
+let Menu = (props: any) => {
   const history = useHistory();
   const key = new UID().completeID();
 
-  const authenticate = () => {
-
-    const isLogin = props.values.filter((cvalue: any) => {
-      return cvalue.key === key;
-    });
-
-    if(isLogin.length===0){
-      history.push("/adminlogin");
-    }
-    else{
-      history.push("/admin");
-    }
-  };
-
-  const userLogout = () =>{
-    props.dispatch(adminLogout(key))
+  const userLogout = () => {
+    props.dispatch(adminLogout(key));
+    props.auth();
     history.push("/adminlogin");
-  }
+  };
 
   return (
     <div>
@@ -76,17 +73,52 @@ let Menu = (props: any) => {
                   </a>
                 </li>
               </NavLink>
-              <span className="menu_links" onClick={() => authenticate()}>
-                <li className="nav-item link_menu_item">
-                  <a
-                    className="anchor_link_menu_manage"
-                    aria-current="page"
-                    href="#"
-                  >
-                    Blood Bank
-                  </a>
-                </li>
-              </span>
+              <li className="nav-item dropdown link_menu_item">
+                <a
+                  className=" dropdown-toggle anchor_link_menu_manage"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Blood Banks
+                </a>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdown"
+                  style={{ backgroundColor: "#FBFCFC", border: "none" }}
+                >
+                  <NavLink to="/admin" className="menu_links">
+                    {" "}
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        <Span>Admin Pannel</Span>
+                      </a>
+                    </li>
+                  </NavLink>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      <Span>Register</Span>
+                    </a>
+                  </li>
+                  {props.isActive ? (
+                    <NavLink to="/adminlogin" className="menu_links">
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <Span>Login</Span>
+                        </a>
+                      </li>
+                    </NavLink>
+                  ) : (
+                    <li onClick={userLogout}>
+                      <a className="dropdown-item" href="#">
+                        <Span>Logout</Span>
+                      </a>
+                    </li>
+                  )}{" "}
+                </ul>
+              </li>
               <NavLink to="/contactus" className="menu_links">
                 <li className="nav-item link_menu_item">
                   <a
@@ -109,9 +141,6 @@ let Menu = (props: any) => {
                   </a>
                 </li>
               </NavLink>
-              <button onClick={userLogout}>
-                Logout
-              </button>
             </ul>
           </div>
         </div>

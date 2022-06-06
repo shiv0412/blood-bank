@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h6`
-  padding : 5px 0 0 0 ;
+  padding : 5px 0 0 5px ;
   font-family: Arial, Helvetica, sans-serif;
 `;
 

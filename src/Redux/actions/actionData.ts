@@ -48,4 +48,11 @@ export const adminLogout = (key:any)=>{
     }
 }
 
+export const updateStatus = (values:any)=>{
+    return{
+        type:"UPDATE_STATUS",
+        values
+    }
+}
+
 

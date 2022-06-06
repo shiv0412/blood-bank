@@ -16,9 +16,10 @@ import Stock from "./stocks";
 import { connect } from "react-redux";
 import UID from "uniquebrowserid";
 
+
 const Sidebar = styled.div`
   width: 20%;
-  padding-right: 20px;
+  border-right:1.5px solid lightgrey;
   @media (max-width: 768px) {
     width: 100%;
     border: none;
@@ -65,8 +66,7 @@ const Container = styled.div`
 
 const AdminHome = (props: any) => {
   const key = new UID().completeID();
-  const history = useHistory();
-  
+  const history =useHistory();
   useEffect(() => {
     const isLogin = props.values.filter((cvalue: any) => {
       return cvalue.key === key;
@@ -74,9 +74,7 @@ const AdminHome = (props: any) => {
 
     if (isLogin.length === 0) {
       history.push("/adminlogin");
-    } else {
-      history.push("/admin");
-    }
+    } 
   });
 
   return (

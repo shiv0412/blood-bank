@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
@@ -24,7 +24,7 @@ const Title = styled.p`
 
 const Datatable = styled.table`
   width: 100%;
-  margin-top: 10px;
+  margin: 10px 7px 0 7px;
 `;
 
 const Tr = styled.tr`
@@ -39,9 +39,10 @@ const Th = styled.th`
 `;
 
 const Td = styled.td`
-  padding: 10px 5px;
+  padding: 5px 5px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
 `;
 
 const Span = styled.span`
@@ -58,6 +59,24 @@ const Span = styled.span`
 `;
 
 const Stock: React.FC = () => {
+  const [stockvalue, setStockvalue] = useState({
+    Apos: "",
+    Aneg: "",
+    Bpos: "",
+    Bneg: "",
+    ABpos: "",
+    ABneg: "",
+    Opos: "",
+    Oneg: "",
+  });
+
+  const handleChange = (e: any) => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setStockvalue({ ...stockvalue, [name]: value });
+  };
+
   return (
     <>
       <Wrapper className="container">
@@ -76,7 +95,14 @@ const Stock: React.FC = () => {
         <Tr>
           <Td>A+</Td>
           <Td>
-            <input type="number" className="input_box" value="10" title="click to edit"></input>
+            <input
+              type="number"
+              className="input_box"
+              name="Apos"
+              value={stockvalue.Apos}
+              title="click to edit"
+              onChange={handleChange}
+            ></input>
           </Td>
           <Td>
             <Span>
@@ -98,8 +124,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
+              name="Aneg"
               className="input_box"
-              value="10"
+              value={stockvalue.Aneg}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -122,9 +150,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="Bpos"
               className="input_box"
-              value="10"
+              value={stockvalue.Bpos}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -147,9 +176,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="Bneg"
               className="input_box"
-              value="10"
+              value={stockvalue.Bneg}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -172,9 +202,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="ABpos"
               className="input_box"
-              value="10"
+              value={stockvalue.ABpos}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -197,9 +228,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="ABneg"
               className="input_box"
-              value="10"
+              value={stockvalue.ABneg}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -222,9 +254,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="Opos"
               className="input_box"
-              value="10"
+              value={stockvalue.Opos}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>
@@ -247,9 +280,10 @@ const Stock: React.FC = () => {
           <Td>
             <input
               type="number"
-              placeholder="Enter Quantity in Ltr."
+              name="Oneg"
               className="input_box"
-              value="10"
+              value={stockvalue.Oneg}
+              onChange={handleChange}
             ></input>
           </Td>
           <Td>

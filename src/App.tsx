@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import DonarSearch from "./Components/donar-search";
 import Footer from "./Components/Footer";
@@ -10,12 +10,42 @@ import ContactUs from "./Components/contact-us";
 import AdminHome from "./Components/admin-home";
 import About from "./Components/About";
 import AdminLogin from "./Components/admin-login";
+import UID from "uniquebrowserid";
+import { connect } from "react-redux";
+import { boolean } from "yup";
 
-function App() {
+function App(props:any) {
+  const [isActive,setIsactive] = useState<boolean>();
+
+  useEffect(()=>{
+    const key = new UID().completeID();
+    const isLoggedin = props.values.filter((cvalue:any)=>{
+      return cvalue.key === key;
+    })
+    if(isLoggedin.length === 0){
+      setIsactive(true);
+    }else{
+      setIsactive(false);
+    }
+  })
+
+  const Authenticate = () => {
+    const key = new UID().completeID();
+    const isLoggedin = props.values.filter((cvalue:any)=>{
+      return cvalue.key === key;
+    })
+    if(isLoggedin.length === 0){
+      setIsactive(true);
+    }else{
+      setIsactive(false);
+    }
+  }
+
+
   return (
     <>
       <ToastContainer />
-      <Menu></Menu>
+      <Menu isActive={isActive} auth = {Authenticate}></Menu>
       <Switch>
         <Route
           exact
@@ -50,7 +80,7 @@ function App() {
         ></Route>
           <Route
           path="/adminlogin"
-          component={() => <AdminLogin></AdminLogin>}
+          component={() => <AdminLogin authenticate = {Authenticate} ></AdminLogin>}
         ></Route>
       </Switch>
       <Footer></Footer>
@@ -58,4 +88,9 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state: { authentication: any }) {
+  return {
+    values: state.authentication,
+  };
+}
+export default connect(mapStateToProps)(App);

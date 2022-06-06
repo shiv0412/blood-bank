@@ -73,7 +73,7 @@ const ErrorMessage = styled.span`
   margin: 0;
 `;
 
-const AdminLogin: React.FC = (props: any) => {
+const AdminLogin = (props: any) => {
 
   const key = new UID().completeID();
   const history = useHistory();
@@ -97,6 +97,7 @@ const AdminLogin: React.FC = (props: any) => {
               return cvalue.key === key;
             });
             if (isLogin.length > 0) {
+              props.authenticate();
               history.push("/admin");
             } else {
               setError(true);

@@ -62,3 +62,20 @@ export const bloodinfo:Array<blooddata> = [
     headtext:"Approved Today",
     infoimg:"images/approved.png",
   }]
+
+  export interface Data_Value {
+    id: string;
+    name: string;
+    phone: number;
+    DateOfBirth: Date;
+    Bloodgroup: string;
+    Gender: string;
+    City: string;
+    State: string;
+    Pincode: number;
+    RegDate: string;
+    Address: string;
+    Bloodbank: string;
+    medical: string;
+    Status: string;
+  }

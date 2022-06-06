@@ -27,6 +27,7 @@
     "reactjs-popup": "^2.0.5",
     "redux": "^4.1.2",
     "redux-immutable-state-invariant": "^2.1.0",
+    "save-dev": "^0.0.1-security",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2",
     "stream": "^0.0.2",
@@ -63,6 +64,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-immutable-state-invariant": "^2.1.2",
-    "@types/styled-components": "^5.1.24"
+    "@types/styled-components": "^5.1.24",
+    "redux-devtools-extension": "^2.13.9"
   }
 }

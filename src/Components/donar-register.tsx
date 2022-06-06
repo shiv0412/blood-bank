@@ -58,6 +58,7 @@ interface Data_Value {
   Address: string;
   Bloodbank: string;
   medical: string;
+  Status:string
 }
 
 interface Data {
@@ -126,7 +127,7 @@ let DonarRegister = (props: any) => {
         RegDate: date,
         Address: "",
         Bloodbank: "",
-        medical:""
+        medical:"",
       },
     ]
   }
@@ -153,6 +154,7 @@ let DonarRegister = (props: any) => {
           Address: data[0].Address,
           Bloodbank: data[0].Bloodbank,
           medical: data[0].medical,
+          Status:"Approved"
         }}
         onSubmit={(values: Data_Value) => {
           if (values.id === "") {

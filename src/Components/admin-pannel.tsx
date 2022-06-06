@@ -1,12 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { AiFillDelete } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { deleteDonar} from "../Redux/actions/actionData";
-import { toast } from "react-toastify";
-import { autoClose } from "../ConstData";
+
+import styled from "styled-components";
+
+import Pagination from "./pagination";
+import PaginationDataDisplay from "./pagination-data-display";
 
 const Wrapper = styled.div`
   background-color: #566573;
@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 const Title = styled.p`
   font-size: 2vw;
   font-weight: bold;
-  margin:2% 2%;
-  padding-top:2%;
+  margin: 2% 2%;
+  padding-top: 2%;
   color: white;
   font-family: "Times New Roman";
   @media (max-width: 768px) {
@@ -49,82 +49,48 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Datatable = styled.table`
-  width: 100%;
+const WrapperTwo = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 1.5px solid lightgrey;
+  border-top: 1.5px solid lightgrey;
   margin-top: 10px;
 `;
 
-const Tr = styled.tr`
-  border-bottom: 1px solid #d5d8dc;
-`;
-
-const Th = styled.th`
-  border-bottom: 1px solid #d5d8dc;
-  border-top: 1px solid #d5d8dc;
-  padding: 10px 5px;
+const Content = styled.div`
+  width: 16.6%;
+  padding: 5px 0px;
+  padding: 15px 0;
+  font-weight: bold;
   font-size: 14px;
+  color: #566573;
+  &:nth-child(4) {
+    width: 25%;
+  }
+  &:nth-child(5) {
+    text-align: center;
+  }
+  &:nth-child(6) {
+    text-align: center;
+  }
 `;
 
-const Td = styled.td`
-  padding: 10px 5px;
-  font-size: 13px;
-`;
-
-const Actions = styled.button`
-  background-color: white;
-  border: none;
-`;
-const ActionDel = styled(Actions)`
-  margin-left: 10px;
-  color: red;
-  font-size: 18px;
-`;
-
-interface Data_Value{
-  id:string,
-  name:string,
-  phone:number,
-  DateOfBirth:Date,
-  Bloodgroup:string,
-  Gender:string,
-  City:string,
-  State:string,
-  Pincode: number,
-  RegDate: string,
-  Address: string,
-  Bloodbank: string,
-  medical:string
-}
 
 const AdminPannel = (props: any) => {
-  
   const history = useHistory();
-
-  const onEdit = (id:string) => {
-    history.push({
-      pathname: "/donarregister",
-      state: {id:id,},
-    });
-  };
 
   const onRegister = () => {
     history.push({
       pathname: "/donarregister",
-      state: {id: ""},
+      state: { id: "" },
     });
   };
 
-  const onDelete = (name:string) =>
-  toast.info(name+" Data is Deleted", {
-    position: "top-center",
-    autoClose: autoClose,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-
+  const data = props.values.filter((cvalue:any)=>{
+    return cvalue.Bloodbank === "Blood Bank, Kushal Konwar Hospital"
+  })
+  console.log(props.values);
+console.log(data);
   return (
     <>
       <Wrapper className="container">
@@ -141,44 +107,35 @@ const AdminPannel = (props: any) => {
         </div>
       </Wrapper>
       <div className="container">
-        <Datatable className="table-responsive">
-          <Tr>
-            <Th>Name</Th>
-            <Th>Phone</Th>
-            <Th>Bloodgroup</Th>
-            <Th>BloodBank</Th>
-            <Th>Action</Th>
-          </Tr>
-          {props.values.map((cvalue:Data_Value) => {
-            return (
-              <Tr key={cvalue.id}>
-                <Td>{cvalue.name}</Td>
-                <Td>{cvalue.phone}</Td>
-                <Td>{cvalue.Bloodgroup}</Td>
-                <Td>{cvalue.Bloodbank}</Td>
-                <Td>
-                  <Actions title="Edit" onClick={() => onEdit(cvalue.id)}>
-                    &#9998;&nbsp;
-                  </Actions>
-                  <ActionDel
-                    title="Delete"
-                    onClick={() => {props.dispatch(deleteDonar(cvalue.id)); onDelete(cvalue.name)}}
-                  >
-                    <AiFillDelete />
-                  </ActionDel>
-                </Td>
-              </Tr>
-            );
-          })}
-        </Datatable>
+        <WrapperTwo>
+          <Content>Name</Content>
+          <Content>Phone</Content>
+          <Content>Bloodgroup</Content>
+          <Content>Address</Content>
+          <Content>Donar Status</Content>
+          <Content>Action</Content>
+        </WrapperTwo>
+          {data.length > 0 ? (
+          <>
+            <Pagination
+              data={data}
+              RenderComponent={PaginationDataDisplay}
+              pageLimit={5}
+              dataLimit={7}
+            />
+          </>
+        ) : (
+          <h1>No Posts to display</h1>
+        )}
       </div>
     </>
   );
 };
 
-function mapStateToProps(state: { dataReducer:Data_Value; }) {
+function mapStateToProps(state: any) {
   return {
     values: state.dataReducer,
+    authentication: state.authentication,
   };
 }
 

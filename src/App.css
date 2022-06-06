@@ -520,14 +520,63 @@
   margin: 0;
 }
 .input_box{
-  padding:0 10px;
-  border-radius: 5px;
+  padding:5px 10px;
   outline:none;
   border:none;
   font-weight:bold;
 }
 .input_box:focus{
   outline: none;
-  border:1.5px solid lightblue;
+  border:1px solid orangered;
   border-radius: 5px;
 }
+
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.paginationItem {
+  background: #fff;
+  border: 2px solid lightgrey;
+  padding: 5px 10px;
+  border-radius: 50%;
+  height: 25px;
+  width: 12px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  background: #fff;
+  border: none;
+  padding: 10px;
+  color: orangered;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 2px solid orangered;
+  color: orangered;
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+} 

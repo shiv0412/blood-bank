@@ -1,8 +1,6 @@
 import rootReducer from "./reducers";
-
 import { createStore } from "redux";
-
-//const store = createStore(rootReducer);
+import { composeWithDevTools } from "redux-devtools-extension";
 
 function saveToLocalStorage(state:any) {
     try {
@@ -22,7 +20,7 @@ function saveToLocalStorage(state:any) {
       return undefined;
     }
   }
-  const store = createStore(rootReducer, loadFromLocalStorage());
+  const store = createStore(rootReducer, loadFromLocalStorage(), composeWithDevTools());
   store.subscribe(() => saveToLocalStorage(store.getState()));
   
   export default store;

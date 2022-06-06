@@ -1,23 +1,23 @@
 /* eslint-disable no-lone-blocks */
 import { initialstate } from "./initialState";
 
-const authentication = (state = initialstate.adminaccount, action: any) => {
+const authentication = (adminAccounts = initialstate.adminAccount, action: any) => {
   switch (action.type) {
 
     case "Login":
-       // return [...state, { ...action.values}];
-         state.map((cvalue: any) => {
+         adminAccounts?.map((cvalue: any) => {
                 if(cvalue.email===action.values.email && cvalue.password===action.values.password){ {
                     cvalue.key = action.values.key;
                     cvalue.email = action.values.email;
                     cvalue.password = action.values.password;
                     cvalue.isLogin = true;
+                    cvalue.Bloodbank = action.values.Bloodbank;
                   }}
           });
-          return state; 
+          return adminAccounts; 
 
     case "Logout":
-      state.map((cvalue: any) => {
+      adminAccounts?.map((cvalue: any) => {
         if (cvalue.key === action.key) {
           {
             cvalue.key = "";
@@ -27,11 +27,10 @@ const authentication = (state = initialstate.adminaccount, action: any) => {
           }
         }
       });
-      return state;
+      return adminAccounts;
 
     default:
-      console.log("default");
-      return state;
+      return adminAccounts;
   }
 };
 

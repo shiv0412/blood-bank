@@ -1,44 +1,48 @@
+import { IRegisteredDonor } from "../../models/models";
 import { initialstate } from "./initialState";
 
-interface Action_Data {
-  type: string;
-  values: {
-    id: string;
-    name: string;
-    phone: Number;
-    DateOfBirth: Date;
-    Bloodgroup: string;
-    Gender: string;
-    City: string;
-    State: string;
-    Pincode: Number;
-    RegDate: string;
-    Address: string;
-    Bloodbank: string;
-    medical: string;
-  };
-  id: string;
-}
 
-const dataReducer = (state = initialstate.registereddonars, action: Action_Data) => {
+
+const dataReducer = (
+  registeredDonars = initialstate.registeredDonars,
+  action:any
+) => {
   switch (action.type) {
     case "SAVEDATA":
-      return [...state, { ...action.values, id: Date.now() }];
+      //return [...registeredDonars, { ...action.values, id: Date.now() }];
+      if(registeredDonars){
+        return [...registeredDonars,{...action.values,id:Date.now()}]
+      }else{
+        return [{...action.values}]
+      }
 
     case "REMOVE_DONAR":
-      return state.filter(
-        (values: Action_Data["values"]) => values.id !== action.id
+      return registeredDonars?.filter(
+        (values:IRegisteredDonor) => values.id !== action.id
       );
 
     case "UPDATE_DONAR":
-      var data = state;
-      state = data.filter(
-        (values: Action_Data["values"]) => values.id !== action.values.id
+      console.log(action.values);
+      registeredDonars?.filter(
+        (values:IRegisteredDonor) => values.id === action.values.id
       );
-      return [...state, { ...action.values }];
+      if(registeredDonars){
+        return [...registeredDonars,{...action.values}]
+      }else{
+        return [{...action.values}]
+      }
+
+    case "UPDATE_STATUS":
+
+      registeredDonars?.map((obj:IRegisteredDonor) => {
+        if(obj.id === action.values.id){
+          obj.Status = action.values.Status;
+        }
+      })
+      return registeredDonars;
 
     default:
-      return state;
+      return registeredDonars;
   }
 };
 
