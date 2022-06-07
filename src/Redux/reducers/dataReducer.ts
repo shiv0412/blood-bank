@@ -22,10 +22,8 @@ export const dataReducer = (
       const exists=registeredDonars?.findIndex(
         (values:IRegisteredDonor) => values.id === action.values.id
       );
-      console.log(exists);
       if(exists !== undefined && exists>-1 && registeredDonars){
         registeredDonars[exists] = action.values;
-        
       }
       return registeredDonars;
 

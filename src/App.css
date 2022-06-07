@@ -537,13 +537,12 @@
 .input_box{
   padding:5px 10px;
   outline:none;
-  border:none;
+  border:1px solid #fff;
   font-weight:bold;
 }
 .input_box:focus{
   outline: none;
-  border:1px solid orangered;
-  border-radius: 5px;
+  border:1px solid lightgrey;
 }
 
 

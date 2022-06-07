@@ -22,3 +22,15 @@ export interface IRegisteredDonor {
   medical: string;
   Status: string;
 }
+
+
+export interface IBloodbankStock {
+  Apos: number;
+  Aneg: number;
+  Bpos: number;
+  Bneg: number;
+  ABpos: number;
+  ABneg: number;
+  Opos: number;
+  Oneg: number 
+}

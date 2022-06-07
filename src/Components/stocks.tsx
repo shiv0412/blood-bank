@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
 
 import styled from "styled-components";
+import { autoClose } from "../ConstData";
+import { updateStock } from "../Redux/actions/actionData";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 const Wrapper = styled.div`
   background-color: #566573;
@@ -28,7 +33,7 @@ const Datatable = styled.table`
 `;
 
 const Tr = styled.tr`
-  border-bottom: 1px solid lightgrey;
+  background-color: #F7F9F9;
 `;
 
 const Th = styled.th`
@@ -43,31 +48,40 @@ const Td = styled.td`
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  font-weight: bold;
 `;
 
-const Span = styled.span`
-  font-size: 20px;
-  color: green;
-  padding: 0 25px 0 0;
-  &:nth-child(even) {
-    font-size: 23px;
-    color: red;
-  }
+const Button = styled.button`
+  color: #fff;
+  background-color: orangered;
+  border: none;
+  padding: 5px 10px;
+  font-family: Arial, Helvetica, sans-serif;
   &:hover {
-    cursor: pointer;
+    background-color: orange;
   }
 `;
 
-const Stock: React.FC = () => {
+const Stock: React.FC = (props: any) => {
+  const notify = () =>
+  toast.success("Stock Details Updated", {
+    position: "top-center",
+    autoClose: autoClose,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
   const [stockvalue, setStockvalue] = useState({
-    Apos: "",
-    Aneg: "",
-    Bpos: "",
-    Bneg: "",
-    ABpos: "",
-    ABneg: "",
-    Opos: "",
-    Oneg: "",
+    Apos: props.values.Apos,
+    Aneg: props.values.Aneg,
+    Bpos: props.values.Bpos,
+    Bneg: props.values.Bneg,
+    ABpos: props.values.ABpos,
+    ABneg: props.values.ABneg,
+    Opos: props.values.Opos,
+    Oneg: props.values.Oneg,
   });
 
   const handleChange = (e: any) => {
@@ -105,18 +119,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -131,18 +136,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -157,18 +153,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -183,18 +170,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -209,18 +187,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -235,18 +204,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -261,18 +221,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
         <Tr>
@@ -287,18 +238,9 @@ const Stock: React.FC = () => {
             ></input>
           </Td>
           <Td>
-            <Span>
-              <BsFillPlusCircleFill
-                onClick={() => window.alert("add data")}
-                title="Add"
-              />
-            </Span>
-            <Span>
-              <AiFillMinusCircle
-                onClick={() => window.alert("remove data")}
-                title="Remove"
-              />
-            </Span>
+            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+              Update
+            </Button>
           </Td>
         </Tr>
       </Datatable>
@@ -306,4 +248,10 @@ const Stock: React.FC = () => {
   );
 };
 
-export default Stock;
+function mapStateToProps(state: IReduxStore) {
+  return {
+    values: state.stocks,
+  };
+}
+
+export default connect(mapStateToProps)(Stock);

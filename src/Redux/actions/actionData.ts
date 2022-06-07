@@ -1,3 +1,5 @@
+import { IBloodbankStock } from "../../models/models"
+
 interface Form_Data {
     id:string,
     name:string,
@@ -55,4 +57,12 @@ export const updateStatus = (values:any)=>{
     }
 }
 
+
+export const updateStock =  (values:IBloodbankStock)=>{
+    console.log("action fired",values);
+    return{
+        type:"UPDATE_STOCK",
+        values
+    }
+}
 

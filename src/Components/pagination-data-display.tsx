@@ -67,6 +67,17 @@ const Option = styled.option`
 function PaginationDataDisplay(props: any) {
   const history = useHistory();
 
+  const notify = (name:string,status:string) =>
+  toast.success(name+" status is updated to "+status, {
+    position: "top-center",
+    autoClose: autoClose,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
   const onEdit = (id: string) => {
     history.push({
       pathname: "/donarregister",
@@ -107,7 +118,7 @@ function PaginationDataDisplay(props: any) {
           <Select
             id="status"
             onChange={(val) =>
-              handlePeriodChange(val.target.value, props.data.id)
+              {handlePeriodChange(val.target.value, props.data.id);notify(props.data.name,val.target.value);}
             }
           >
           <Option value={props.data.Status}>{props.data.Status}</Option>

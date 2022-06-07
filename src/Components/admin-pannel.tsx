@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
@@ -173,6 +173,7 @@ const AdminPannel = (props: any) => {
       }
     }
   };
+
 
   console.log(filteredData);
 

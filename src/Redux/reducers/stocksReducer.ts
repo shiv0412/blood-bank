@@ -1,14 +1,10 @@
 import { initialstate } from "./initialState";
 
-// const stocksReducer = (state=initialstate.stocks,action:any) => {
-//     switch(action.type){
-//         case "UPDATE_STOCK":
-//             return state;
-
-//         default:
-//             return state;
-
-//     }
-// }
-
-// export default stocksReducer;
+export const stockReducer = (stocks = initialstate.stocks , action:any) =>{
+    switch(action.type){
+        case "UPDATE_STOCK":            
+            return {...stocks,...action.values}
+        default:
+            return stocks;
+    }
+}
