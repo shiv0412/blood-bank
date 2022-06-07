@@ -15,6 +15,7 @@ import DonarRegister from "./donar-register";
 import Stock from "./stocks";
 import { connect } from "react-redux";
 import UID from "uniquebrowserid";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 
 const Sidebar = styled.div`
@@ -143,9 +144,9 @@ const AdminHome = (props: any) => {
   );
 };
 
-function mapStateToProps(state: { authentication: any }) {
+function mapStateToProps(state: IReduxStore) {
   return {
-    values: state.authentication,
+    values: state.adminAccount,
   };
 }
 export default connect(mapStateToProps)(AdminHome);

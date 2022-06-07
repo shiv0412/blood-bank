@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import { initialstate } from "./initialState";
 
-const authentication = (adminAccounts = initialstate.adminAccount, action: any) => {
+export const authentication = (adminAccounts = initialstate.adminAccount, action: any) => {
   switch (action.type) {
 
     case "Login":
@@ -34,4 +34,4 @@ const authentication = (adminAccounts = initialstate.adminAccount, action: any) 
   }
 };
 
-export default authentication;
+

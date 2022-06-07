@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { autoClose, Data_Value } from "../ConstData";
 import { deleteDonar, updateStatus } from "../Redux/actions/actionData";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 const Wrapper = styled.div`
   display: flex;
@@ -134,9 +135,9 @@ function PaginationDataDisplay(props: any) {
   );
 }
 
-function mapStateToProps(state: { dataReducer: Data_Value }) {
+function mapStateToProps(state: IReduxStore) {
   return {
-    values: state.dataReducer,
+    values: state.registeredDonars,
   };
 }
 

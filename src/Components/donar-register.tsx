@@ -8,6 +8,7 @@ import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import { DropdownField } from "./custom-dropdown";
 import { autoClose } from "../ConstData";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 
 const validationSchema = yup.object({
@@ -136,12 +137,12 @@ let DonarRegister = (props: any) => {
   return (
     <div className="main_container_donarergister">
       <div>
-        <h2 className="header_donarregister_form">Donar Registration</h2>
+        <h2 className="header_donarregister_form">Donor Entry Form</h2>
       </div>
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          id: id||"",
+          id: id || "",
           name: data[0].name,
           phone: data[0].phone,
           DateOfBirth: data[0].DateOfBirth,
@@ -252,6 +253,7 @@ let DonarRegister = (props: any) => {
               <div className="col-md-12">
                 <label className="label_donarregister">Blood Bank*</label>
                 <Field
+                
                   placeholder="Select Blood Bank"
                   name="Bloodbank"
                   component={DropdownField}
@@ -381,9 +383,9 @@ let DonarRegister = (props: any) => {
   );
 };
 
-function mapStateToProps(state: { dataReducer: Data_Value }) {
+function mapStateToProps(state:IReduxStore) {
   return {
-    values: state.dataReducer,
+    values: state.registeredDonars,
   };
 }
 export default connect(mapStateToProps)(DonarRegister);

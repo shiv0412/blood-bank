@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { adminLogin } from "../Redux/actions/actionData";
 import UID from "uniquebrowserid";
 import { useHistory } from "react-router-dom";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 const Wrapper = styled.div`
   width: 25%;
@@ -129,9 +130,9 @@ const AdminLogin = (props: any) => {
   );
 };
 
-function mapStateToProps(state: { authentication: any }) {
+function mapStateToProps(state:IReduxStore) {
   return {
-    values: state.authentication,
+    values: state.adminAccount,
   };
 }
 export default connect(mapStateToProps)(AdminLogin);

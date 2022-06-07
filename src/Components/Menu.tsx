@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import UID from "uniquebrowserid";
 import styled from "styled-components";
 import { adminLogout } from "../Redux/actions/actionData";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 const Span = styled.span`
   font-weight: bold;
@@ -149,9 +150,9 @@ let Menu = (props: any) => {
   );
 };
 
-function mapStateToProps(state: { authentication: any }) {
+function mapStateToProps(state:IReduxStore) {
   return {
-    values: state.authentication,
+    values: state.adminAccount,
   };
 }
 export default connect(mapStateToProps)(Menu);

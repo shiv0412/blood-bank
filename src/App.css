@@ -347,10 +347,9 @@
   background:#566573;
 }
 .donarregister_form_comp {
-  border: 2px solid red;
+  border: 1.5px solid lightgrey;
   width: 80%;
   margin: 15px auto 0px auto;
-  box-shadow: 2px 2px 10px black;
 }
 #form_data_row {
   margin: 15px 0px;
@@ -359,8 +358,18 @@
 .donarregister_fields {
   width: 100%;
   padding: 3px 10px;
-
+  border:1.5px solid lightgrey
 }
+.donarregister_fields:focus{
+  border:1.5px solid grey;
+  outline:none
+}
+.donarregister_fields[type=number]::-webkit-outer-spin-button,
+.donarregister_fields[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .radio_button_donarregister {
   margin: 15px 15px;
 }
@@ -442,7 +451,13 @@
 .donarregister_fields_textarea{
   padding:10px 5px;
   width: 100%;
+  border:1.5px solid lightgrey
 }
+.donarregister_fields_textarea:focus{
+  border:1.5px solid grey;
+  outline:none
+}
+
 /*--------------Admin Pannel CSS---------------*/
 
 .set_UpdateField {
@@ -580,3 +595,29 @@
   box-shadow: none;
   color: #999;
 } 
+
+.admin_search_input_box{
+  padding:5px 5px;
+  width:300px;
+  outline:none;
+  border:1.5px solid lightgrey;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.filter_checkbox{
+  margin-right: 10px;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  vertical-align: middle;
+  border: 1.5px solid lightgrey;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  
+}
+.filter_checkbox:checked {
+  background-color:orangered;
+  border-color:orangered
+}

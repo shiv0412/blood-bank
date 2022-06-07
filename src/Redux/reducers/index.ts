@@ -1,12 +1,12 @@
 import { combineReducers} from "redux";
 
-import dataReducer from "./dataReducer";
-import authentication from "./authentication";
+import {dataReducer as registeredDonars} from "./dataReducer";
+import {authentication as adminAccount } from "./authentication";
 
 
 const rootReducer = combineReducers({
-    dataReducer,
-    authentication
+    registeredDonars,
+    adminAccount
 });
 
 export default rootReducer;

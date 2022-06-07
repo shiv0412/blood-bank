@@ -13,6 +13,7 @@ import AdminLogin from "./Components/admin-login";
 import UID from "uniquebrowserid";
 import { connect } from "react-redux";
 import { boolean } from "yup";
+import { IReduxStore } from "./Redux/reducers/initialState";
 
 function App(props:any) {
   const [isActive,setIsactive] = useState<boolean>();
@@ -88,9 +89,9 @@ function App(props:any) {
   );
 }
 
-function mapStateToProps(state: { authentication: any }) {
+function mapStateToProps(state:IReduxStore) {
   return {
-    values: state.authentication,
+    values: state.adminAccount,
   };
 }
 export default connect(mapStateToProps)(App);

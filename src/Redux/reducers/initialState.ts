@@ -1,6 +1,6 @@
 import { IAccountDetails,IRegisteredDonor } from "../../models/models";
 
-interface IReduxStore{
+export interface IReduxStore{
     registeredDonars:IRegisteredDonor[] | null;
     adminAccount : IAccountDetails[] | null
 }

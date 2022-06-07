@@ -1,6 +1,7 @@
 import react, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { connect } from "react-redux";
+import { IReduxStore } from "../Redux/reducers/initialState";
 
 interface Data_Value{
   id:string,
@@ -130,9 +131,9 @@ let DonarSearch = (props: any) => {
   );
 };
 
-function mapStateToProps(state: { dataReducer: Data_Value; }) {
+function mapStateToProps(state:IReduxStore) {
   return {
-    values: state.dataReducer,
+    values: state.registeredDonars,
   };
 }
 

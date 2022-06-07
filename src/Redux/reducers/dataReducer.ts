@@ -3,18 +3,14 @@ import { initialstate } from "./initialState";
 
 
 
-const dataReducer = (
+export const dataReducer = (
   registeredDonars = initialstate.registeredDonars,
   action:any
 ) => {
   switch (action.type) {
     case "SAVEDATA":
-      //return [...registeredDonars, { ...action.values, id: Date.now() }];
-      if(registeredDonars){
-        return [...registeredDonars,{...action.values,id:Date.now()}]
-      }else{
-        return [{...action.values}]
-      }
+      registeredDonars?.unshift({...action.values,id:Date.now()});
+      return registeredDonars;
 
     case "REMOVE_DONAR":
       return registeredDonars?.filter(
@@ -22,15 +18,16 @@ const dataReducer = (
       );
 
     case "UPDATE_DONAR":
-      console.log(action.values);
-      registeredDonars?.filter(
+      
+      const exists=registeredDonars?.findIndex(
         (values:IRegisteredDonor) => values.id === action.values.id
       );
-      if(registeredDonars){
-        return [...registeredDonars,{...action.values}]
-      }else{
-        return [{...action.values}]
+      console.log(exists);
+      if(exists !== undefined && exists>-1 && registeredDonars){
+        registeredDonars[exists] = action.values;
+        
       }
+      return registeredDonars;
 
     case "UPDATE_STATUS":
 
@@ -46,4 +43,3 @@ const dataReducer = (
   }
 };
 
-export default dataReducer;
