@@ -5,11 +5,11 @@ import { useLocation, useHistory, Link } from "react-router-dom";
 import * as yup from "yup";
 import { connect } from "react-redux";
 /* custom imports */
-import { dataAction, updateDonar } from "../Redux/actions/actionData";
-import { IReduxStore } from "../Redux/reducers/initialState";
-import CustomErrorMessage from "./custom-components/custom-error-message";
-import { IRegisteredDonor } from "../models/models";
-import { dateFinder, toastNotification } from "./functions/functions";
+import { dataAction, updateDonar } from "../../Redux/actions/actionData";
+import { IReduxStore } from "../../Redux/reducers/initialState";
+import CustomErrorMessage from "../custom-components/custom-error-message";
+import { IRegisteredDonor } from "../../models/models";
+import { dateFinder, toastNotification } from "../functions/functions";
 interface Data {
   id: string;
 }

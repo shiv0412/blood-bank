@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { autoClose, city, state } from "../../constants";
+import { autoClose, bloodgroups, city, state } from "../../constants";
 import { IAccountDetails } from "../../models/models";
 
 export const dateFinder = () => {
@@ -104,10 +104,13 @@ export const toastNotification = (
 export const customSelectBoxOptions = (type: string) => {
   const cities = city;
   const states = state;
+  const bloodgroup = bloodgroups;
   if (type.toLowerCase() === "state") {
     return states;
   } else if (type.toLowerCase() === "city") {
     return cities;
+  }else if(type.toLowerCase() === "bloodgroup"){
+    return bloodgroup
   } else {
     return null;
   }

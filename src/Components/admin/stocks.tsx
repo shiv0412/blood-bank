@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 /* custom imports */
-import { IAccountDetails } from "../models/models";
-import { updateStock } from "../Redux/actions/actionData";
-import { IReduxStore } from "../Redux/reducers/initialState";
-import { toastNotification } from "./functions/functions";
+import { IAccountDetails } from "../../models/models";
+import { updateStock } from "../../Redux/actions/actionData";
+import { IReduxStore } from "../../Redux/reducers/initialState";
+import { toastNotification } from "../functions/functions";
 
 /* styled components */
 const Wrapper = styled.div`

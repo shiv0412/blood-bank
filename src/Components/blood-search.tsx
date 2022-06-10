@@ -11,6 +11,7 @@ import { IReduxStore } from "../Redux/reducers/initialState";
 import StateCityDropdown from "./custom-components/state-city-dropdown";
 import selectOptionsData from "../data.json";
 import { IAccountDetails } from "../models/models";
+import Modal from "./modal-form";
 
 /* custom components */
 
@@ -96,20 +97,12 @@ const CustomParagraph = styled.p`
   padding-top: 2%;
 `;
 
-const SendRequestButtonContainer = styled.div`
-  z-index: 1;
-  height: 100px;
-  width: 50%;
-  background-color: red;
-  position: absolute;
-  right: 25%;
-  top: 30%;
-`;
 
 /* Main Component */
 
 const BloodSearch = (props: any) => {
-
+  const [show,setShow] = useState(false);
+  const [blood_bank,setBloodbankName] = useState<string>();
   const [isSelected, setIsSelected] = useState([]);
   const [showData, setShowData] = useState(false);
 
@@ -154,9 +147,13 @@ const BloodSearch = (props: any) => {
   };
 
   const handleSearch = (State: string, City: string) => {
-    const selectedBloodbanks = props.values.filter((bloodbankDetails:IAccountDetails) => {
-      return bloodbankDetails.state === State && bloodbankDetails.city === City;
-    });
+    const selectedBloodbanks = props.values.filter(
+      (bloodbankDetails: IAccountDetails) => {
+        return (
+          bloodbankDetails.state === State && bloodbankDetails.city === City
+        );
+      }
+    );
     setShowData(true);
     setIsSelected(selectedBloodbanks);
   };
@@ -189,10 +186,10 @@ const BloodSearch = (props: any) => {
             Search
           </Button>
         </SearchContainer>
-      
+        <Modal onClose={()=>setShow(false)} show={show} bloodbank_name={blood_bank}/>  
         {showData ? (
           isSelected.length > 0 ? (
-            <div style={{ position: "relative" }}>
+            <div>
               <Table>
                 <TR>
                   <TH>Bloodbank</TH>
@@ -231,7 +228,7 @@ const BloodSearch = (props: any) => {
                             el.pincode}
                         </TD>
                         <TD>
-                          <SendRequestButton>
+                          <SendRequestButton onClick={()=>{ setBloodbankName(el.bloodbank_name);setShow(true)}}>
                             <Span>
                               <BiPaperPlane />
                             </Span>
@@ -243,10 +240,12 @@ const BloodSearch = (props: any) => {
                   );
                 })}
               </Table>
-              <SendRequestButtonContainer>Hello world</SendRequestButtonContainer>
+              {/* <SendRequestButtonContainer>Hello world</SendRequestButtonContainer> */}
             </div>
           ) : (
-            <CustomParagraph>Sorry...we don't have any bloodbank in selected area</CustomParagraph>
+            <CustomParagraph>
+              Sorry...we don't have any bloodbank in selected area
+            </CustomParagraph>
           )
         ) : (
           ""

@@ -53,3 +53,13 @@ export interface IDashboardInfo {
   infoimg: string;
 }
 
+export interface IUserRequest {
+  patient_name:string;
+  bloodgroup:string;
+  units:number;
+  phone:number;
+  requiredDate:string;
+  requestDate:string;
+  bloodbank:string;
+  reason:string;
+}

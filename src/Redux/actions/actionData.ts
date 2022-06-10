@@ -2,6 +2,7 @@ import {
   IAccountDetails,
   IBloodbankStock,
   IRegisteredDonor,
+  IUserRequest,
 } from "../../models/models";
 
 export const dataAction = (values: IRegisteredDonor) => {
@@ -67,3 +68,10 @@ export const registerBloodbank = (values: IAccountDetails) => {
     values,
   };
 };
+
+export const newRequest = (values:IUserRequest) => {
+  return{
+    type:"NEW_REQUEST",
+    values
+  }
+}

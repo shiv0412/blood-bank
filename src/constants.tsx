@@ -55,3 +55,45 @@ export const city =  [
       value: "Karnataka",
     },
   ];
+  export const bloodgroups =  [
+    {
+      key: "A+",
+      text: "A+",
+      value: "A+",
+    },
+    {
+      key: "B+",
+      text: "B+",
+      value: "B+",
+    },
+    {
+      key: "A-",
+      text: "A-",
+      value: "A-",
+    },
+    {
+      key: "B-",
+      text: "B-",
+      value: "B-",
+    },
+    {
+      key: "AB+",
+      text: "AB+",
+      value: "AB+",
+    },
+    {
+      key: "O+",
+      text: "O+",
+      value: "O+",
+    },
+    {
+      key: "AB-",
+      text: "AB-",
+      value: "AB-",
+    },
+    {
+      key: "O-",
+      text: "O-",
+      value: "O-",
+    },
+  ];

@@ -8,10 +8,10 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 /* Custom Imports */
-import Pagination from "./pagination";
-import { IReduxStore } from "../Redux/reducers/initialState";
-import PaginationDataDisplay from "./pagination-data-display";
-import { IRegisteredDonor } from "../models/models";
+import Pagination from "../pagination";
+import { IReduxStore } from "../../Redux/reducers/initialState";
+import PaginationDataDisplay from "../pagination-data-display";
+import { IRegisteredDonor } from "../../models/models";
 
 /* Interfaces */
 

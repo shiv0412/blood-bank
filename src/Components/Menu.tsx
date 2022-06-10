@@ -120,9 +120,9 @@ const Menu = (props: any) => {
                     </NavLink>
                   ) : (
                     <li onClick={userLogout}>
-                      <a className="dropdown-item" href="/">
+                      <span className="dropdown-item" >
                         <Span>Logout</Span>
-                      </a>
+                      </span>
                     </li>
                   )}{" "}
                 </ul>

@@ -9,10 +9,10 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 /*Custom Imports*/
-import adminIcon from "../Images/admin.png";
-import { adminLogin } from "../Redux/actions/actionData";
-import { IReduxStore } from "../Redux/reducers/initialState";
-import { IAccountDetails } from "../models/models";
+import adminIcon from "../../Images/admin.png";
+import { adminLogin } from "../../Redux/actions/actionData";
+import { IReduxStore } from "../../Redux/reducers/initialState";
+import { IAccountDetails } from "../../models/models";
 
 /*Custom Components*/
 
