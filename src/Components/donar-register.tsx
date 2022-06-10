@@ -7,10 +7,10 @@ import { connect } from "react-redux";
 /* custom imports */
 import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
-import CustomErrorMessage from "./custom-error-message";
+import CustomErrorMessage from "./custom-components/custom-error-message";
 import { IRegisteredDonor } from "../models/models";
 import { dateFinder, toastNotification } from "./functions/functions";
-interface IUserID {
+interface Data {
   id: string;
 }
 
@@ -54,7 +54,7 @@ const validationSchema = yup.object({
 let DonarRegister = (props: any) => {
   const history = useHistory();
   const location = useLocation();
-  const userID = location.state as IUserID;
+  const userID = location.state as Data;
   let donorDetails;
   if (userID.id !== "") {
     donorDetails = props.values.filter((donorDetails: IRegisteredDonor) => {

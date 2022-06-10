@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { AiFillMinusCircle } from "react-icons/ai";
-import { BsFillPlusCircleFill } from "react-icons/bs";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 

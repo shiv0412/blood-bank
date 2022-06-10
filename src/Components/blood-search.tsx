@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 /* custom Imports */
 import { IReduxStore } from "../Redux/reducers/initialState";
-import StateCityDropdown from "./state-city-dropdown";
+import StateCityDropdown from "./custom-components/state-city-dropdown";
 import selectOptionsData from "../data.json";
 import { IAccountDetails } from "../models/models";
 

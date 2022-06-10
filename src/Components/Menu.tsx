@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../Images/logomain.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { connect } from "react-redux";

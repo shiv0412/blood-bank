@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 
-import styled from "styled-components";
-
 import { IReduxStore } from "../Redux/reducers/initialState";
-import { DropdownField } from "./custom-dropdown";
-import CustomErrorMessage from "./custom-error-message";
+import { DropdownField } from "./custom-components/custom-dropdown";
+import CustomErrorMessage from "./custom-components/custom-error-message";
 import { registerBloodbank } from "../Redux/actions/actionData";
-import { autoClose } from "../constants";
+import { autoClose } from "./../constants";
 import { toast } from "react-toastify";
 
 const validationSchema = yup.object({
