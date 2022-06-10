@@ -3,11 +3,11 @@ import { IAccountDetails,IBloodbankStock,IRegisteredDonor } from "../../models/m
 export interface IReduxStore{
     registeredDonars:IRegisteredDonor[] | null;
     adminAccount : IAccountDetails[] | null;
-    stocks : IBloodbankStock[] | null
+    stocks : IBloodbankStock[] | null;
 }
 
 export const initialstate:IReduxStore={
     registeredDonars:[],
     adminAccount:[],
-    stocks:[]
+    stocks:[],
 };                                                     

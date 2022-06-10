@@ -1,16 +1,20 @@
+/* library imports */
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { toast } from "react-toastify";
-import * as yup from "yup";
-import CustomErrorMessage from "./custom-error-message";
-import { connect } from "react-redux";
-import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { useLocation, useHistory, Link } from "react-router-dom";
-import { DropdownField } from "./custom-dropdown";
-import { autoClose } from "../ConstData";
+import * as yup from "yup";
+import { connect } from "react-redux";
+/* custom imports */
+import { dataAction, updateDonar } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
+import CustomErrorMessage from "./custom-error-message";
+import { IRegisteredDonor } from "../models/models";
+import { dateFinder, toastNotification } from "./functions/functions";
+interface IUserID {
+  id: string;
+}
 
-
+/* form validation */
 const validationSchema = yup.object({
   name: yup
     .string()
@@ -45,77 +49,19 @@ const validationSchema = yup.object({
     .required("Required"),
 });
 
-interface Data_Value {
-  id: string;
-  name: string;
-  phone: Number;
-  DateOfBirth: Date;
-  Bloodgroup: string;
-  Gender: string;
-  City: string;
-  State: string;
-  Pincode: Number;
-  RegDate: string;
-  Address: string;
-  Bloodbank: string;
-  medical: string;
-  Status:string
-}
-
-interface Data {
-  id: string;
-}
+/* main component */
 
 let DonarRegister = (props: any) => {
   const history = useHistory();
   const location = useLocation();
-  const state = location.state as Data;
-  const id = state.id;
-  const notify = () =>
-    toast.success("Donar Registered Successfully", {
-      position: "top-center",
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+  const userID = location.state as IUserID;
+  let donorDetails;
+  if (userID.id !== "") {
+    donorDetails = props.values.filter((donorDetails: IRegisteredDonor) => {
+      return donorDetails.id === userID.id;
     });
-  const notify_update = () =>
-    toast.success("Details Successfully Updated", {
-      position: "top-center",
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-    let today = new Date();
-    let day;
-    let month;
-    if (today.getDate() < 10) {
-      day = 0 + "" + today.getDate();
-    } else {
-      day = today.getDate();
-    }
-  
-    if (today.getMonth() + 1 < 10) {
-      month = 0 + "" + (today.getMonth() + 1);
-    } else {
-      month = today.getMonth() + 1;
-    }
-    let date = today.getFullYear() + "-" + month + "-" + day;
-
-    let data;
-    if(id!==""){
-       data = props.values.filter((cvalue:Data_Value)=>{
-        return cvalue.id === id;
-      })
-    }
-    else {
-      data= [
+  } else {
+    donorDetails = [
       {
         name: "",
         phone: "",
@@ -125,14 +71,13 @@ let DonarRegister = (props: any) => {
         City: "",
         State: "",
         Pincode: "",
-        RegDate: date,
+        RegDate: dateFinder(),
         Address: "",
-        Bloodbank: "",
-        medical:"",
+        Bloodbank: props.admin[0].bloodbank_name,
+        medical: "",
       },
-    ]
+    ];
   }
-
 
   return (
     <div className="main_container_donarergister">
@@ -142,29 +87,29 @@ let DonarRegister = (props: any) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          id: id || "",
-          name: data[0].name,
-          phone: data[0].phone,
-          DateOfBirth: data[0].DateOfBirth,
-          Bloodgroup: data[0].Bloodgroup,
-          Gender: data[0].Gender,
-          City: data[0].City,
-          State: data[0].State,
-          Pincode: data[0].Pincode,
-          RegDate: data[0].RegDate,
-          Address: data[0].Address,
-          Bloodbank: data[0].Bloodbank,
-          medical: data[0].medical,
-          Status:"Approved"
+          id: userID.id || "",
+          name: donorDetails[0].name,
+          phone: donorDetails[0].phone,
+          DateOfBirth: donorDetails[0].DateOfBirth,
+          Bloodgroup: donorDetails[0].Bloodgroup,
+          Gender: donorDetails[0].Gender,
+          City: donorDetails[0].City,
+          State: donorDetails[0].State,
+          Pincode: donorDetails[0].Pincode,
+          RegDate: donorDetails[0].RegDate,
+          Address: donorDetails[0].Address,
+          Bloodbank: donorDetails[0].Bloodbank,
+          medical: donorDetails[0].medical,
+          Status: "Approved",
         }}
-        onSubmit={(values: Data_Value) => {
-          if (values.id === "") {
-            notify();
-            props.dispatch(dataAction(values));
+        onSubmit={(donorDetails: IRegisteredDonor) => {
+          if (donorDetails.id === "") {
+            toastNotification("Register successfully !!!");
+            props.dispatch(dataAction(donorDetails));
             history.push("/adminpannel");
           } else {
-            notify_update();
-            props.dispatch(updateDonar(values));
+            toastNotification("Donor details successfully updated");
+            props.dispatch(updateDonar(donorDetails));
             history.push("/adminpannel");
           }
         }}
@@ -205,7 +150,7 @@ let DonarRegister = (props: any) => {
                 <label>Gender*</label>
                 <br />
                 <label>Male</label>
-                <Field  
+                <Field
                   name="Gender"
                   value="Male"
                   type="radio"
@@ -244,68 +189,12 @@ let DonarRegister = (props: any) => {
                 <label className="label_donarregister">
                   Registration Date*
                 </label>
-                <p className="donarregister_fields">{data[0].RegDate}</p>
+                <p className="donarregister_fields">
+                  {donorDetails[0].RegDate}
+                </p>
                 <CustomErrorMessage name="RegDate"></CustomErrorMessage>
               </div>
             </div>
-
-            <div className="row" id="form_data_row">
-              <div className="col-md-12">
-                <label className="label_donarregister">Blood Bank*</label>
-                <Field
-                
-                  placeholder="Select Blood Bank"
-                  name="Bloodbank"
-                  component={DropdownField}
-                  options={[
-                    {
-                      key: "Kanaklata Civil Hospital,Tezpur",
-                      text: "Kanaklata Civil Hospital,Tezpur",
-                      value: "Kanaklata Civil Hospital,Tezpur",
-                    },
-                    {
-                      key: "Blood Bank, Kushal Konwar Hospital",
-                      text: "Blood Bank, Kushal Konwar Hospital",
-                      value: "Blood Bank, Kushal Konwar Hospital",
-                    },
-                    {
-                      key: "Rotary Blood Bank and Resource Centre",
-                      text: "Rotary Blood Bank and Resource Centre",
-                      value: "Rotary Blood Bank and Resource Centre",
-                    },
-                    {
-                      key: "Indian Red Cross Society",
-                      text: "Indian Red Cross Society",
-                      value: "Indian Red Cross Society",
-                    },
-                    {
-                      key: "Sheth L.G. General Hospital (MUN)",
-                      text: "Sheth L.G. General Hospital (MUN)",
-                      value: "Sheth L.G. General Hospital (MUN)",
-                    },
-                    {
-                      key: "Bhavnagar Blood Bank",
-                      text: "Bhavnagar Blood Bank",
-                      value: "Bhavnagar Blood Bank",
-                    },
-
-                    {
-                      key: "Blood Bank,P.S. Medical College",
-                      text: "Blood Bank,P.S. Medical College",
-                      value: "Blood Bank,P.S. Medical College",
-                    },
-
-                    {
-                      key: "Jamshedpur Blood Bank",
-                      text: "Jamshedpur Blood Bank",
-                      value: "Jamshedpur Blood Bank",
-                    },
-                  ]}
-                />
-                <CustomErrorMessage name="Bloodbank"></CustomErrorMessage>
-              </div>
-            </div>
-
             <div className="row" id="form_data_row">
               <div className="col-md-12">
                 <label className="label_donarregister">Address*</label>
@@ -359,7 +248,7 @@ let DonarRegister = (props: any) => {
                 </label>
                 <Field
                   name="medical"
-                  type="textara"
+                  type="textarea"
                   className="donarregister_fields_textarea"
                 ></Field>
                 <CustomErrorMessage name="medical"></CustomErrorMessage>
@@ -383,7 +272,7 @@ let DonarRegister = (props: any) => {
   );
 };
 
-function mapStateToProps(state:IReduxStore) {
+function mapStateToProps(state: IReduxStore) {
   return {
     values: state.registeredDonars,
   };

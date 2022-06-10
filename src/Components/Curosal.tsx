@@ -1,10 +1,15 @@
+/* library imports */
 import React from "react";
+import { Link } from "react-router-dom";
+
+/* custom imports */
 import banner1 from "../Images/bnew3.jpg";
 import banner2 from "../Images/mainfive.jpg";
 import banner3 from "../Images/bnew.jpg";
-import {Link} from "react-router-dom";
 
-let Curosal = () => {
+/* main component //Bootstrap5 based component */
+
+const Curosal = () => {
   return (
     <div>
       <div
@@ -42,10 +47,10 @@ let Curosal = () => {
               alt="..."
               height="450"
             />
-            <Link to='/donarsearch'>
-            <button className="find_donar_curosal_button">
-              Find Donar Now
-            </button>
+            <Link to="/donarsearch">
+              <button className="find_donar_curosal_button">
+                Find Donar Now
+              </button>
             </Link>
           </div>
           <div className="carousel-item">
@@ -56,7 +61,8 @@ let Curosal = () => {
               height="450"
             />
             <p className="p_two_curosal">
-              Your Donar Is Just One Click Away From You.<br/>
+              Your Donar Is Just One Click Away From You.
+              <br />
               We are Here To Help You
             </p>
           </div>
@@ -98,4 +104,4 @@ let Curosal = () => {
   );
 };
 
-export default Curosal; 
+export default Curosal;

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import styled from "styled-components";
 
-import { autoClose, Data_Value } from "../ConstData";
+import { autoClose} from "../constants";
 import { deleteDonar, updateStatus } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
 

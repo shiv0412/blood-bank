@@ -1,29 +1,31 @@
+/* library imports */
 import React from "react";
 import styled from "styled-components";
 
-const Card =()=>{
-    
-    const Container = styled.div`
-    display:flex;
-    flex-wrap:wrap;
-    width:100%;
-    `;
+/*styled components */
 
-    const Card = styled.div`
-    width:25%;
-    border-radius:5px;
-    box-shadow:2px 2px 2px 10px lightgrey;
-    `
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+`;
 
-    return(
-        <>
-        <Container>
-            <Card>
-                
-            </Card>
-        </Container>
-        </>
-    )
-}
+const InnerContainer = styled.div`
+  width: 25%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 10px lightgrey;
+`;
+
+/* main component */
+
+const Card = () => {
+  return (
+    <>
+      <Container>
+        <InnerContainer></InnerContainer>
+      </Container>
+    </>
+  );
+};
 
 export default Card;

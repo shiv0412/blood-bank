@@ -1,17 +1,29 @@
+/* Library Imports */
 import React, { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
+/* Styled Component Imports */
 import styled from "styled-components";
 
+/* Custom Imports */
 import Pagination from "./pagination";
 import { IReduxStore } from "../Redux/reducers/initialState";
 import PaginationDataDisplay from "./pagination-data-display";
+import { IRegisteredDonor } from "../models/models";
+
+/* Interfaces */
+
+interface ICheckboxesState {
+  name: string;
+  isChecked: boolean;
+}
+
+/* Styled Components */
 
 const Wrapper = styled.div`
-  background-color: #566573;
-  margin-top: 1%;
+  background-color: #2c3e50;
 `;
 
 const Title = styled.p`
@@ -115,11 +127,26 @@ const CheckboxLabel = styled.label`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
+/* Main Component */
+
 const AdminPannel = (props: any) => {
+  
   const history = useHistory();
-  const [filteredData, setFilterData] = useState(props.values);
-  const [searchValue, setSearchValues] = useState<string>();
-  const [checkboxInitialState, setcheckboxInitialState] = useState([
+  const adminBloodbank = props.admin[0].bloodbank_name;
+
+  const [filteredData, setFilteredData] = useState(
+    props.values.filter((donorDetails: IRegisteredDonor) => {
+      return donorDetails.Bloodbank === adminBloodbank;
+    })
+  );
+
+  const [allData] = useState(
+    props.values.filter((donorDetails: IRegisteredDonor) => {
+      return donorDetails.Bloodbank === adminBloodbank;
+    })
+  );
+  const [searchBoxValue] = useState<string>();
+  const [checkboxesInitialState] = useState<ICheckboxesState[]>([
     {
       name: "Approved",
       isChecked: false,
@@ -134,60 +161,79 @@ const AdminPannel = (props: any) => {
     },
   ]);
 
-  const onRegister = () => {
+  const registerNewDonor = () => {
     history.push({
       pathname: "/donarregister",
       state: { id: "" },
     });
   };
 
-  const handleChange = (e: any) => {
-    const filteration = props.values.filter((value: any) => {
-      return (
-        value.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        value.phone.toString().includes(e.target.value) ||
-        value.Bloodgroup === e.target.value
-      );
-    });
-    setFilterData(filteration);
+  const handleDataSearching = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const matchingData = props.values.filter(
+      (donorDetails: IRegisteredDonor) => {
+        return (
+          donorDetails.Bloodbank === adminBloodbank &&
+          (donorDetails.name
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase()) ||
+            donorDetails.phone.toString().includes(e.target.value) ||
+            donorDetails.Bloodgroup === e.target.value)
+        );
+      }
+    );
+    setFilteredData(matchingData);
   };
 
-  const handleCheckbox = (e: any) => {
+  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-    const exists = checkboxInitialState.findIndex(
-      (values: any) => values.name === name
+    /* finding index of currently triggered checkbox */
+    const exists = checkboxesInitialState.findIndex(
+      (checkboxDetails: ICheckboxesState) => checkboxDetails.name === name
     );
-    if (exists !== undefined && exists > -1 && checkboxInitialState) {
-      checkboxInitialState[exists] = { name: name, isChecked: checked };
-      const currentlyChecked = checkboxInitialState.filter((val: any) => {
-        return val.isChecked === true;
-      });
-      const currentlyCheckedStatus = currentlyChecked.map((a) => a.name);
-      let newArray = props.values.filter((c: any) =>
-        currentlyCheckedStatus.includes(c.Status)
+    /* updating currently triggered checkbox to true */
+    if (exists !== undefined && exists > -1 && checkboxesInitialState) {
+      checkboxesInitialState[exists] = { name: name, isChecked: checked };
+      const currentlyChecked = checkboxesInitialState.filter(
+        (checkboxesCurrentState: ICheckboxesState) => {
+          return checkboxesCurrentState.isChecked === true;
+        }
       );
-      if(newArray.length>0){
-      setFilterData(newArray);
-      }else{
-        setFilterData(props.values)
+      /* finding currently triggered checkboxes with status */
+      const currentlyCheckedStatus = currentlyChecked.map(
+        (checkbox) => checkbox.name
+      );
+      /* updating filteredData matching with currently triggered checkboxes status */
+      let matchingData = props.values.filter(
+        (donorsDetails: IRegisteredDonor) => {
+          return (
+            currentlyCheckedStatus.includes(donorsDetails.Status) &&
+            donorsDetails.Bloodbank === adminBloodbank
+          );
+        }
+      );
+      if (matchingData.length > 0) {
+        setFilteredData(matchingData);
+      } else {
+        setFilteredData(allData);
       }
     }
   };
-
-
-  console.log(filteredData);
 
   return (
     <>
       <Wrapper className="container">
         <div className="row">
           <div className="col-md-6">
-            <Title>Manage Donars</Title>
+            <Title>Manage Donors</Title>
           </div>
           <ButtonContainer className="col-md-6">
-            <Button onClick={() => onRegister()}>
+            <Button onClick={() => registerNewDonor()}>
               <AiOutlinePlusCircle style={Iconstyle} />
-              &nbsp;Add New Donar
+              &nbsp;Add New Donor
             </Button>
           </ButtonContainer>
         </div>
@@ -198,8 +244,8 @@ const AdminPannel = (props: any) => {
           <br />
           <input
             type="text"
-            value={searchValue}
-            onChange={(e) => handleChange(e)}
+            value={searchBoxValue}
+            onChange={(e) => handleDataSearching(e)}
             placeholder="Enter donor name or phone"
             className="admin_search_input_box"
           ></input>
@@ -234,7 +280,7 @@ const AdminPannel = (props: any) => {
         <DropdownWrapper>
           <Label>Browse by bloodgroup</Label>
           <br />
-          <Dropdown onChange={(e) => handleChange(e)}>
+          <Dropdown onChange={(e) => handleDataSearching(e)}>
             <option value="">All Bloodgroups</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -262,7 +308,7 @@ const AdminPannel = (props: any) => {
               data={filteredData}
               RenderComponent={PaginationDataDisplay}
               pageLimit={5}
-              dataLimit={6}
+              dataLimit={5}
             />
           </>
         ) : (

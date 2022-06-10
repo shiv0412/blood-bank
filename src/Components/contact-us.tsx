@@ -1,7 +1,17 @@
+/* library imports */
 import React from "react";
 import styled from "styled-components";
-import {BsFillTelephoneFill,BsEnvelopeFill,BsCursorFill,BsFacebook,BsInstagram,BsTwitter } from "react-icons/bs";
+import {
+  BsFillTelephoneFill,
+  BsEnvelopeFill,
+  BsCursorFill,
+  BsFacebook,
+  BsInstagram,
+  BsTwitter,
+} from "react-icons/bs";
 import { Formik, Form, Field } from "formik";
+
+/* styled components */
 
 const Header = styled.h3`
   color: #ff821a;
@@ -10,7 +20,7 @@ const Header = styled.h3`
   padding-top: 3%;
 `;
 
-const Para = styled.p`
+const Paragraph = styled.p`
   text-align: center;
   color: #808b96;
 `;
@@ -28,7 +38,7 @@ const Container = styled.div`
   }
 `;
 
-const Div = styled.div`
+const CustomDiv = styled.div`
   width: 50%;
   padding: 5% 5%;
   background-color: #120346;
@@ -37,12 +47,12 @@ const Div = styled.div`
   }
 `;
 
-const SubHead = styled.h4`
+const SubHeading = styled.h4`
   color: #fff;
   font-family: Times New Roman;
 `;
 
-const P = styled.p`
+const ParagraphTypeSecond = styled.p`
   color: white;
   font-family: Times New Roman;
 `;
@@ -107,15 +117,26 @@ const Button = styled.button`
   }
 `;
 
+const StyledField = styled(Field)`
+  border: 1.5px solid lightgray;
+  &:focus {
+    outline: none;
+  }
+`;
+
+/* main component */
+
 const ContactUs = () => {
   return (
     <>
       <Header>Contact Us</Header>
-      <Para>Any question or remarks ? just write us a message!</Para>
+      <Paragraph>Any question or remarks ? just write us a message!</Paragraph>
       <Container>
-        <Div>
-          <SubHead>Contact Information</SubHead>
-          <P>Fill the form and our team will reach get back to you soon..</P>
+        <CustomDiv>
+          <SubHeading>Contact Information</SubHeading>
+          <ParagraphTypeSecond>
+            Fill the form and our team will reach get back to you soon..
+          </ParagraphTypeSecond>
           <Table>
             <Tr>
               <Td>
@@ -147,8 +168,8 @@ const ContactUs = () => {
               </Tdthree>
             </Trtwo>
           </Table>
-        </Div>
-        <Div>
+        </CustomDiv>
+        <CustomDiv>
           <Wrapper>
             <Formik
               initialValues={{
@@ -160,28 +181,28 @@ const ContactUs = () => {
             >
               <Form>
                 <Label>Name</Label>
-                <Field
+                <StyledField
                   name="Name"
                   type="text"
                   className="Contact_Field"
-                ></Field>
+                ></StyledField>
                 <Label>Email</Label>
-                <Field
+                <StyledField
                   name="Email"
                   type="email"
                   className="Contact_Field"
-                ></Field>
+                ></StyledField>
                 <Label>Message</Label>
-                <Field
+                <StyledField
                   name="Message"
                   type="textarea"
                   className="Contact_Message_Field"
-                ></Field>
+                ></StyledField>
                 <Button>Send</Button>
               </Form>
             </Formik>
           </Wrapper>
-        </Div>
+        </CustomDiv>
       </Container>
     </>
   );

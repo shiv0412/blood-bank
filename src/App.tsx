@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
 import "./App.css";
-import DonarSearch from "./Components/donar-search";
-import Footer from "./Components/Footer";
-import Menu from "./Components/Menu";
-import { Route, Switch } from "react-router-dom";
-import LandingPage from "./Components/landing-page";
-import { ToastContainer } from "react-toastify";
-import ContactUs from "./Components/contact-us";
-import AdminHome from "./Components/admin-home";
-import About from "./Components/About";
-import AdminLogin from "./Components/admin-login";
+import React, { useEffect, useState } from "react";
 import UID from "uniquebrowserid";
 import { connect } from "react-redux";
-import { boolean } from "yup";
+import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+import DonarSearch from "./Components/blood-search";
+import Footer from "./Components/footer";
+import Menu from "./Components/menu";
+import LandingPage from "./Components/landing-page";
+import ContactUs from "./Components/contact-us";
+import AdminHome from "./Components/admin-home";
+import About from "./Components/about";
+import AdminLogin from "./Components/admin-login";
 import { IReduxStore } from "./Redux/reducers/initialState";
+import RegisterBloodbank from "./Components/register-bloodbank";
 
 function App(props:any) {
   const [isActive,setIsactive] = useState<boolean>();
@@ -83,6 +84,11 @@ function App(props:any) {
           path="/adminlogin"
           component={() => <AdminLogin authenticate = {Authenticate} ></AdminLogin>}
         ></Route>
+          <Route
+          path="/registerbloodbank"
+          component={() => <RegisterBloodbank></RegisterBloodbank>}
+        ></Route>
+        
       </Switch>
       <Footer></Footer>
     </>

@@ -43,8 +43,11 @@
   },
 ] */
 
+/* library imports */
 import * as React from "react";
 import { Dropdown } from "semantic-ui-react";
+
+/* main component */
 
 export const DropdownField = ({
   field: { name, value },

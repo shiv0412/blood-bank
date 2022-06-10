@@ -35,7 +35,7 @@ let Menu = (props: any) => {
             <img
               src={logo}
               alt="logo"
-              height="65"
+              height="40"
               className="manage_logo_img"
             ></img>
           </NavLink>
@@ -70,7 +70,7 @@ let Menu = (props: any) => {
                     aria-current="page"
                     href="#"
                   >
-                    Find Donar
+                    Need Blood
                   </a>
                 </li>
               </NavLink>
@@ -98,11 +98,13 @@ let Menu = (props: any) => {
                       </a>
                     </li>
                   </NavLink>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <Span>Register</Span>
-                    </a>
-                  </li>
+                  <NavLink to="/registerbloodbank" className="menu_links">
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        <Span>Register</Span>
+                      </a>
+                    </li>
+                  </NavLink>
                   {props.isActive ? (
                     <NavLink to="/adminlogin" className="menu_links">
                       <li>
@@ -150,7 +152,7 @@ let Menu = (props: any) => {
   );
 };
 
-function mapStateToProps(state:IReduxStore) {
+function mapStateToProps(state: IReduxStore) {
   return {
     values: state.adminAccount,
   };

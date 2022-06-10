@@ -1,6 +1,10 @@
-import { dashboardinfo } from "../ConstData";
-
+/* library imports */
+import React from "react";
 import styled from "styled-components";
+/* library imports */
+import { IDashboardInfo } from "../../models/models";
+
+/* styled components */
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,7 +22,7 @@ const Image = styled.img`
   right: 5px;
 `;
 
-const Para = styled.p`
+const Paragraph = styled.p`
   position: absolute;
   bottom: 5px;
   font-weight: bold;
@@ -30,7 +34,10 @@ const Heading = styled.h5`
   font-family: "Times New Roman", Times, serif;
   color: #566573;
 `;
-const DashboardCardTwo:React.FC<dashboardinfo>=(props) => {
+
+/* main component */
+
+const DashboardCardTwo:React.FC<IDashboardInfo>=(props) => {
   return (
     <>
       <Wrapper>
@@ -41,7 +48,7 @@ const DashboardCardTwo:React.FC<dashboardinfo>=(props) => {
           width="30"
           alt="text"
         ></Image>
-        <Para>{props.info}</Para>
+        <Paragraph>{props.info}</Paragraph>
       </Wrapper>
     </>
   );

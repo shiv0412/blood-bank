@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+/*Library Imports*/
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import styled from "styled-components";
-import admin from "../Images/admin.png";
-import { connect } from "react-redux";
-import { adminLogin } from "../Redux/actions/actionData";
 import UID from "uniquebrowserid";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+
+/*Styled Component Imports*/
+import styled from "styled-components";
+
+/*Custom Imports*/
+import adminIcon from "../Images/admin.png";
+import { adminLogin } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
+import { IAccountDetails } from "../models/models";
+
+/*Custom Components*/
 
 const Wrapper = styled.div`
   width: 25%;
@@ -74,8 +82,9 @@ const ErrorMessage = styled.span`
   margin: 0;
 `;
 
-const AdminLogin = (props: any) => {
+/*Main Component*/
 
+const AdminLogin = (props: any) => {
   const key = new UID().completeID();
   const history = useHistory();
   const [error, setError] = useState(false);
@@ -85,21 +94,25 @@ const AdminLogin = (props: any) => {
       <Header>Blood Bank Login</Header>
       <HR />
       <Wrapper>
-        <Image src={admin}></Image>
+        <Image src={adminIcon}></Image>
         <Formik
           initialValues={{
             email: "",
             password: "",
             key: key,
           }}
-          onSubmit={(values: any) => {
-            props.dispatch(adminLogin(values));
-            const isLogin = props.values.filter((cvalue: any) => {
-              return cvalue.key === key;
-            });
+          onSubmit={(formValues) => {
+            props.dispatch(adminLogin(formValues));
+            const isLogin = props.values.filter(
+              (adminDetails: IAccountDetails) => {
+                return adminDetails.key === key;
+              }
+            );
             if (isLogin.length > 0) {
               props.authenticate();
-              history.push("/admin");
+              history.push({
+                pathname: "/admin",
+              });
             } else {
               setError(true);
             }
@@ -130,7 +143,7 @@ const AdminLogin = (props: any) => {
   );
 };
 
-function mapStateToProps(state:IReduxStore) {
+function mapStateToProps(state: IReduxStore) {
   return {
     values: state.adminAccount,
   };

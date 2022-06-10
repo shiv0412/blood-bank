@@ -1,26 +1,27 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+/* library imports */
+import React, { useEffect, useState } from "react";
 import { NavLink, Switch, Route, useHistory } from "react-router-dom";
-import {
-  BiCategoryAlt,
-  BiListUl,
-  BiLineChart,
-  BiRun,
-  BiBody,
-  BiMessageDots,
-} from "react-icons/bi";
-import AdminPannel from "./admin-pannel";
-import Dashboard from "./Dashboard";
-import DonarRegister from "./donar-register";
-import Stock from "./stocks";
+import { BiCategoryAlt, BiListUl, BiLineChart, BiRun, BiBody, BiMessageDots} from "react-icons/bi";
 import { connect } from "react-redux";
 import UID from "uniquebrowserid";
-import { IReduxStore } from "../Redux/reducers/initialState";
+import { BiUserCircle } from "react-icons/bi";
 
+/* styled components imports */
+import styled from "styled-components";
+
+/* custom imports */
+import AdminPannel from "./admin-pannel";
+import Dashboard from "./dashboard/dashboard";
+import DonarRegister from "./donar-register";
+import Stock from "./stocks";
+import { IReduxStore } from "../Redux/reducers/initialState";
+import { IAccountDetails } from "../models/models";
+
+/* styled components */
 
 const Sidebar = styled.div`
   width: 20%;
-  border-right:1.5px solid lightgrey;
+  border-right: 1.5px solid lightgrey;
   @media (max-width: 768px) {
     width: 100%;
     border: none;
@@ -65,21 +66,64 @@ const Container = styled.div`
   }
 `;
 
+const HeaderContainer = styled.div`
+  padding: 10px 0;
+  background-color: #2c3e50;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #fff;
+`;
+
+const BloodbankName = styled.span`
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-weight: 100;
+  font-size: 12px;
+`;
+
+const Span = styled.span`
+  padding-left:12px;
+`;
+
+/* main component */
+
 const AdminHome = (props: any) => {
+
   const key = new UID().completeID();
-  const history =useHistory();
+  const history = useHistory();
+  const [currentAdmin] = useState(
+    props.values.filter((adminDetails:IAccountDetails) => {
+      return adminDetails.key === key;
+    })
+  );
+
   useEffect(() => {
-    const isLogin = props.values.filter((cvalue: any) => {
-      return cvalue.key === key;
+    const isLogin = props.values.filter((adminDetails:IAccountDetails) => {
+      return adminDetails.key === key;
     });
 
     if (isLogin.length === 0) {
       history.push("/adminlogin");
-    } 
+    }
   });
 
   return (
     <>
+      <HeaderContainer>
+        Admin Pannel
+        {currentAdmin.length > 0 ? (
+          <BloodbankName>
+            <BiUserCircle style={{ fontSize: "30px", paddingRight: "5px" }} />
+            {currentAdmin[0].bloodbank_name}
+          </BloodbankName>
+        ) : (
+          ""
+        )}
+      </HeaderContainer>
       <Container>
         <Sidebar>
           <List>
@@ -87,56 +131,71 @@ const AdminHome = (props: any) => {
             <Item>
               <StyledLink activeClassName="is-active" to="admin">
                 <BiCategoryAlt />
-                &nbsp; &nbsp; Dashboard
+                <Span>Dashboard</Span>
               </StyledLink>
             </Item>
             <Item>
               <StyledLink activeClassName="is-active" to="adminpannel">
                 <BiListUl />
-                &nbsp; &nbsp; Donation
+                <Span>Donation</Span>
               </StyledLink>
             </Item>
             <Item>
               <StyledLink activeClassName="is-active" to="/stocks">
                 <BiLineChart />
-                &nbsp; &nbsp; Stocks
+                <Span>Stocks</Span>
               </StyledLink>
             </Item>
             <Item>
               <StyledLink to="">
                 <BiRun />
-                &nbsp; &nbsp; Requests
+                <Span>Requests</Span>
               </StyledLink>
             </Item>
             <Item>
               <StyledLink to="">
                 <BiBody />
-                &nbsp; &nbsp; Blood Issued
+                <Span>Blood Issued</Span>
               </StyledLink>
             </Item>
             <Item>
               <StyledLink to="">
                 <BiMessageDots />
-                &nbsp; &nbsp; Queries
+                <Span>Queries</Span>
               </StyledLink>
             </Item>
           </List>
         </Sidebar>
         <RightBar>
           <Switch>
-            <Route
-              path="/admin"
-              component={() => <Dashboard></Dashboard>}
-            ></Route>
-            <Route
-              path="/adminpannel"
-              component={() => <AdminPannel></AdminPannel>}
-            ></Route>
-            <Route
-              path="/donarregister"
-              component={() => <DonarRegister></DonarRegister>}
-            ></Route>
-            <Route path="/stocks" component={() => <Stock></Stock>}></Route>
+            {currentAdmin.length > 0 ? (
+              <>
+                <Route
+                  path="/admin"
+                  component={() => (
+                    <Dashboard admin={currentAdmin}></Dashboard>
+                  )}
+                ></Route>
+                <Route
+                  path="/adminpannel"
+                  component={() => (
+                    <AdminPannel admin={currentAdmin}></AdminPannel>
+                  )}
+                ></Route>
+                <Route
+                  path="/donarregister"
+                  component={() => (
+                    <DonarRegister admin={currentAdmin}></DonarRegister>
+                  )}
+                ></Route>
+                <Route
+                  path="/stocks"
+                  component={() => <Stock admin={currentAdmin}></Stock>}
+                ></Route>
+              </>
+            ) : (
+              ""
+            )}
           </Switch>
         </RightBar>
       </Container>

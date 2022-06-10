@@ -1,17 +1,28 @@
+/* library imports */
 import React from "react";
 import styled from "styled-components";
-import banner from "../Images/aboutbanner.jpg";
-import aimg from "../Images/bloodbandcard.jpg";
-import abimg from "../Images/aboutimg.jpg";
-import ServiceCard from "./service-card";
-import img1 from "../Images/donarcard.jpg";
-import admin from "../Images/admincard.png";
-import bloodbank from "../Images/bloodbandcard.jpg";
-import finddonar from "../Images/find donar.jpg";
-import admindash from "../Images/admindash.jpg";
-import doncamp from "../Images/doncamp.jpg";
 
-//using basic styled component
+/* custom imports */
+import aboutBannerImg from "../Images/aboutbanner.jpg";
+import aboutusImg from "../Images/bloodbandcard.jpg";
+import featuresContainerImg from "../Images/aboutimg.jpg";
+import donateImg from "../Images/donarcard.jpg";
+import adminImg from "../Images/admincard.png";
+import bloodbankImg from "../Images/bloodbandcard.jpg";
+import finddonorImg from "../Images/find donar.jpg";
+import adminDashboardImg from "../Images/admindash.jpg";
+import donationCampImg from "../Images/doncamp.jpg";
+import ServiceCard from "./service-card";
+
+/* interfaces */
+interface ISpanTagProps {
+  size: string;
+  margin: string;
+  padding: string;
+  width: string;
+}
+
+/* styled components */
 
 const Banner = styled.img`
   width: 100%;
@@ -27,7 +38,7 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const Bhead = styled.span`
+const BannerHeading = styled.span`
   color: white;
   position: absolute;
   top: 40%;
@@ -42,26 +53,25 @@ const Container = styled.section`
   margin: auto;
 `;
 
-//Extending styles from a styled element
-
+/* extending styles from a styled element */
 const Containerinner = styled(Container)`
   width: 100%;
   position: relative;
 `;
 
-const Para = styled.p`
+const Paragraph = styled.p`
   text-align: center;
   padding: 20px 0px;
   font-family: "Times New Roman";
   font-size: 2.5vw;
 `;
 
-const Imgsec = styled.section`
+const ImageSection = styled.section`
   height: 80vh;
   width: 50%;
   box-shadow: 2px 2px 10px black;
 `;
-const Parasec = styled.p`
+const ParagraphTypeSecond = styled.p`
   width: 50%;
   position: absolute;
   left: 45%;
@@ -69,20 +79,13 @@ const Parasec = styled.p`
   top: 15%;
   border: 2px solid #f5cba7;
   background-color: white;
-  text-align: center;
-  padding: 5px 5px;
+  text-align: justify;
+  padding: 10px 10px;
 `;
 
 //using props based styled element
 
-interface spantagprops {
-  size: string;
-  margin: string;
-  padding: string;
-  width: string;
-}
-
-const Spantag = styled.span<spantagprops>`
+const Spantag = styled.span<ISpanTagProps>`
   background-color: ${(props) => (props.color ? props.color : "white")};
   font-size: ${(props) => props.size || "1rm"};
   margin: ${(props) => props.margin};
@@ -100,48 +103,49 @@ const Title = styled.h4`
 `;
 
 const List = styled.ul`
-list-style-type:none;
-List li::before {
+  list-style-type: none;
+  List li::before {
     content: "\2022";
     color: red;
     font-weight: bold;
-    display: inline-block; 
+    display: inline-block;
     width: 1em;
     margin-left: -1em;
-}
-  `;
+  }
+`;
+
+/* main component */
 
 const About = () => {
   return (
     <>
       <Wrapper>
-        <Banner src={banner} />
-        <Bhead>Who We Are</Bhead>
+        <Banner src={aboutBannerImg} />
+        <BannerHeading>Who We Are</BannerHeading>
       </Wrapper>
       <Container>
-        <Para>About</Para>
+        <Paragraph>About</Paragraph>
         <Containerinner>
-          <Imgsec>
-            <img src={aimg} width="100%" height="100%"></img>
-          </Imgsec>
-          <Parasec>
+          <ImageSection>
+            <img src={aboutusImg} width="100%" height="100%" alt="imageAltText" />
+          </ImageSection>
+          <ParagraphTypeSecond>
             Blood Bank Society is a noble charity organization formed with the
-            active initiation and guidance of Lt. Col. (Hon.) Dr. Mohanlal,
-            under Act For Humanity. Act For Humanity is a Non-profit
-            organization founded by Mr. Esahaque Eswaramangalam and a group of
-            young social workers during 2004, with Lt. Col. (Hon.) Dr. Mohanlal
-            as its goodwill ambassador, aiming to fight against terrorism and
-            fanatic activities..ndian Blood Bank is aimed at promoting the
-            awareness of blood donation among the public. It is committed to
-            stay ahead of all linguistic-rational-religious-political
-            differences and shall be fully focusing its objectives in health
-            care activities, with technology support from WebCastle Media Pvt.
-            Ltd., Cochin. Indian Blood Bank Society is registered as per The
-            TCLSCS Registration Act XII of 1955 under the Government of Kerala.
-            Initial operation of Indian Blood Bank shall be limited to Kerala
-            and in the coming years its services shall be available all over
-            India.
-          </Parasec>
+            active initiation and guidance of Lt. Col. (Hon.) Dr. Monadal, under
+            Act For Humanity. Act For Humanity is a Non-profit organization
+            founded by Mr. Esahaque Eswaramangalam and a group of young social
+            workers during 2004, with Lt. Col. (Hon.) Dr. Monadal as its
+            goodwill ambassador, aiming to fight against terrorism and fanatic
+            activities..ndian Blood Bank is aimed at promoting the awareness of
+            blood donation among the public. It is committed to stay ahead of
+            all linguistic-rational-religious-political differences and shall be
+            fully focusing its objectives in health care activities, with
+            technology support from WebCastle Media Pvt. Ltd., Cochin. Indian
+            Blood Bank Society is registered as per The TCLSCS Registration Act
+            XII of 1955 under the Government of Kerala. Initial operation of
+            Indian Blood Bank shall be limited to Kerala and in the coming years
+            its services shall be available all over India.
+          </ParagraphTypeSecond>
         </Containerinner>
       </Container>
       <Container>
@@ -153,7 +157,7 @@ const About = () => {
           width="100%"
           className="spantag_about_page"
         >
-          E-blood Bank Is A Centralized Blood Manaagement System
+          E-blood Bank Is A Centralized Blood Management System
         </Spantag>
       </Container>
       <Container>
@@ -164,20 +168,25 @@ const About = () => {
               <li>Safe and Adequate Blood Supplies</li>
               <li>Networking of Blood Banks</li>
               <li>Donation Camps Organization</li>
-              <li>Fullfill blood Requirements</li>
+              <li>Fullfil blood Requirements</li>
             </List>
           </div>
           <div className="col-md-4">
             <Title>Features</Title>
             <List>
               <li>Web Based Application</li>
-              <li>Easy Access and Ussage</li>
+              <li>Easy Access and Usage</li>
               <li>Donar Contacts Repository</li>
               <li>location Based Searching</li>
             </List>
           </div>
           <div className="col-md-4">
-            <img src={abimg} height="150px" width="200px"></img>
+            <img
+              src={featuresContainerImg}
+              height="150px"
+              width="200px"
+              alt="imageAltText"
+            ></img>
           </div>
         </div>
       </Container>
@@ -188,27 +197,27 @@ const About = () => {
           </div>
           <div className="row">
             <div className="col-md-3">
-              <ServiceCard image={finddonar} val="Find Donar"></ServiceCard>
+              <ServiceCard image={finddonorImg} val="Find Donar"></ServiceCard>
             </div>
             <div className="col-md-3">
-              <ServiceCard image={img1} val="Donate"></ServiceCard>
+              <ServiceCard image={donateImg} val="Donate"></ServiceCard>
             </div>
             <div className="col-md-3">
-              <ServiceCard image={bloodbank} val="Blood Banks"></ServiceCard>
+              <ServiceCard image={bloodbankImg} val="Blood Banks"></ServiceCard>
             </div>
             <div className="col-md-3">
-              <ServiceCard image={admin} val="Volunteer"></ServiceCard>
+              <ServiceCard image={adminImg} val="Volunteer"></ServiceCard>
             </div>
           </div>
           <div className="row">
             <div className="col-md-3">
               <ServiceCard
-                image={admindash}
+                image={adminDashboardImg}
                 val="Admin Dashboard"
               ></ServiceCard>
             </div>
             <div className="col-md-3">
-              <ServiceCard image={doncamp} val="Camps"></ServiceCard>
+              <ServiceCard image={donationCampImg} val="Camps"></ServiceCard>
             </div>
           </div>
         </div>
@@ -216,4 +225,5 @@ const About = () => {
     </>
   );
 };
+
 export default About;

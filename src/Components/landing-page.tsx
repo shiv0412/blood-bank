@@ -1,7 +1,7 @@
 import React from "react";
-import Services from "./Services";
-import Information from "./Information";
-import Curosal from "./Curosal";
+import Services from "./services";
+import Information from "./information";
+import Curosal from "./curosal";
 
 let LandingPage = () => {
   return (

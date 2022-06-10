@@ -1,0 +1,17 @@
+{
+    "states": [
+      {
+        "state": "Uttar Pradesh",
+        "cities": ["Lucknow", "Noida", "Ghaziabad"]
+      },
+      {
+        "state": "Delhi",
+        "cities": ["South Delhi", "Aanand Vihar", "Sahadra"]
+      },
+      {
+        "state": "Karnataka",
+        "cities": ["Bangalore", "Mysore", "Hubli"]
+      }
+    ]
+  }
+  

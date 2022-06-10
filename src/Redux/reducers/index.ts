@@ -1,14 +1,11 @@
 import { combineReducers} from "redux";
 
 import {dataReducer as registeredDonars} from "./dataReducer";
-import {authentication as adminAccount } from "./authentication";
-import { stockReducer as  stocks } from "./stocksReducer";
-
+import {bloodbankReducer as adminAccount } from "./bloodbankReducer";
 
 const rootReducer = combineReducers({
     registeredDonars,
-    adminAccount,
-    stocks
+    adminAccount
 });
 
 export default rootReducer;

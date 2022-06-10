@@ -1,22 +1,7 @@
-import { IBloodbankStock } from "../../models/models"
+import { IAccountDetails, IBloodbankStock, IRegisteredDonor } from "../../models/models"
 
-interface Form_Data {
-    id:string,
-    name:string,
-    phone:Number,
-    DateOfBirth:Date,
-    Bloodgroup:string,
-    Gender:string,
-    City:string,
-    State:string,
-    Pincode: Number,
-    RegDate: string,
-    Address: string,
-    Bloodbank: string,
-    medical:string
-}
 
-export const dataAction = (values:Form_Data) => {
+export const dataAction = (values:IRegisteredDonor) => {
     return{
         type:"SAVEDATA",
         values
@@ -30,7 +15,7 @@ export const deleteDonar = (id:string) => {
     }
 }
 
-export const updateDonar = (values:Form_Data) => {
+export const updateDonar = (values:IRegisteredDonor) => {
     return{
         type:"UPDATE_DONAR",
         values
@@ -39,13 +24,13 @@ export const updateDonar = (values:Form_Data) => {
 
 export const adminLogin = (values:any)=>{
     return{
-        type:"Login",
+        type:"LOGIN_BLOODBANK",
         values
     }
 }
-export const adminLogout = (key:any)=>{
+export const adminLogout = (key:string)=>{
     return{
-        type:"Logout",
+        type:"LOGOUT_BLOODBANK",
         key
     }
 }
@@ -58,11 +43,18 @@ export const updateStatus = (values:any)=>{
 }
 
 
-export const updateStock =  (values:IBloodbankStock)=>{
+export const updateStock =  (values:IBloodbankStock,bloodbank_name:string)=>{
     console.log("action fired",values);
     return{
         type:"UPDATE_STOCK",
-        values
+        values,
+        bloodbank_name
     }
 }
 
+export const registerBloodbank = (values:IAccountDetails)=>{
+    return{
+        type:"REGISTER_BLOODBANK",
+        values
+    }
+}

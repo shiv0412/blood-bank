@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import { toast } from "react-toastify";
 
 import styled from "styled-components";
-import { autoClose } from "../ConstData";
+import { autoClose } from "../constants";
+import { IAccountDetails } from "../models/models";
 import { updateStock } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
 
 const Wrapper = styled.div`
-  background-color: #566573;
-  margin-top: 1%;
+  background-color:#2c3e50;
 `;
 
 const Title = styled.p`
@@ -33,7 +33,7 @@ const Datatable = styled.table`
 `;
 
 const Tr = styled.tr`
-  background-color: #F7F9F9;
+  background-color: #f7f9f9;
 `;
 
 const Th = styled.th`
@@ -62,26 +62,31 @@ const Button = styled.button`
   }
 `;
 
-const Stock: React.FC = (props: any) => {
+const Stock = (props: any) => {
   const notify = () =>
-  toast.success("Stock Details Updated", {
-    position: "top-center",
-    autoClose: autoClose,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+    toast.success("Stock Details Updated", {
+      position: "top-center",
+      autoClose: autoClose,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const [bloodbankstock, setBloodbankStock] = useState(
+    props.values.filter((el: IAccountDetails) => {
+      return el.bloodbank_name === props.admin[0].bloodbank_name;
+    })
+  );
   const [stockvalue, setStockvalue] = useState({
-    Apos: props.values.Apos,
-    Aneg: props.values.Aneg,
-    Bpos: props.values.Bpos,
-    Bneg: props.values.Bneg,
-    ABpos: props.values.ABpos,
-    ABneg: props.values.ABneg,
-    Opos: props.values.Opos,
-    Oneg: props.values.Oneg,
+    Apos: bloodbankstock[0].stocks.Apos,
+    Aneg: bloodbankstock[0].stocks.Aneg,
+    Bpos: bloodbankstock[0].stocks.Bpos,
+    Bneg: bloodbankstock[0].stocks.Bneg,
+    ABpos: bloodbankstock[0].stocks.ABpos,
+    ABneg: bloodbankstock[0].stocks.ABneg,
+    Opos: bloodbankstock[0].stocks.Opos,
+    Oneg: bloodbankstock[0].stocks.Oneg,
   });
 
   const handleChange = (e: any) => {
@@ -119,7 +124,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -136,7 +146,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -153,7 +168,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -170,7 +190,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -187,7 +212,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -204,7 +234,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -221,7 +256,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -238,7 +278,12 @@ const Stock: React.FC = (props: any) => {
             ></input>
           </Td>
           <Td>
-            <Button onClick={() => {props.dispatch(updateStock(stockvalue));notify()}}>
+            <Button
+              onClick={() => {
+                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
+                notify();
+              }}
+            >
               Update
             </Button>
           </Td>
@@ -250,7 +295,7 @@ const Stock: React.FC = (props: any) => {
 
 function mapStateToProps(state: IReduxStore) {
   return {
-    values: state.stocks,
+    values: state.adminAccount,
   };
 }
 
