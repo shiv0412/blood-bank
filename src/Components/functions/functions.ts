@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
-import { autoClose } from "../../constants";
+import { autoClose, city, state } from "../../constants";
+import { IAccountDetails } from "../../models/models";
 
 export const dateFinder = () => {
   let today = new Date();
@@ -85,8 +86,12 @@ export const bloodbankStock = (adminBloodbankStock: any) => {
   return bloodStocks;
 };
 
-export const toastNotification = (message: string) =>
-  toast.success(message, {
+export const toastNotification = (
+  message: string,
+  name: string = "",
+  status: string = ""
+) =>
+  toast.success(name + message + status, {
     position: "top-center",
     autoClose: autoClose,
     hideProgressBar: false,
@@ -95,3 +100,16 @@ export const toastNotification = (message: string) =>
     draggable: true,
     progress: undefined,
   });
+
+export const customSelectBoxOptions = (type: string) => {
+  const cities = city;
+  const states = state;
+  if (type.toLowerCase() === "state") {
+    return states;
+  } else if (type.toLowerCase() === "city") {
+    return cities;
+  } else {
+    return null;
+  }
+};
+

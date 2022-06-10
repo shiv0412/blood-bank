@@ -1,15 +1,16 @@
+/* library imports */
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
-
 import styled from "styled-components";
-import { autoClose } from "../constants";
+/* custom imports */
 import { IAccountDetails } from "../models/models";
 import { updateStock } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
+import { toastNotification } from "./functions/functions";
 
+/* styled components */
 const Wrapper = styled.div`
-  background-color:#2c3e50;
+  background-color: #2c3e50;
 `;
 
 const Title = styled.p`
@@ -61,36 +62,27 @@ const Button = styled.button`
 `;
 
 const Stock = (props: any) => {
-  const notify = () =>
-    toast.success("Stock Details Updated", {
-      position: "top-center",
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  const [bloodbankstock, setBloodbankStock] = useState(
-    props.values.filter((el: IAccountDetails) => {
-      return el.bloodbank_name === props.admin[0].bloodbank_name;
+  const [bloodbankStock] = useState(
+    props.values.filter((adminBloodbankDetails: IAccountDetails) => {
+      return (
+        adminBloodbankDetails.bloodbank_name === props.admin[0].bloodbank_name
+      );
     })
   );
   const [stockvalue, setStockvalue] = useState({
-    Apos: bloodbankstock[0].stocks.Apos,
-    Aneg: bloodbankstock[0].stocks.Aneg,
-    Bpos: bloodbankstock[0].stocks.Bpos,
-    Bneg: bloodbankstock[0].stocks.Bneg,
-    ABpos: bloodbankstock[0].stocks.ABpos,
-    ABneg: bloodbankstock[0].stocks.ABneg,
-    Opos: bloodbankstock[0].stocks.Opos,
-    Oneg: bloodbankstock[0].stocks.Oneg,
+    Apos: bloodbankStock[0].stocks.Apos,
+    Aneg: bloodbankStock[0].stocks.Aneg,
+    Bpos: bloodbankStock[0].stocks.Bpos,
+    Bneg: bloodbankStock[0].stocks.Bneg,
+    ABpos: bloodbankStock[0].stocks.ABpos,
+    ABneg: bloodbankStock[0].stocks.ABneg,
+    Opos: bloodbankStock[0].stocks.Opos,
+    Oneg: bloodbankStock[0].stocks.Oneg,
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const name = e.target.name;
-
     setStockvalue({ ...stockvalue, [name]: value });
   };
 
@@ -118,14 +110,16 @@ const Stock = (props: any) => {
               name="Apos"
               value={stockvalue.Apos}
               title="click to edit"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -140,14 +134,16 @@ const Stock = (props: any) => {
               name="Aneg"
               className="input_box"
               value={stockvalue.Aneg}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -162,14 +158,16 @@ const Stock = (props: any) => {
               name="Bpos"
               className="input_box"
               value={stockvalue.Bpos}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -184,14 +182,16 @@ const Stock = (props: any) => {
               name="Bneg"
               className="input_box"
               value={stockvalue.Bneg}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -206,14 +206,16 @@ const Stock = (props: any) => {
               name="ABpos"
               className="input_box"
               value={stockvalue.ABpos}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -228,14 +230,16 @@ const Stock = (props: any) => {
               name="ABneg"
               className="input_box"
               value={stockvalue.ABneg}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -250,14 +254,16 @@ const Stock = (props: any) => {
               name="Opos"
               className="input_box"
               value={stockvalue.Opos}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update
@@ -272,14 +278,16 @@ const Stock = (props: any) => {
               name="Oneg"
               className="input_box"
               value={stockvalue.Oneg}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             ></input>
           </Td>
           <Td>
             <Button
               onClick={() => {
-                props.dispatch(updateStock(stockvalue,bloodbankstock[0].bloodbank_name));
-                notify();
+                props.dispatch(
+                  updateStock(stockvalue, bloodbankStock[0].bloodbank_name)
+                );
+                toastNotification("Stock details updated!");
               }}
             >
               Update

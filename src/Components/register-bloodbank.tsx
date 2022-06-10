@@ -1,16 +1,20 @@
-import { Field, Form, Formik } from "formik";
+/* library imports */
 import React from "react";
+import { Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
-
+/* custom imports */
 import { IReduxStore } from "../Redux/reducers/initialState";
 import { DropdownField } from "./custom-components/custom-dropdown";
 import CustomErrorMessage from "./custom-components/custom-error-message";
 import { registerBloodbank } from "../Redux/actions/actionData";
-import { autoClose } from "./../constants";
-import { toast } from "react-toastify";
+import {
+  customSelectBoxOptions,
+  toastNotification,
+} from "./functions/functions";
 
+/* form validation */
 const validationSchema = yup.object({
   bloodbank_name: yup
     .string()
@@ -45,16 +49,6 @@ const validationSchema = yup.object({
 
 const RegisterBloodbank: React.FC = (props: any) => {
   const history = useHistory();
-  const notify = (bloodbank:string) =>
-    toast.success("Welcome!!! " + bloodbank, {
-      position: "top-center",
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   return (
     <>
       <div className="main_container_donarergister">
@@ -79,7 +73,7 @@ const RegisterBloodbank: React.FC = (props: any) => {
           }}
           onSubmit={(values: any) => {
             props.dispatch(registerBloodbank(values));
-            notify(values.bloodbank_name);
+            toastNotification("Bloodbank registration successful");
             history.push("/adminlogin");
           }}
         >
@@ -122,23 +116,7 @@ const RegisterBloodbank: React.FC = (props: any) => {
                     placeholder="Select State"
                     name="state"
                     component={DropdownField}
-                    options={[
-                      {
-                        key: "Uttar Pradesh",
-                        text: "Uttar Pradesh",
-                        value: "Uttar Pradesh",
-                      },
-                      {
-                        key: "Delhi",
-                        text: "Delhi",
-                        value: "Delhi",
-                      },
-                      {
-                        key: "Karnataka",
-                        text: "Karnataka",
-                        value: "Karnataka",
-                      },
-                    ]}
+                    options={customSelectBoxOptions("state")}
                   />
                   <CustomErrorMessage name="state"></CustomErrorMessage>
                 </div>
@@ -148,43 +126,7 @@ const RegisterBloodbank: React.FC = (props: any) => {
                     placeholder="Select City"
                     name="city"
                     component={DropdownField}
-                    options={[
-                      {
-                        key: "Lucknow",
-                        text: "Lucknow",
-                        value: "Lucknow",
-                      },
-                      {
-                        key: "Noida",
-                        text: "Noida",
-                        value: "Noida",
-                      },
-                      {
-                        key: "Ghaziabad",
-                        text: "Ghaziabad",
-                        value: "Ghaziabad",
-                      },
-                      {
-                        key: "South Delhi",
-                        text: "South Delhi",
-                        value: "South Delhi",
-                      },
-                      {
-                        key: "Aanand Vihar",
-                        text: "Aanand Vihar",
-                        value: "Aanand Vihar",
-                      },
-                      {
-                        key: "Bangalore",
-                        text: "Bangalore",
-                        value: "Bangalore",
-                      },
-                      {
-                        key: "Mysore",
-                        text: "Mysore",
-                        value: "Mysore",
-                      },
-                    ]}
+                    options={customSelectBoxOptions("city")}
                   />
                   <CustomErrorMessage name="city"></CustomErrorMessage>
                 </div>
@@ -254,7 +196,9 @@ const RegisterBloodbank: React.FC = (props: any) => {
 };
 
 function mapStateToProps(state: IReduxStore) {
-  return {};
+  return {
+    values: state.adminAccount,
+  };
 }
 
 export default connect(mapStateToProps)(RegisterBloodbank);

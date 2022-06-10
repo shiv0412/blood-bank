@@ -6,7 +6,7 @@ function Pagination({
   pageLimit,
   dataLimit,
 }: {
-  data: any;
+  data:any;
   RenderComponent: any;
   pageLimit: any;
   dataLimit: any;

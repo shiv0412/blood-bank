@@ -1,7 +1,7 @@
 import React from "react";
-
 import styled from "styled-components";
 
+/* styled components */
 const Select = styled.select`
   width: 30%;
   margin: 0 15px;
@@ -19,23 +19,19 @@ const Select = styled.select`
 `;
 
 const Option = styled.option`
-font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export default function StateCityDropdown(props: any) {
   const { selectedValue, source, onDataChange, placeHolder, isStateSelected } =
     props;
-
   const handleChange = (e: any) => {
     onDataChange(e.target.value);
   };
-
   let isDisabled = false;
-
   if (placeHolder === "city" && !isStateSelected) {
     isDisabled = true;
   }
-
   return (
     <Select
       className="dropDownList"

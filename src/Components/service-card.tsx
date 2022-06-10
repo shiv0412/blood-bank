@@ -4,8 +4,8 @@ let ServiceCard = (props: any) => {
   return (
     <div>
       <div className="cardnen">
-        <img className="img-ccard" src={props.image} />
-        <a className="btn" href="#">
+        <img className="img-ccard" src={props.image} alt="imageText"/>
+        <a className="btn" href="/">
         </a>
         <small className="mtnpaiin">{props.val}</small>
       </div>

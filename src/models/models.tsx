@@ -53,19 +53,3 @@ export interface IDashboardInfo {
   infoimg: string;
 }
 
-export interface Data_Value {
-  id: string;
-  name: string;
-  phone: number;
-  DateOfBirth: Date;
-  Bloodgroup: string;
-  Gender: string;
-  City: string;
-  State: string;
-  Pincode: number;
-  RegDate: string;
-  Address: string;
-  Bloodbank: string;
-  medical: string;
-  Status: string;
-}

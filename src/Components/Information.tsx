@@ -1,5 +1,7 @@
 import React from "react";
-import imginfo from "../Images/donationFact.jpg";
+import infosectionsidebarImg from "../Images/donationFact.jpg";
+
+/* bootstrap 5 based component */
 
 let Information = () => {
   return (
@@ -11,7 +13,11 @@ let Information = () => {
       <div className="container-fluid">
         <div className="row" id="info_page_row">
           <div className="col-md-6 manage_info_container">
-            <img src={imginfo} className="img_info"></img>
+            <img
+              src={infosectionsidebarImg}
+              className="img_info"
+              alt="imageText"
+            ></img>
           </div>
           <div className="col-md-6 manage_info_container">
             <table className="table_info">

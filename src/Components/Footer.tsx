@@ -1,9 +1,10 @@
 import React from "react";
 
-let Footer = () => {
+/* bootstrap 5 component */
+const Footer = () => {
   return (
     <div className="main_footer_container">
-      <div className="container-fluid" >
+      <div className="container-fluid">
         <div className="row">
           <div className="col-md-12" id="footer_container_two">
             <footer className="footer">
@@ -14,10 +15,13 @@ let Footer = () => {
                       <h2>About us</h2>
                     </div>
                     <p className="white-text">
-                    Safe and Adequate Blood Supplies.<br/>
-                    Web Based Application.<br/>
-                    Appointment for Blood Bank.<br/>
-                    Add your Blood Bank.
+                      Safe and Adequate Blood Supplies.
+                      <br />
+                      Web Based Application.
+                      <br />
+                      Appointment for Blood Bank.
+                      <br />
+                      Add your Blood Bank.
                     </p>
                   </div>
                   <div className="col-md-3 m-b-30">
@@ -25,10 +29,10 @@ let Footer = () => {
                       Our Services
                     </div>
                     <div className="footer-links">
-                      <a href="#">Appointment</a>
-                      <a href="#">Blood Banks</a>
-                      <a href="#">Find Donar</a>
-                      <a href="#">Donate Blood</a>
+                      <a href="/">Appointment</a>
+                      <a href="/">Blood Banks</a>
+                      <a href="/">Find Donar</a>
+                      <a href="/">Donate Blood</a>
                     </div>
                   </div>
                   <div className="col-md-3 m-b-30">
@@ -36,10 +40,10 @@ let Footer = () => {
                       Quick Links
                     </div>
                     <div className="footer-links">
-                      <a href="#">Blog</a>
-                      <a href="#">FAQ</a>
-                      <a href="#">Terms & conditions</a>
-                      <a href="#">Privacy policy</a>
+                      <a href="/">Blog</a>
+                      <a href="/">FAQ</a>
+                      <a href="/">Terms & conditions</a>
+                      <a href="/">Privacy policy</a>
                     </div>
                   </div>
                   <div className="col-md-3 m-b-30">
@@ -47,24 +51,24 @@ let Footer = () => {
                       Support
                     </div>
                     <div className="footer-links">
-                      <a href="#">Affiliate</a>
-                      <a href="#">Admin Login</a>
-                      <a href="#">Contact Us</a>
-                      <a href="#">Support forum</a>
+                      <a href="/">Affiliate</a>
+                      <a href="/">Admin Login</a>
+                      <a href="/">Contact Us</a>
+                      <a href="/">Support forum</a>
                     </div>
 
                     <div className="footer-social-links m-t-30">
                       <li>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-facebook" aria-hidden="true"></i>
                         </a>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-twitter" aria-hidden="true"></i>
                         </a>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-linkedin" aria-hidden="true"></i>
                         </a>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-youtube" aria-hidden="true"></i>
                         </a>
                       </li>

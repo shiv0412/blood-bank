@@ -1,4 +1,3 @@
-/* eslint-disable no-lone-blocks */
 import { IAccountDetails } from "../../models/models";
 import { initialstate } from "./initialState";
 
@@ -24,28 +23,25 @@ export const bloodbankReducer = (
       return adminAccounts;
 
     case "LOGIN_BLOODBANK":
-      adminAccounts?.map((cvalue: IAccountDetails) => {
-        if (
-          cvalue.email === action.values.email &&
-          cvalue.password === action.values.password
-        ) {
-          {
-            cvalue.key = action.values.key;
-            cvalue.isLogin = true;
-          }
-        }
-      });
+      const adminExists = adminAccounts?.findIndex(
+        (adminDetails: IAccountDetails) =>
+          adminDetails.email === action.values.email &&
+          adminDetails.password === action.values.password
+      );
+      if (adminExists !== undefined && adminExists > -1 && adminAccounts) {
+        adminAccounts[adminExists].key = action.values.key;
+        adminAccounts[adminExists].isLogin = true;
+      }
       return adminAccounts;
 
     case "LOGOUT_BLOODBANK":
-      adminAccounts?.map((cvalue: IAccountDetails) => {
-        if (cvalue.key === action.key) {
-          {
-            cvalue.key = "";
-            cvalue.isLogin = false;
-          }
-        }
-      });
+      const findIndex = adminAccounts?.findIndex(
+        (adminDetails: IAccountDetails) => adminDetails.key === action.key
+      );
+      if (findIndex !== undefined && findIndex > -1 && adminAccounts) {
+        adminAccounts[findIndex].key = "";
+        adminAccounts[findIndex].isLogin = false;
+      }
       return adminAccounts;
 
     case "UPDATE_STOCK":

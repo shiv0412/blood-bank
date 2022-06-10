@@ -1,10 +1,11 @@
+/* library imports */
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import UID from "uniquebrowserid";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
+/* custom imports */
 import DonarSearch from "./Components/blood-search";
 import Footer from "./Components/footer";
 import Menu from "./Components/menu";
@@ -15,39 +16,45 @@ import About from "./Components/about";
 import AdminLogin from "./Components/admin-login";
 import { IReduxStore } from "./Redux/reducers/initialState";
 import RegisterBloodbank from "./Components/register-bloodbank";
+import { IAccountDetails } from "./models/models";
 
-function App(props:any) {
-  const [isActive,setIsactive] = useState<boolean>();
+/* main component */
 
-  useEffect(()=>{
+function App(props: any) {
+  const [isActive, setIsactive] = useState<boolean>();
+
+  useEffect(() => {
     const key = new UID().completeID();
-    const isLoggedin = props.values.filter((cvalue:any)=>{
-      return cvalue.key === key;
-    })
-    if(isLoggedin.length === 0){
+    const isLoggedin = props.values.filter(
+      (accountDetails: IAccountDetails) => {
+        return accountDetails.key === key;
+      }
+    );
+    if (isLoggedin.length === 0) {
       setIsactive(true);
-    }else{
+    } else {
       setIsactive(false);
     }
-  })
+  }, [props.values]);
 
   const Authenticate = () => {
     const key = new UID().completeID();
-    const isLoggedin = props.values.filter((cvalue:any)=>{
-      return cvalue.key === key;
-    })
-    if(isLoggedin.length === 0){
+    const isLoggedin = props.values.filter(
+      (accountDetails: IAccountDetails) => {
+        return accountDetails.key === key;
+      }
+    );
+    if (isLoggedin.length === 0) {
       setIsactive(true);
-    }else{
+    } else {
       setIsactive(false);
     }
-  }
-
+  };
 
   return (
     <>
       <ToastContainer />
-      <Menu isActive={isActive} auth = {Authenticate}></Menu>
+      <Menu isActive={isActive} auth={Authenticate}></Menu>
       <Switch>
         <Route
           exact
@@ -72,30 +79,28 @@ function App(props:any) {
           path="/contactus"
           component={() => <ContactUs></ContactUs>}
         ></Route>
-         <Route
+        <Route
           path="/donarregister"
           component={() => <AdminHome></AdminHome>}
         ></Route>
-         <Route
-          path="/stocks"
-          component={() => <AdminHome></AdminHome>}
-        ></Route>
-          <Route
+        <Route path="/stocks" component={() => <AdminHome></AdminHome>}></Route>
+        <Route
           path="/adminlogin"
-          component={() => <AdminLogin authenticate = {Authenticate} ></AdminLogin>}
+          component={() => (
+            <AdminLogin authenticate={Authenticate}></AdminLogin>
+          )}
         ></Route>
-          <Route
+        <Route
           path="/registerbloodbank"
           component={() => <RegisterBloodbank></RegisterBloodbank>}
         ></Route>
-        
       </Switch>
       <Footer></Footer>
     </>
   );
 }
 
-function mapStateToProps(state:IReduxStore) {
+function mapStateToProps(state: IReduxStore) {
   return {
     values: state.adminAccount,
   };

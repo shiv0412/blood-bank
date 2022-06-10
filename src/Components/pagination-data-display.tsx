@@ -1,15 +1,15 @@
+/* library imports */
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
-
 import styled from "styled-components";
-
-import { autoClose} from "./../constants";
+/* custom imports */
 import { deleteDonar, updateStatus } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
+import { toastNotification } from "./functions/functions";
 
+/* styled components */
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -35,7 +35,7 @@ const Actions = styled.button`
   background-color: white;
   border: none;
 `;
-const ActionDel = styled(Actions)`
+const DeleteAction = styled(Actions)`
   margin-left: 10px;
   color: red;
   font-size: 18px;
@@ -56,7 +56,7 @@ color:red;
 }
 `;
 
-const Option = styled.option`
+const SelectOptions = styled.option`
   color:black;
   font-size:14px;
   &:nth-child(1){
@@ -67,17 +67,6 @@ const Option = styled.option`
 function PaginationDataDisplay(props: any) {
   const history = useHistory();
 
-  const notify = (name:string,status:string) =>
-  toast.success(name+" status is updated to "+status, {
-    position: "top-center",
-    autoClose: autoClose,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-
   const onEdit = (id: string) => {
     history.push({
       pathname: "/donarregister",
@@ -85,20 +74,10 @@ function PaginationDataDisplay(props: any) {
     });
   };
 
-  const onDelete = (name: string) =>
-    toast.info(name + " Data is Deleted", {
-      position: "top-center",
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  function handlePeriodChange(Status: string, id: string) {
+  function handleStatusUpdating(Status: string, id: string) {
     props.dispatch(updateStatus({ id, Status }));
   }
+
   return (
     <div className="post">
       <Wrapper>
@@ -118,12 +97,12 @@ function PaginationDataDisplay(props: any) {
           <Select
             id="status"
             onChange={(val) =>
-              {handlePeriodChange(val.target.value, props.data.id);notify(props.data.name,val.target.value);}
+              {handleStatusUpdating(val.target.value, props.data.id);toastNotification(" status is updated to ",props.data.name,val.target.value);}
             }
           >
-          <Option value={props.data.Status}>{props.data.Status}</Option>
-            <Option value="Donating">Donating</Option>
-            <Option value="Discharged">Discharged</Option>
+          <SelectOptions value={props.data.Status}>{props.data.Status}</SelectOptions>
+            <SelectOptions value="Donating">Donating</SelectOptions>
+            <SelectOptions value="Discharged">Discharged</SelectOptions>
           </Select>
         </Content>
         <Content>
@@ -131,15 +110,15 @@ function PaginationDataDisplay(props: any) {
           <Actions title="Edit" onClick={() => onEdit(props.data.id)}>
             &#9998;&nbsp;
           </Actions>
-          <ActionDel
+          <DeleteAction
             title="Delete"
             onClick={() => {
               props.dispatch(deleteDonar(props.data.id));
-              onDelete(props.data.name);
+              toastNotification(" data is deleted ",props.data.name);
             }}
           >
             <AiFillDelete />
-          </ActionDel>
+          </DeleteAction>
         </Content>
       </Wrapper>
     </div>

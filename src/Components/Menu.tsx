@@ -1,12 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* library imports */
 import React from "react";
-import logo from "../Images/logomain.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import UID from "uniquebrowserid";
 import styled from "styled-components";
+/* custom imports */
 import { adminLogout } from "../Redux/actions/actionData";
 import { IReduxStore } from "../Redux/reducers/initialState";
+import logo from "../Images/logomain.png";
+
+/* styled components */
 
 const Span = styled.span`
   font-weight: bold;
@@ -17,7 +20,9 @@ const Span = styled.span`
   }
 `;
 
-let Menu = (props: any) => {
+/* main component */
+
+const Menu = (props: any) => {
   const history = useHistory();
   const key = new UID().completeID();
 
@@ -57,7 +62,7 @@ let Menu = (props: any) => {
                   <a
                     className="anchor_link_menu_manage"
                     aria-current="page"
-                    href="#"
+                    href="/"
                   >
                     Home
                   </a>
@@ -68,7 +73,7 @@ let Menu = (props: any) => {
                   <a
                     className="anchor_link_menu_manage"
                     aria-current="page"
-                    href="#"
+                    href="/"
                   >
                     Need Blood
                   </a>
@@ -77,7 +82,7 @@ let Menu = (props: any) => {
               <li className="nav-item dropdown link_menu_item">
                 <a
                   className=" dropdown-toggle anchor_link_menu_manage"
-                  href="#"
+                  href="/"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -93,14 +98,14 @@ let Menu = (props: any) => {
                   <NavLink to="/admin" className="menu_links">
                     {" "}
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/">
                         <Span>Admin Pannel</Span>
                       </a>
                     </li>
                   </NavLink>
                   <NavLink to="/registerbloodbank" className="menu_links">
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/">
                         <Span>Register</Span>
                       </a>
                     </li>
@@ -108,14 +113,14 @@ let Menu = (props: any) => {
                   {props.isActive ? (
                     <NavLink to="/adminlogin" className="menu_links">
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/">
                           <Span>Login</Span>
                         </a>
                       </li>
                     </NavLink>
                   ) : (
                     <li onClick={userLogout}>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/">
                         <Span>Logout</Span>
                       </a>
                     </li>
@@ -127,7 +132,7 @@ let Menu = (props: any) => {
                   <a
                     className="anchor_link_menu_manage"
                     aria-current="page"
-                    href="#"
+                    href="/"
                   >
                     Contact Us
                   </a>
@@ -138,7 +143,7 @@ let Menu = (props: any) => {
                   <a
                     className="anchor_link_menu_manage"
                     aria-current="page"
-                    href="#"
+                    href="/"
                   >
                     About Us
                   </a>
