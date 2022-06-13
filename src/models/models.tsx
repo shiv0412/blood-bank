@@ -62,4 +62,9 @@ export interface IUserRequest {
   requestDate:string;
   bloodbank:string;
   reason:string;
+  requestProcessing:{
+    requestStatus:string,
+    updatingDate:string,
+    comment:string
+  }
 }

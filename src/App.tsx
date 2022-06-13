@@ -17,6 +17,7 @@ import AdminLogin from "./Components/admin/admin-login";
 import { IReduxStore } from "./Redux/reducers/initialState";
 import RegisterBloodbank from "./Components/register-bloodbank";
 import { IAccountDetails } from "./models/models";
+import TrackBloodRequests from "./Components/track--blood-requests";
 
 /* main component */
 
@@ -85,6 +86,14 @@ function App(props: any) {
         ></Route>
         <Route path="/stocks" component={() => <AdminHome></AdminHome>}></Route>
         <Route
+          path="/bloodRequests"
+          component={() => <AdminHome></AdminHome>}
+        ></Route>
+         <Route
+          path="/completedRequests"
+          component={() => <AdminHome></AdminHome>}
+        ></Route>
+        <Route
           path="/adminlogin"
           component={() => (
             <AdminLogin authenticate={Authenticate}></AdminLogin>
@@ -93,6 +102,10 @@ function App(props: any) {
         <Route
           path="/registerbloodbank"
           component={() => <RegisterBloodbank></RegisterBloodbank>}
+        ></Route>
+        <Route
+          path="/trackRequest"
+          component={() => <TrackBloodRequests></TrackBloodRequests>}
         ></Route>
       </Switch>
       <Footer></Footer>

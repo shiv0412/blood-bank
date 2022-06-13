@@ -49,56 +49,11 @@ const Curosal = () => {
             />
             <Link to="/donarsearch">
               <button className="find_donar_curosal_button">
-                Find Donar Now
+                Find Blood Now
               </button>
             </Link>
           </div>
-          <div className="carousel-item">
-            <img
-              src={banner3}
-              className="d-block w-100"
-              alt="..."
-              height="450"
-            />
-            <p className="p_two_curosal">
-              Your Donar Is Just One Click Away From You.
-              <br />
-              We are Here To Help You
-            </p>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={banner1}
-              className="d-block w-100"
-              alt="..."
-              height="450"
-            />
-          </div>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControlsNoTouching"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon fontIcon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControlsNoTouching"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon fontIcon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   );

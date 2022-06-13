@@ -3,6 +3,7 @@ import * as yup from "yup";
 import styled from "styled-components";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Field, Form, Formik } from "formik";
+import { connect } from "react-redux";
 
 import CustomErrorMessage from "./custom-components/custom-error-message";
 import { DropdownField } from "./custom-components/custom-dropdown";
@@ -11,7 +12,6 @@ import {
   dateFinder,
   toastNotification,
 } from "./functions/functions";
-import { connect } from "react-redux";
 import { IReduxStore } from "../Redux/reducers/initialState";
 import { newRequest } from "../Redux/actions/actionData";
 
@@ -154,11 +154,16 @@ const Modal = (props: any) => {
               phone: "",
               bloodbank: props.bloodbank_name,
               requestDate: dateFinder(),
+              requestProcessing:{
+                requestStatus:"Active",
+                updatingDate:dateFinder(),
+                comment:""
+              }
             }}
             onSubmit={(values: any) => {
               props.dispatch(newRequest(values));
               toastNotification("Request sent");
-              // history.push("/adminlogin");
+              props.onClose();
             }}
           >
             <Form>

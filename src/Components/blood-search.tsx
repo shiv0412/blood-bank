@@ -240,7 +240,6 @@ const BloodSearch = (props: any) => {
                   );
                 })}
               </Table>
-              {/* <SendRequestButtonContainer>Hello world</SendRequestButtonContainer> */}
             </div>
           ) : (
             <CustomParagraph>

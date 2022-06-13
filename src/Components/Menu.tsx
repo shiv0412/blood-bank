@@ -19,6 +19,11 @@ const Span = styled.span`
     color: orangered;
   }
 `;
+const Container = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 5;
+`
 
 /* main component */
 
@@ -33,7 +38,7 @@ const Menu = (props: any) => {
   };
 
   return (
-    <div>
+    <Container>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid nav_mar_more">
           <NavLink to="/">
@@ -76,6 +81,17 @@ const Menu = (props: any) => {
                     href="/"
                   >
                     Need Blood
+                  </a>
+                </li>
+              </NavLink>
+              <NavLink to="/trackRequest" className="menu_links">
+                <li className="nav-item link_menu_item">
+                  <a
+                    className="anchor_link_menu_manage"
+                    aria-current="page"
+                    href="/"
+                  >
+                    Track Request
                   </a>
                 </li>
               </NavLink>
@@ -153,7 +169,7 @@ const Menu = (props: any) => {
           </div>
         </div>
       </nav>
-    </div>
+    </Container>
   );
 };
 

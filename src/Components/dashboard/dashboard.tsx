@@ -6,9 +6,19 @@ import styled from "styled-components";
 /* custom imports */
 import DashboardCardOne from "./dashboard-card-one";
 import DashboardCardTwo from "./dashboard-card-two";
-import {bloodbankStock,dashboardInformation,dateFinder} from "../functions/functions";
+import {
+  bloodbankStock,
+  dashboardInformation,
+  dateFinder,
+} from "../functions/functions";
 import { IReduxStore } from "../../Redux/reducers/initialState";
-import { IAccountDetails, IRegisteredDonor,IBloodStockInfo, IDashboardInfo} from "../../models/models";
+import {
+  IAccountDetails,
+  IRegisteredDonor,
+  IBloodStockInfo,
+  IDashboardInfo,
+  IUserRequest,
+} from "../../models/models";
 
 /* styled components */
 
@@ -45,12 +55,28 @@ const Dashboard = (props: any) => {
       );
     }
   );
+  /* finding total pending request for admin bloodbank */
+  const pendingRequests = props.bloodRequestData.filter((val: IUserRequest) => {
+    return (
+      val.requestProcessing.requestStatus !== "Completed" &&
+      val.bloodbank === props.admin[0].bloodbank_name
+    );
+  });
+  /* finding today approved request for admin bloodbank */
+  const approvedRequests = props.bloodRequestData.filter(
+    (val: IUserRequest) => {
+      return (
+        val.requestProcessing.requestStatus === "Completed" &&
+        val.requestProcessing.updatingDate === dateFinder() &&
+        val.bloodbank === props.admin[0].bloodbank_name
+      );
+    }
+  );
 
   adminBloodbanksAssociatedData.push(totalDonors.length);
   adminBloodbanksAssociatedData.push(donorsRegisterToday.length);
-  /* work in progress for requests section */
-  adminBloodbanksAssociatedData.push(20);
-  adminBloodbanksAssociatedData.push(10);
+  adminBloodbanksAssociatedData.push(pendingRequests.length);
+  adminBloodbanksAssociatedData.push(approvedRequests.length);
 
   const dashboardinfo = dashboardInformation(adminBloodbanksAssociatedData);
   const adminBloodbankStock = props.stocksData.filter(
@@ -99,6 +125,7 @@ function mapStateToProps(state: IReduxStore) {
   return {
     donarsData: state.registeredDonars,
     stocksData: state.adminAccount,
+    bloodRequestData: state.bloodRequests,
   };
 }
 

@@ -1,3 +1,4 @@
+import { IUserRequest } from "../../models/models";
 import { initialstate } from "./initialState";
 
 export const requestsReducer = (
@@ -10,6 +11,19 @@ export const requestsReducer = (
         ...action.values,
       });
       return requests;
+      case "MANAGE_REQUEST":
+        const exists = requests?.findIndex(
+          (requests:IUserRequest) =>
+            requests.bloodbank === action.values.bloodbank &&
+            requests.patient_name === action.values.patient_name
+        );
+        if (exists !== undefined && exists > -1 && requests ) {
+          requests[exists].requestProcessing.requestStatus= action.values.requestStatus;
+          requests[exists].requestProcessing.comment = action.values.comment;
+          requests[exists].requestProcessing.updatingDate = action.values.updatingDate
+        }
+        return requests;
+
     default:
       return requests;
   }

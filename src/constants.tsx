@@ -97,3 +97,21 @@ export const city =  [
       value: "O-",
     },
   ];
+  
+  export const requestStatus =  [
+    {
+      key: "Active",
+      text: "Active",
+      value: "Active",
+    },
+    {
+      key: "Processing",
+      text: "Processing",
+      value: "Processing",
+    },
+    {
+      key: "Completed",
+      text: "Completed",
+      value: "Completed",
+    },
+  ];

@@ -21,7 +21,7 @@ let Services = () => {
         <div className="row" id="servivepage_cards_row">
           <div className="col-6 col-sm-6 col-md-3 col-lg-3">
             <Link to="/donarsearch">
-              <ServiceCard image={finddonarImg} val="Find Donar"></ServiceCard>
+              <ServiceCard image={finddonarImg} val="Search Blood"></ServiceCard>
             </Link>
           </div>
           <div className=" col-6 col-sm-6 col-md-3 col-lg-3">
@@ -30,10 +30,10 @@ let Services = () => {
             </Link>
           </div>
           <div className="col-6 col-sm-6 col-md-3 col-lg-3">
-            <ServiceCard image={bloodbankImg} val="Blood Banks"></ServiceCard>
+            <ServiceCard image={bloodbankImg} val="Register Bloodbank"></ServiceCard>
           </div>
           <div className="col-6 col-sm-6 col-md-3 col-lg-3">
-            <ServiceCard image={donationImg} val="Donate Blood"></ServiceCard>
+            <ServiceCard image={donationImg} val="Track Request"></ServiceCard>
           </div>
         </div>
       </div>

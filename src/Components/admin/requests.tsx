@@ -1,7 +1,5 @@
 /* Library Imports */
 import React, { useState } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 /* Styled Component Imports */
@@ -10,8 +8,8 @@ import styled from "styled-components";
 /* Custom Imports */
 import Pagination from "../pagination";
 import { IReduxStore } from "../../Redux/reducers/initialState";
-import PaginationDataDisplay from "../pagination-data-display";
-import { IRegisteredDonor } from "../../models/models";
+import RequestsDataDisplay from "../requests-data-display";
+import { IUserRequest } from "../../models/models";
 
 /* Interfaces */
 
@@ -24,6 +22,7 @@ interface ICheckboxesState {
 
 const Wrapper = styled.div`
   background-color: #2c3e50;
+  padding-bottom: 10px;
 `;
 
 const Title = styled.p`
@@ -38,59 +37,10 @@ const Title = styled.p`
   }
 `;
 
-const Button = styled.button`
-  background-color: orangered;
-  color: white;
-  padding: 5px 10px;
-  font-size: 13px;
-  margin: 2.5% 2%;
-  border: none;
-  &:hover {
-    background-color: #eb984e;
-  }
-`;
-
-const Iconstyle = {
-  fontSize: "20px",
-  paddingBottom: "2px",
-};
-
-const ButtonContainer = styled.div`
-  text-align: right;
-  @media (max-width: 768px) {
-    text-align: left;
-  }
-`;
-
-const WrapperTwo = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  border-bottom: 1.5px solid lightgrey;
-  border-top: 1.5px solid lightgrey;
-`;
-
-const Content = styled.div`
-  width: 16.6%;
-  padding: 5px 0px;
-  padding: 15px 0;
-  font-weight: bold;
-  font-size: 14px;
-  color: #566573;
-  &:nth-child(4) {
-    width: 25%;
-  }
-  &:nth-child(5) {
-    text-align: center;
-  }
-  &:nth-child(6) {
-    text-align: center;
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     flex-direction: column;
   }
 `;
@@ -104,16 +54,7 @@ const FilterOptionsWrapper = styled.div`
   padding: 20px 5px;
   width: 25%;
 `;
-const Dropdown = styled.select`
-  border-radius: none;
-  padding: 5px 10px;
-  width: 98%;
-  border: 1.5px solid lightgrey;
-  color: #808b96;
-  &:focus {
-    outline: none;
-  }
-`;
+
 
 const DropdownWrapper = styled.div`
   padding: 20px 5px;
@@ -132,62 +73,51 @@ const CheckboxLabel = styled.label`
 
 /* Main Component */
 
-const AdminPannel = (props: any) => {
-  
-  const history = useHistory();
+const Requests = (props: any) => {
   const adminBloodbank = props.admin[0].bloodbank_name;
 
   const [filteredData, setFilteredData] = useState(
-    props.values.filter((donorDetails: IRegisteredDonor) => {
-      return donorDetails.Bloodbank === adminBloodbank;
+    props.values.filter((requests: IUserRequest) => {
+      return requests.bloodbank === adminBloodbank && requests.requestProcessing.requestStatus !== "Completed";
     })
   );
 
   const [allData] = useState(
-    props.values.filter((donorDetails: IRegisteredDonor) => {
-      return donorDetails.Bloodbank === adminBloodbank;
+    props.values.filter((requestDetails:IUserRequest) => {
+      return requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed";
     })
   );
   const [searchBoxValue] = useState<string>();
   const [checkboxesInitialState] = useState<ICheckboxesState[]>([
     {
-      name: "Approved",
+      name: "Active",
       isChecked: false,
     },
     {
-      name: "Donating",
+      name: "Processing",
       isChecked: false,
     },
     {
-      name: "Discharged",
+      name: "Completed",
       isChecked: false,
     },
   ]);
 
-  const registerNewDonor = () => {
-    history.push({
-      pathname: "/donarregister",
-      state: { id: "" },
-    });
-  };
-
-  const handleDataSearching = (
+  const HandleDataSearching = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const matchingData = props.values.filter(
-      (donorDetails: IRegisteredDonor) => {
-        return (
-          donorDetails.Bloodbank === adminBloodbank &&
-          (donorDetails.name
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase()) ||
-            donorDetails.phone.toString().includes(e.target.value) ||
-            donorDetails.Bloodgroup === e.target.value)
-        );
-      }
-    );
+    const matchingData = props.values.filter((requestDetails: IUserRequest) => {
+      return (
+        requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed" &&
+        (requestDetails.patient_name
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+          requestDetails.phone.toString().includes(e.target.value) ||
+          requestDetails.requestDate === e.target.value)
+      );
+    });
     setFilteredData(matchingData);
   };
 
@@ -211,10 +141,10 @@ const AdminPannel = (props: any) => {
       );
       /* updating filteredData matching with currently triggered checkboxes status */
       let matchingData = props.values.filter(
-        (donorsDetails: IRegisteredDonor) => {
+        (requestDetails: IUserRequest) => {
           return (
-            currentlyCheckedStatus.includes(donorsDetails.Status) &&
-            donorsDetails.Bloodbank === adminBloodbank
+            currentlyCheckedStatus.includes(requestDetails.requestProcessing.requestStatus) &&
+            requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed"
           );
         }
       );
@@ -231,102 +161,82 @@ const AdminPannel = (props: any) => {
       <Wrapper className="container">
         <div className="row">
           <div className="col-md-6">
-            <Title>Manage Donors</Title>
+            <Title>Manage Requests</Title>
           </div>
-          <ButtonContainer className="col-md-6">
-            <Button onClick={() => registerNewDonor()}>
-              <AiOutlinePlusCircle style={Iconstyle} />
-              &nbsp;Add New Donor
-            </Button>
-          </ButtonContainer>
         </div>
       </Wrapper>
       <Container>
         <SearchWrapper>
-          <Label>Search for donors</Label>
+          <Label>Search for requests</Label>
           <br />
           <input
             type="text"
             value={searchBoxValue}
-            onChange={(e) => handleDataSearching(e)}
-            placeholder="Enter donor name or phone"
+            onChange={(e) => HandleDataSearching(e)}
+            placeholder="Enter requester name or phone"
             className="admin_search_input_box"
           ></input>
         </SearchWrapper>
         <FilterOptionsWrapper>
-          <Label>Browse by donor status</Label>
+          <Label>Browse by request status</Label>
           <br />
           <input
             type="checkbox"
             className="filter_checkbox"
-            name="Approved"
+            name="Active"
             onChange={(e) => handleCheckbox(e)}
           ></input>
-          <CheckboxLabel>Approved</CheckboxLabel>
+          <CheckboxLabel>Active</CheckboxLabel>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input
             type="checkbox"
             className="filter_checkbox"
-            name="Donating"
+            name="Processing"
             onChange={(e) => handleCheckbox(e)}
           ></input>
-          <CheckboxLabel>Donating</CheckboxLabel>
+          <CheckboxLabel>Processing</CheckboxLabel>
           <br />
           <input
             type="checkbox"
             className="filter_checkbox"
-            name="Discharged"
+            name="Completed"
             onChange={(e) => handleCheckbox(e)}
           ></input>
-          <CheckboxLabel>Discharged</CheckboxLabel>
+          <CheckboxLabel>Completed</CheckboxLabel>
         </FilterOptionsWrapper>
         <DropdownWrapper>
-          <Label>Browse by bloodgroup</Label>
+          <Label>Browse by requested date</Label>
           <br />
-          <Dropdown onChange={(e) => handleDataSearching(e)}>
-            <option value="">All Bloodgroups</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-          </Dropdown>
+          <input
+            type="date"
+            value={searchBoxValue}
+            onChange={(e) => HandleDataSearching(e)}
+            className="date_type_search"
+          />
         </DropdownWrapper>
       </Container>
       <div className="container">
-        <WrapperTwo>
-          <Content>Name</Content>
-          <Content>Phone</Content>
-          <Content>Bloodgroup</Content>
-          <Content>Address</Content>
-          <Content>Donar Status</Content>
-          <Content>Action</Content>
-        </WrapperTwo>
         {props.values.length > 0 ? (
           <>
             <Pagination
               data={filteredData}
-              RenderComponent={PaginationDataDisplay}
+              RenderComponent={RequestsDataDisplay}
               pageLimit={5}
               dataLimit={5}
             />
           </>
         ) : (
-          <h6>No Donor's Data to display</h6>
+          <h6>No data to display</h6>
         )}
       </div>
     </>
   );
 };
-
 function mapStateToProps(state: IReduxStore) {
   return {
-    values: state.registeredDonars,
+    values: state.bloodRequests,
     authentication: state.adminAccount,
   };
 }
 
-export default connect(mapStateToProps)(AdminPannel);
+export default connect(mapStateToProps)(Requests);

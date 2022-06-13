@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 /* bootstrap 5 component */
 const Footer = () => {
@@ -29,10 +30,9 @@ const Footer = () => {
                       Our Services
                     </div>
                     <div className="footer-links">
-                      <a href="/">Appointment</a>
-                      <a href="/">Blood Banks</a>
-                      <a href="/">Find Donar</a>
-                      <a href="/">Donate Blood</a>
+                      <Link to="/trackRequest">Track Request</Link>
+                      <Link to="/registerbloodbank">Register Bloodbank</Link>
+                      <Link to="/donarsearch">Find Blood</Link>
                     </div>
                   </div>
                   <div className="col-md-3 m-b-30">
@@ -52,9 +52,9 @@ const Footer = () => {
                     </div>
                     <div className="footer-links">
                       <a href="/">Affiliate</a>
-                      <a href="/">Admin Login</a>
-                      <a href="/">Contact Us</a>
-                      <a href="/">Support forum</a>
+                      <Link to="/adminlogin">Admin Login</Link>
+                      <Link to="/contactus">Contact Us</Link>
+                      <Link to="/aboutus">About</Link>
                     </div>
 
                     <div className="footer-social-links m-t-30">

@@ -16,6 +16,8 @@ import DonarRegister from "./donar-register";
 import Stock from "./stocks";
 import { IReduxStore } from "../../Redux/reducers/initialState";
 import { IAccountDetails } from "../../models/models";
+import Requests from "./requests";
+import CompletedRequests from "./completed-requests";
 
 /* styled components */
 
@@ -92,6 +94,8 @@ const Span = styled.span`
 /* main component */
 
 const AdminHome = (props: any) => {
+  const [seconds , setSeconds] = useState(0);
+  const [isActive,setIsActive] = useState(true);
 
   const key = new UID().completeID();
   const history = useHistory();
@@ -101,15 +105,34 @@ const AdminHome = (props: any) => {
     })
   );
 
-  useEffect(() => {
-    const isLogin = props.values.filter((adminDetails:IAccountDetails) => {
-      return adminDetails.key === key;
-    });
+  const isLogin = props.values.filter((adminDetails:IAccountDetails) => {
+        return adminDetails.key === key;
+      });
+  
+      if (isLogin.length === 0) {
+        history.push("/adminlogin");
+      }
 
-    if (isLogin.length === 0) {
-      history.push("/adminlogin");
-    }
-  });
+  // useEffect(() => {
+  //   const isLogin = props.values.filter((adminDetails:IAccountDetails) => {
+  //     return adminDetails.key === key;
+  //   });
+
+  //   if (isLogin.length === 0) {
+  //     history.push("/adminlogin");
+  //   }
+  //   let interval:any;
+  //   if(isActive){
+  //       interval = setInterval(()=>{
+  //           setSeconds((seconds)=>seconds + 1);
+  //           console.log(seconds);
+  //       },1000);
+  //   }else if(!isActive && seconds !==0){
+  //       clearInterval(interval)
+  //   }
+  //   return () => clearInterval(interval);
+  // },[isActive]);
+
 
   return (
     <>
@@ -147,13 +170,13 @@ const AdminHome = (props: any) => {
               </StyledLink>
             </Item>
             <Item>
-              <StyledLink to="">
+              <StyledLink activeClassName="is-active" to="/bloodRequests">
                 <BiRun />
                 <Span>Requests</Span>
               </StyledLink>
             </Item>
             <Item>
-              <StyledLink to="">
+              <StyledLink activeClassName="is-active" to="/completedRequests">
                 <BiBody />
                 <Span>Blood Issued</Span>
               </StyledLink>
@@ -191,6 +214,14 @@ const AdminHome = (props: any) => {
                 <Route
                   path="/stocks"
                   component={() => <Stock admin={currentAdmin}></Stock>}
+                ></Route>
+                 <Route
+                  path="/bloodRequests"
+                  component={() => <Requests admin={currentAdmin}></Requests>}
+                ></Route>
+                <Route
+                  path="/completedRequests"
+                  component={() => <CompletedRequests admin={currentAdmin}></CompletedRequests>}
                 ></Route>
               </>
             ) : (

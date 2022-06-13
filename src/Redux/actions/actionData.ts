@@ -75,3 +75,10 @@ export const newRequest = (values:IUserRequest) => {
     values
   }
 }
+
+export const manageRequest = (values:any)=>{
+  return{
+    type:"MANAGE_REQUEST",
+    values
+  }
+}

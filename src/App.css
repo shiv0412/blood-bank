@@ -429,7 +429,7 @@
 #servivepage_cards_row{
     padding:20px 0px;
     margin:0 0 50px 0;
-    background-color:black
+    background-color:orangered
 }
 .donar_form_cancel_button{
   padding: 5px 10px;
@@ -622,4 +622,24 @@
 .dropDownList {
   max-height: calc(1.2em + 24px);
   height: calc(1.2em + 24px);
+}
+
+.search_request_input{
+  padding:5px 10px;
+  border:1.5px solid lightgray;
+  width: 300px;
+  color:#566573
+}
+.search_request_input:focus{
+  outline:none;
+  border:1.5px solid lightblue
+}
+
+.date_type_search{
+  padding:5px 5px;
+  width:98%;
+  color: #566573;
+  outline:none;
+  border:1.5px solid lightgrey;
+  font-family: Arial, Helvetica, sans-serif; 
 }
