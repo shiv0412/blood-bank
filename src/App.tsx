@@ -12,7 +12,7 @@ import Menu from "./Components/Menu";
 import LandingPage from "./Components/landing-page";
 import ContactUs from "./Components/contact-us";
 import AdminHome from "./Components/admin/admin-home";
-import About from "./Components/about";
+import About from "./Components/About";
 import AdminLogin from "./Components/admin/admin-login";
 import { IReduxStore } from "./Redux/reducers/initialState";
 import RegisterBloodbank from "./Components/register-bloodbank";

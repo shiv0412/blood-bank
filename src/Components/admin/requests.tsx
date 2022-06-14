@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 /* Custom Imports */
-import Pagination from "../pagination";
+import Pagination from "../Pagination";
 import { IReduxStore } from "../../Redux/reducers/initialState";
 import RequestsDataDisplay from "../requests-data-display";
 import { IUserRequest } from "../../models/models";

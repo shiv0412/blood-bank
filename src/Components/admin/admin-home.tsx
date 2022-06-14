@@ -11,12 +11,12 @@ import styled from "styled-components";
 
 /* custom imports */
 import AdminPannel from "./admin-pannel";
-import Dashboard from "../dashboard/dashboard";
+import Dashboard from "../dashboard/Dashboard";
 import DonarRegister from "./donar-register";
-import Stock from "./stocks";
+import Stock from "./Stocks";
 import { IReduxStore } from "../../Redux/reducers/initialState";
 import { IAccountDetails } from "../../models/models";
-import Requests from "./requests";
+import Requests from "./Requests";
 import CompletedRequests from "./completed-requests";
 
 /* styled components */
