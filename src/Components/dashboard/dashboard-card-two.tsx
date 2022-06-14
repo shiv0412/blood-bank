@@ -39,8 +39,7 @@ const Heading = styled.h5`
 
 const DashboardCardTwo:React.FC<IDashboardInfo>=(props) => {
   return (
-    <>
-      <Wrapper>
+      <Wrapper key={props.headtext}>
         <Heading>{props.headtext}</Heading>
         <Image
           src={process.env.PUBLIC_URL + props.infoimg}
@@ -50,7 +49,6 @@ const DashboardCardTwo:React.FC<IDashboardInfo>=(props) => {
         ></Image>
         <Paragraph>{props.info}</Paragraph>
       </Wrapper>
-    </>
   );
 };
 

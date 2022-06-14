@@ -38,7 +38,7 @@ const Heading = styled.h4`
 const DashboardCardOne: React.FC<IBloodStockInfo> = ({ bloodgroup, quantity }) => {
   return (
     <>
-      <Wrapper>
+      <Wrapper key={bloodgroup}>
           <BloodgroupNameContainer><h4>{bloodgroup}</h4></BloodgroupNameContainer>
           <InformationContainer>
             <p>Quantity in Units</p>

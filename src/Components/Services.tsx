@@ -30,10 +30,14 @@ let Services = () => {
             </Link>
           </div>
           <div className="col-6 col-sm-6 col-md-3 col-lg-3">
+          <Link to="/registerbloodbank">
             <ServiceCard image={bloodbankImg} val="Register Bloodbank"></ServiceCard>
+            </Link>
           </div>
           <div className="col-6 col-sm-6 col-md-3 col-lg-3">
+            <Link to="/trackRequest">
             <ServiceCard image={donationImg} val="Track Request"></ServiceCard>
+            </Link>
           </div>
         </div>
       </div>

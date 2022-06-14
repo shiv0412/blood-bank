@@ -7,19 +7,40 @@ export const bloodbankReducer = (
 ) => {
   switch (action.type) {
     case "REGISTER_BLOODBANK":
-      adminAccounts?.unshift({
-        ...action.values,
-        stocks: {
-          Apos: 0,
-          Aneg: 0,
-          Bpos: 0,
-          Bneg: 0,
-          ABpos: 0,
-          ABneg: 0,
-          Opos: 0,
-          Oneg: 0,
-        },
-      });
+      const updatedAccount = adminAccounts
+        ? [
+            {
+              ...action.values,
+              stocks: {
+                Apos: 0,
+                Aneg: 0,
+                Bpos: 0,
+                Bneg: 0,
+                ABpos: 0,
+                ABneg: 0,
+                Opos: 0,
+                Oneg: 0,
+              },
+            },
+            ...adminAccounts,
+          ]
+        : [
+            {
+              ...action.values,
+              stocks: {
+                Apos: 0,
+                Aneg: 0,
+                Bpos: 0,
+                Bneg: 0,
+                ABpos: 0,
+                ABneg: 0,
+                Opos: 0,
+                Oneg: 0,
+              },
+            },
+          ];
+      adminAccounts = [...updatedAccount];
+
       return adminAccounts;
 
     case "LOGIN_BLOODBANK":
@@ -32,6 +53,7 @@ export const bloodbankReducer = (
         adminAccounts[adminExists].key = action.values.key;
         adminAccounts[adminExists].isLogin = true;
       }
+
       return adminAccounts;
 
     case "LOGOUT_BLOODBANK":

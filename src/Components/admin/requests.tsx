@@ -1,10 +1,7 @@
 /* Library Imports */
 import React, { useState } from "react";
 import { connect } from "react-redux";
-
-/* Styled Component Imports */
 import styled from "styled-components";
-
 /* Custom Imports */
 import Pagination from "../pagination";
 import { IReduxStore } from "../../Redux/reducers/initialState";
@@ -12,7 +9,6 @@ import RequestsDataDisplay from "../requests-data-display";
 import { IUserRequest } from "../../models/models";
 
 /* Interfaces */
-
 interface ICheckboxesState {
   name: string;
   isChecked: boolean;
@@ -55,7 +51,6 @@ const FilterOptionsWrapper = styled.div`
   width: 25%;
 `;
 
-
 const DropdownWrapper = styled.div`
   padding: 20px 5px;
   width: 25%;
@@ -78,13 +73,19 @@ const Requests = (props: any) => {
 
   const [filteredData, setFilteredData] = useState(
     props.values.filter((requests: IUserRequest) => {
-      return requests.bloodbank === adminBloodbank && requests.requestProcessing.requestStatus !== "Completed";
+      return (
+        requests.bloodbank === adminBloodbank &&
+        requests.requestProcessing.requestStatus !== "Completed"
+      );
     })
   );
 
   const [allData] = useState(
-    props.values.filter((requestDetails:IUserRequest) => {
-      return requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed";
+    props.values.filter((requestDetails: IUserRequest) => {
+      return (
+        requestDetails.bloodbank === adminBloodbank &&
+        requestDetails.requestProcessing.requestStatus !== "Completed"
+      );
     })
   );
   const [searchBoxValue] = useState<string>();
@@ -110,7 +111,8 @@ const Requests = (props: any) => {
   ) => {
     const matchingData = props.values.filter((requestDetails: IUserRequest) => {
       return (
-        requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed" &&
+        requestDetails.bloodbank === adminBloodbank &&
+        requestDetails.requestProcessing.requestStatus !== "Completed" &&
         (requestDetails.patient_name
           .toLowerCase()
           .includes(e.target.value.toLowerCase()) ||
@@ -126,7 +128,7 @@ const Requests = (props: any) => {
     /* finding index of currently triggered checkbox */
     const exists = checkboxesInitialState.findIndex(
       (checkboxDetails: ICheckboxesState) => checkboxDetails.name === name
-    );
+    ); 
     /* updating currently triggered checkbox to true */
     if (exists !== undefined && exists > -1 && checkboxesInitialState) {
       checkboxesInitialState[exists] = { name: name, isChecked: checked };
@@ -140,14 +142,15 @@ const Requests = (props: any) => {
         (checkbox) => checkbox.name
       );
       /* updating filteredData matching with currently triggered checkboxes status */
-      let matchingData = props.values.filter(
-        (requestDetails: IUserRequest) => {
-          return (
-            currentlyCheckedStatus.includes(requestDetails.requestProcessing.requestStatus) &&
-            requestDetails.bloodbank === adminBloodbank && requestDetails.requestProcessing.requestStatus !== "Completed"
-          );
-        }
-      );
+      let matchingData = props.values.filter((requestDetails: IUserRequest) => {
+        return (
+          currentlyCheckedStatus.includes(
+            requestDetails.requestProcessing.requestStatus
+          ) &&
+          requestDetails.bloodbank === adminBloodbank &&
+          requestDetails.requestProcessing.requestStatus !== "Completed"
+        );
+      });
       if (matchingData.length > 0) {
         setFilteredData(matchingData);
       } else {

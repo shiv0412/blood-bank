@@ -39,7 +39,7 @@ const HR = styled.hr`
 
 const Dashboard = (props: any) => {
   const adminBloodbanksAssociatedData: number[] = [];
-  const adminBloodbank = props.admin[0].bloodbank_name;
+  const adminBloodbank:string = props.admin[0].bloodbank_name;
   /* finding total donors related to current admin bloodbank */
   const totalDonors = props.donarsData.filter(
     (donorsDetails: IRegisteredDonor) => {

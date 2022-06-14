@@ -7,10 +7,10 @@ export const requestsReducer = (
 ) => {
   switch (action.type) {
     case "NEW_REQUEST":
-      requests?.unshift({
-        ...action.values,
-      });
+      const updatedRequest = requests ? [{...action.values} , ...requests] : [{...action.values}];
+      requests = [...updatedRequest];
       return requests;
+
       case "MANAGE_REQUEST":
         const exists = requests?.findIndex(
           (requests:IUserRequest) =>
