@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 /* Custom Imports */
-import Pagination from "../Pagination";
+import Pagination from "../pagination";
 import { IReduxStore } from "../../Redux/reducers/initialState";
 import RequestsDataDisplay from "../requests-data-display";
 import { IUserRequest } from "../../models/models";
