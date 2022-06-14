@@ -7,7 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 /* custom imports */
 import DonarSearch from "./Components/blood-search";
-import Footer from "./Components/footer";
+import Footer from "./Components/Footer";
 import Menu from "./Components/menu";
 import LandingPage from "./Components/landing-page";
 import ContactUs from "./Components/contact-us";
