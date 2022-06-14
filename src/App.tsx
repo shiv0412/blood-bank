@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 /* custom imports */
 import DonarSearch from "./Components/blood-search";
 import Footer from "./Components/Footer";
-import Menu from "./Components/menu";
+import Menu from "./Components/Menu";
 import LandingPage from "./Components/landing-page";
 import ContactUs from "./Components/contact-us";
 import AdminHome from "./Components/admin/admin-home";
