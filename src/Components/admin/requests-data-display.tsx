@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 /* custom imports */
-import ManageRequestForm from "./admin/manage-request-form";
+import ManageRequestForm from "./manage-request-form";
 
 /* styled components */
 

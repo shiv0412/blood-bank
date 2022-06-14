@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 /* custom imports */
-import { deleteDonar, updateStatus } from "../Redux/actions/actionData";
-import { IReduxStore } from "../Redux/reducers/initialState";
-import { toastNotification } from "./functions/functions";
+import { deleteDonar, updateStatus } from "../../Redux/actions/actionData";
+import { IReduxStore } from "../../Redux/reducers/initialState";
+import { toastNotification } from "../functions/functions";
 
 /* styled components */
 const Wrapper = styled.div`
