@@ -10,6 +10,10 @@ git clone https://github.com/shiv0412/blood-bank.git
 
 cd blood-bank
 
+# Installing dependencies
+
+npm install
+
 ## Available Scripts
 
 In the project directory, you can run:
